@@ -1,10 +1,12 @@
-import { GitFork, Link, Mail, X, BookOpen, ArrowUp } from 'lucide-react'
+import { FaGithub, FaLinkedin, FaXTwitter } from 'react-icons/fa6'
+import { SiGooglescholar } from 'react-icons/si'
+import { Mail, ArrowUp } from 'lucide-react'
 
 const socials = [
-  { href: 'https://github.com/yourusername', label: 'GitHub', icon: GitFork },
-  { href: 'https://linkedin.com/in/yourusername', label: 'LinkedIn', icon: Link },
-  { href: 'https://scholar.google.com/citations?user=YOURID', label: 'Google Scholar', icon: BookOpen },
-  { href: 'https://twitter.com/yourusername', label: 'Twitter', icon: X },
+  { href: 'https://github.com/yourusername', label: 'GitHub', icon: FaGithub },
+  { href: 'https://linkedin.com/in/yourusername', label: 'LinkedIn', icon: FaLinkedin },
+  { href: 'https://scholar.google.com/citations?user=YOURID', label: 'Google Scholar', icon: SiGooglescholar },
+  { href: 'https://twitter.com/yourusername', label: 'Twitter / X', icon: FaXTwitter },
   { href: 'mailto:you@example.com', label: 'Email', icon: Mail },
 ]
 
