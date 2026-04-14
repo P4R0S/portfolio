@@ -13,9 +13,9 @@ const roles = [
 ]
 
 const stats = [
-  { label: 'Projects Built', value: '20+' },
-  { label: 'Papers Published', value: '5' },
-  { label: 'Years of Exp.', value: '6+' },
+  { label: 'Projects Built', value: '10' },
+  { label: 'Papers Published', value: '1' },
+  { label: 'Years of Exp.', value: '3' },
 ]
 
 export function Hero() {
@@ -54,7 +54,7 @@ export function Hero() {
             className="font-heading font-bold leading-none mb-6"
             style={{ fontSize: 'clamp(3rem, 8vw, 6rem)' }}
           >
-            <GradientText>Your Name</GradientText>
+            <GradientText>Parsa Rostamzadeh</GradientText>
           </h1>
 
           {/* Animated role switcher */}

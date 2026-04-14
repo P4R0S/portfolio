@@ -20,7 +20,7 @@ const highlights = [
   {
     icon: Target,
     title: 'Current Focus',
-    body: 'Hardware-aware quantization of LLMs for edge deployment, and exploring approximate arithmetic for next-gen AI accelerators.',
+    body: 'Hardware-aware quantization of LLMs for edge deployment, also dealing with the partitioning and Parallel approximation.',
     color: 'text-emerald-400',
   },
 ]
@@ -43,6 +43,7 @@ export function About() {
               src="/images/profile.jpg"
               alt="Your Name profile photo"
               fill
+              sizes="128px"
               className="object-cover"
               priority
             />
