@@ -1,13 +1,10 @@
-import { FaGithub, FaLinkedin, FaXTwitter } from 'react-icons/fa6'
-import { SiGooglescholar } from 'react-icons/si'
+import { FaGithub, FaLinkedin } from 'react-icons/fa6'
 import { Mail, ArrowUp } from 'lucide-react'
 
 const socials = [
-  { href: 'https://github.com/yourusername', label: 'GitHub', icon: FaGithub },
-  { href: 'https://linkedin.com/in/yourusername', label: 'LinkedIn', icon: FaLinkedin },
-  { href: 'https://scholar.google.com/citations?user=YOURID', label: 'Google Scholar', icon: SiGooglescholar },
-  { href: 'https://twitter.com/yourusername', label: 'Twitter / X', icon: FaXTwitter },
-  { href: 'mailto:you@example.com', label: 'Email', icon: Mail },
+  { href: 'https://github.com/P4R0S', label: 'GitHub', icon: FaGithub },
+  { href: 'https://linkedin.com/in/paros_1999', label: 'LinkedIn', icon: FaLinkedin },
+  { href: 'mailto:paros.pr@gmail.com', label: 'Email', icon: Mail },
 ]
 
 export function Footer() {
@@ -15,7 +12,7 @@ export function Footer() {
     <footer className="border-t border-white/10 py-10 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         <p className="text-slate-500 text-sm">
-          © {new Date().getFullYear()} Your Name. All rights reserved.
+          © {new Date().getFullYear()} Parsa Rostamzadeh. All rights reserved.
         </p>
 
         <div className="flex items-center gap-4">

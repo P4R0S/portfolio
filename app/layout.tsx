@@ -19,13 +19,13 @@ const dmSans = DM_Sans({
 })
 
 export const metadata: Metadata = {
-  title: 'Your Name — ML Engineer & Developer',
+  title: 'Parsa Rostamzadeh — ML Engineer & Hardware Researcher',
   description:
-    'Computer engineer specializing in ML, LLM, approximate computing, and hardware design.',
-  keywords: ['ML Engineer', 'LLM', 'Approximate Computing', 'Hardware', 'Portfolio'],
+    'Computer engineer specializing in approximate computing, hardware-aware ML, FPGA neural network optimization, and graph neural networks.',
+  keywords: ['Approximate Computing', 'ML Engineer', 'FPGA', 'Hardware', 'GNN', 'Portfolio', 'Paderborn University'],
   openGraph: {
-    title: 'Your Name — ML Engineer & Developer',
-    description: 'Computer engineer specializing in ML, LLM, approximate computing, and hardware.',
+    title: 'Parsa Rostamzadeh — ML Engineer & Hardware Researcher',
+    description: 'Computer engineer specializing in approximate computing, hardware-aware ML, and FPGA neural network optimization.',
     type: 'website',
   },
 }

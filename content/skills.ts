@@ -8,21 +8,21 @@ export const skillCategories: SkillCategory[] = [
   {
     name: 'Languages',
     accent: 'violet',
-    skills: ['Python', 'C', 'C++', 'VHDL', 'Verilog', 'Rust', 'JavaScript', 'TypeScript', 'Bash'],
+    skills: ['Python', 'C', 'C++', 'Verilog', 'Bash', 'JavaScript', 'TypeScript'],
   },
   {
     name: 'ML / AI',
     accent: 'blue',
-    skills: ['PyTorch', 'TensorFlow', 'HuggingFace', 'CUDA', 'LangChain', 'scikit-learn', 'ONNX', 'Triton'],
+    skills: ['PyTorch', 'PyTorch Geometric', 'NumPy', 'SciPy', 'scikit-learn', 'NetworkX', 'XAI', 'Graph Neural Networks'],
   },
   {
     name: 'Hardware',
     accent: 'emerald',
-    skills: ['FPGA', 'RTL Design', 'Xilinx Vivado', 'ModelSim', 'Approximate Circuits', 'RISC-V', 'SystemVerilog'],
+    skills: ['FPGA', 'RTL Design', 'Xilinx Vivado', 'Yosys', 'ABC', 'LSOracle', 'Icarus Verilog', 'BLASYS', 'Approximate Circuits'],
   },
   {
     name: 'Tools & Infra',
     accent: 'orange',
-    skills: ['Git', 'Docker', 'Linux', 'Jupyter', 'LaTeX', 'FastAPI', 'Vercel', 'GitHub Actions'],
+    skills: ['Git', 'Linux', 'Jupyter', 'LaTeX', 'HPC / SLURM', 'Docker'],
   },
 ]

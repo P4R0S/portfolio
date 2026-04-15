@@ -33,7 +33,7 @@ export function Navbar() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14">
         {/* Logo */}
         <a href="#" className="font-heading font-bold text-lg gradient-text cursor-pointer">
-          YN
+          PR
         </a>
 
         {/* Desktop links */}

@@ -4,15 +4,12 @@ import { GlassCard } from '@/components/ui/GlassCard'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { GradientText } from '@/components/ui/GradientText'
 import { Mail, Loader2, CheckCircle, AlertCircle } from 'lucide-react'
-import { FaGithub, FaLinkedin, FaXTwitter } from 'react-icons/fa6'
-import { SiGooglescholar } from 'react-icons/si'
+import { FaGithub, FaLinkedin } from 'react-icons/fa6'
 
 const socials = [
-  { href: 'https://github.com/yourusername', label: 'GitHub', icon: FaGithub },
-  { href: 'https://linkedin.com/in/yourusername', label: 'LinkedIn', icon: FaLinkedin },
-  { href: 'https://scholar.google.com/citations?user=YOURID', label: 'Google Scholar', icon: SiGooglescholar },
-  { href: 'https://twitter.com/yourusername', label: 'Twitter / X', icon: FaXTwitter },
-  { href: 'mailto:you@example.com', label: 'Email', icon: Mail },
+  { href: 'https://github.com/P4R0S', label: 'GitHub', icon: FaGithub },
+  { href: 'https://linkedin.com/in/paros_1999', label: 'LinkedIn', icon: FaLinkedin },
+  { href: 'mailto:paros.pr@gmail.com', label: 'Email', icon: Mail },
 ]
 
 type Status = 'idle' | 'loading' | 'success' | 'error'

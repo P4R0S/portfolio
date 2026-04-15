@@ -8,19 +8,19 @@ const highlights = [
   {
     icon: Cpu,
     title: 'What I Do',
-    body: 'I design and build systems at the boundary of ML, hardware, and software — from FPGA accelerators to LLM pipelines.',
+    body: 'I build approximate computing pipelines and hardware-aware ML systems — from FPGA-deployed neural networks to cross-layer circuit synthesis.',
     color: 'text-violet-400',
   },
   {
     icon: Zap,
     title: 'What Drives Me',
-    body: 'Efficiency. I obsess over squeezing maximum performance from constrained hardware — approximate computing is my playground.',
+    body: 'Making neural networks smaller and faster without breaking them. Approximate computing lets me trade a little accuracy for a lot of efficiency — and I find that trade fascinating.',
     color: 'text-blue-400',
   },
   {
     icon: Target,
     title: 'Current Focus',
-    body: 'Hardware-aware quantization of LLMs for edge deployment, also dealing with the partitioning and Parallel approximation.',
+    body: 'Cross-layer approximate synthesis for FPGA-deployed neural networks — profiling sensitivity, generating approximate neuron variants, and exploring Pareto-optimal area-accuracy trade-offs.',
     color: 'text-emerald-400',
   },
 ]
@@ -41,7 +41,7 @@ export function About() {
           <div className="relative w-32 h-32 rounded-2xl overflow-hidden border border-white/10 mb-6 mx-auto md:mx-0">
             <Image
               src="/images/profile.jpg"
-              alt="Your Name profile photo"
+              alt="Parsa Rostamzadeh profile photo"
               fill
               sizes="128px"
               className="object-cover"
@@ -52,10 +52,10 @@ export function About() {
             Computer Engineer & Researcher
           </h3>
           <p className="text-slate-400 leading-relaxed text-sm mb-4">
-            I&apos;m a computer engineer with deep roots in both software and hardware. My work sits at the intersection of machine learning, approximate computing, and digital design — I care about making intelligent systems fast, small, and power-efficient.
+            I&apos;m a computer engineer at Paderborn University with a focus on approximate computing, hardware-aware machine learning, and FPGA-based neural network optimization. My research centers on making deep learning deployable on resource-constrained hardware — without sacrificing more accuracy than necessary.
           </p>
           <p className="text-slate-400 leading-relaxed text-sm">
-            When I&apos;m not designing circuits or fine-tuning LLMs, I write about approximate computing and publish research on making AI work in the real world — not just on expensive data-center GPUs.
+            I build end-to-end pipelines that span the full stack: from quantization-aware training and circuit synthesis to multi-objective design space exploration. When I&apos;m not optimizing circuits, I work on graph neural networks and explainability — understanding not just what models predict, but why.
           </p>
         </GlassCard>
 
