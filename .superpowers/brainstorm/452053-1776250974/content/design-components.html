@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visual Components</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0a0a0f;
+    color: #e2e8f0;
+    font-family: 'Inter', system-ui, sans-serif;
+    padding: 32px 24px;
+    min-height: 100vh;
+  }
+  .page-title { text-align:center; font-size:12px; letter-spacing:0.15em; text-transform:uppercase; color:#475569; margin-bottom:6px; }
+  .page-heading { text-align:center; font-size:20px; font-weight:700; color:#f1f5f9; margin-bottom:4px; }
+  .page-sub { text-align:center; font-size:12px; color:#475569; margin-bottom:28px; }
+
+  .layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 1100px; margin: 0 auto; }
+  .full { grid-column: 1 / -1; }
+
+  .section-label {
+    font-family: monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #ffb300;
+    margin-bottom: 8px;
+    padding: 0 2px;
+  }
+
+  .terminal {
+    background: #0d0800;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #1a1000;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+  }
+  .term-chrome {
+    background: #0a0600;
+    padding: 7px 12px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border-bottom: 1px solid #1a1000;
+  }
+  .dot{width:7px;height:7px;border-radius:50%}
+  .dot.r{background:#ff5f57}.dot.y{background:#febc2e}.dot.g{background:#28c840}
+  .tlabel{font-family:monospace;font-size:9px;color:#3d2800;margin-left:6px}
+  .tb {
+    padding: 14px 16px;
+    line-height: 1.75;
+    position: relative;
+  }
+  .tb::before {
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(255,179,0,0.018) 3px,rgba(255,179,0,0.018) 4px);
+  }
+  .p{color:#ffb300}.c{color:#ffd54f}.o{color:#ff8f00}.d{color:#3d2800}.w{color:#fff;font-weight:bold}
+  .cursor{display:inline-block;width:7px;height:12px;background:#ffb300;vertical-align:bottom;animation:blink 1s infinite}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+  /* project output */
+  .proj-header { color: #fff; font-weight: bold; font-size: 13px; border-bottom: 1px solid #3d2800; padding-bottom: 6px; margin-bottom: 8px; }
+  .proj-field { display: flex; gap: 8px; margin: 2px 0; }
+  .proj-key { color: #ffb300; min-width: 80px; }
+  .proj-val { color: #ffd54f; }
+  .proj-val.dim { color: #ff8f00; }
+  .proj-tag { display: inline-block; border: 1px solid #3d2800; color: #ff8f00; padding: 0 6px; margin: 1px; font-size: 10px; }
+  .proj-link { color: #ffd54f; text-decoration: underline; }
+
+  /* skills tree */
+  .skill-category { color: #ffb300; font-weight: bold; margin-top: 6px; }
+  .skill-item { color: #ff8f00; }
+  .skill-bar { display: inline-block; color: #3d2800; letter-spacing: -1px; }
+  .skill-bar span { color: #ffb300; }
+
+  /* history/timeline */
+  .timeline-entry { margin-bottom: 10px; }
+  .tl-date { color: #3d2800; font-size: 10px; }
+  .tl-role { color: #fff; font-weight: bold; }
+  .tl-org { color: #ffb300; }
+  .tl-bullet { color: #ff8f00; margin-left: 12px; }
+  .tl-connector { color: #3d2800; margin: 2px 0 2px 4px; }
+
+  /* contact */
+  .contact-field { display: flex; gap: 10px; margin: 3px 0; }
+  .cf-key { color: #ffb300; min-width: 70px; }
+  .cf-val { color: #ffd54f; }
+  .cf-val a { color: #ffd54f; }
+</style>
+</head>
+<body>
+
+<p class="page-title">Design Section 2 of 3 — Visual Components</p>
+<h1 class="page-heading">How Each Command Renders</h1>
+<p class="page-sub">Every section of your portfolio maps to a command output. This is what visitors actually see.</p>
+
+<div class="layout">
+
+  <!-- ls projects/ -->
+  <div>
+    <div class="section-label">// ls projects/</div>
+    <div class="terminal">
+      <div class="term-chrome"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><span class="tlabel">projects directory</span></div>
+      <div class="tb">
+        <div><span class="p">paros@paderborn</span><span class="d">:~$</span> <span class="c">ls projects/</span></div>
+        <br>
+        <div><span class="d">total 7 items</span></div>
+        <div><span class="d">──────────────────────────────────────────────</span></div>
+        <div><span class="o">drwxr-xr-x</span> &nbsp;<span class="w">CLAS/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="d"># approx synthesis</span></div>
+        <div><span class="o">drwxr-xr-x</span> &nbsp;<span class="w">BLASYS/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="d"># NN approximation</span></div>
+        <div><span class="o">drwxr-xr-x</span> &nbsp;<span class="w">Partioning/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="d"># spectral partition</span></div>
+        <div><span class="o">drwxr-xr-x</span> &nbsp;<span class="w">PubMed_GNN/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="d"># graph attention + xai</span></div>
+        <div><span class="o">drwxr-xr-x</span> &nbsp;<span class="w">Reservoir/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="d"># ESN quantization</span></div>
+        <div><span class="o">drwxr-xr-x</span> &nbsp;<span class="w">Neural_Scratch/</span> &nbsp;&nbsp;&nbsp;<span class="d"># numpy only NN</span></div>
+        <div><span class="o">drwxr-xr-x</span> &nbsp;<span class="w">CIRCA_evo/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="d"># approx circuit gen</span></div>
+        <div><span class="d">──────────────────────────────────────────────</span></div>
+        <div><span class="d">Use `cat projects/&lt;name&gt;.md` to read any project</span></div>
+        <br>
+        <div><span class="p">paros@paderborn</span><span class="d">:~$</span> <span class="cursor"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- cat projects/CLAS.md -->
+  <div>
+    <div class="section-label">// cat projects/CLAS.md</div>
+    <div class="terminal">
+      <div class="term-chrome"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><span class="tlabel">project detail</span></div>
+      <div class="tb">
+        <div><span class="p">paros@paderborn</span><span class="d">:~$</span> <span class="c">cat projects/CLAS.md</span></div>
+        <br>
+        <div class="proj-header">═══ CLAS — Cross-Layer Approximate Synthesis ═══</div>
+        <div class="proj-field"><span class="proj-key">status</span><span class="proj-val">[ACTIVE] &nbsp;Private repo</span></div>
+        <div class="proj-field"><span class="proj-key">type</span><span class="proj-val dim">Research Pipeline</span></div>
+        <div class="proj-field"><span class="proj-key">stack</span>
+          <span><span class="proj-tag">Python</span><span class="proj-tag">Verilog</span><span class="proj-tag">Yosys</span><span class="proj-tag">Vivado</span><span class="proj-tag">GA</span></span>
+        </div>
+        <div style="margin:8px 0;color:#ff8f00;line-height:1.6;font-size:10.5px">
+          4-stage pipeline: QAT → sensitivity profiling → BLASYS<br>
+          approximation → multi-objective GA for Pareto-optimal<br>
+          area-accuracy trade-offs across full FPGA network.
+        </div>
+        <div class="proj-field"><span class="proj-key">github</span><span class="proj-val proj-link">github.com/P4R0S/CLAS</span></div>
+        <br>
+        <div><span class="p">paros@paderborn</span><span class="d">:~$</span> <span class="cursor"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- skills -->
+  <div>
+    <div class="section-label">// skills</div>
+    <div class="terminal">
+      <div class="term-chrome"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><span class="tlabel">skill tree</span></div>
+      <div class="tb">
+        <div><span class="p">paros@paderborn</span><span class="d">:~$</span> <span class="c">skills</span></div>
+        <br>
+        <div class="skill-category">[ Languages ]</div>
+        <div class="skill-item">&nbsp; Python &nbsp;&nbsp;&nbsp; <span class="skill-bar"><span>████████</span>██</span></div>
+        <div class="skill-item">&nbsp; C/C++ &nbsp;&nbsp;&nbsp; <span class="skill-bar"><span>███████</span>███</span></div>
+        <div class="skill-item">&nbsp; Verilog &nbsp;&nbsp; <span class="skill-bar"><span>██████</span>████</span></div>
+        <div class="skill-category">[ Hardware ]</div>
+        <div class="skill-item">&nbsp; FPGA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="skill-bar"><span>███████</span>███</span></div>
+        <div class="skill-item">&nbsp; Yosys &nbsp;&nbsp;&nbsp; <span class="skill-bar"><span>██████</span>████</span></div>
+        <div class="skill-item">&nbsp; Vivado &nbsp;&nbsp;&nbsp; <span class="skill-bar"><span>██████</span>████</span></div>
+        <div class="skill-category">[ ML / AI ]</div>
+        <div class="skill-item">&nbsp; PyTorch &nbsp;&nbsp; <span class="skill-bar"><span>███████</span>███</span></div>
+        <div class="skill-item">&nbsp; GNN &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="skill-bar"><span>██████</span>████</span></div>
+        <br>
+        <div><span class="p">paros@paderborn</span><span class="d">:~$</span> <span class="cursor"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- history (experience) -->
+  <div>
+    <div class="section-label">// history (experience timeline)</div>
+    <div class="terminal">
+      <div class="term-chrome"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><span class="tlabel">experience log</span></div>
+      <div class="tb">
+        <div><span class="p">paros@paderborn</span><span class="d">:~$</span> <span class="c">history</span></div>
+        <br>
+        <div class="d">[ experience timeline — newest first ]</div>
+        <div class="d">──────────────────────────────────────</div>
+        <br>
+        <div class="timeline-entry">
+          <div><span class="tl-date">2022 → Present</span></div>
+          <div><span class="tl-role">Researcher</span> <span class="d">@</span> <span class="tl-org">Paderborn University</span></div>
+          <div class="tl-bullet">▸ Cross-layer approximate synthesis (CLAS)</div>
+          <div class="tl-bullet">▸ FPGA neural network optimization</div>
+          <div class="tl-bullet">▸ GNN-based XAI (PubMed GAT)</div>
+        </div>
+        <div class="tl-connector d">│</div>
+        <div class="timeline-entry">
+          <div><span class="tl-date">2019 → 2022</span></div>
+          <div><span class="tl-role">B.Sc. Computer Engineering</span></div>
+          <div class="tl-bullet">▸ Hardware design fundamentals</div>
+          <div class="tl-bullet">▸ Machine learning coursework</div>
+        </div>
+        <br>
+        <div><span class="p">paros@paderborn</span><span class="d">:~$</span> <span class="cursor"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- contact -->
+  <div class="full">
+    <div class="section-label">// contact</div>
+    <div class="terminal">
+      <div class="term-chrome"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><span class="tlabel">contact info</span></div>
+      <div class="tb" style="display:grid;grid-template-columns:1fr 1fr;gap:0 40px">
+        <div>
+          <div><span class="p">paros@paderborn</span><span class="d">:~$</span> <span class="c">cat contact.vcf</span></div>
+          <br>
+          <div class="d">BEGIN:VCARD</div>
+          <div class="contact-field"><span class="cf-key">FN</span><span class="cf-val">Parsa Rostamzadeh</span></div>
+          <div class="contact-field"><span class="cf-key">EMAIL</span><span class="cf-val">paros.pr@gmail.com</span></div>
+          <div class="contact-field"><span class="cf-key">URL</span><span class="cf-val">github.com/P4R0S</span></div>
+          <div class="contact-field"><span class="cf-key">ORG</span><span class="cf-val">Paderborn University</span></div>
+          <div class="d">END:VCARD</div>
+          <br>
+          <div><span class="d">Or use the form below — type your message:</span></div>
+          <div><span class="p">send-mail</span><span class="d">></span> <span class="cursor"></span></div>
+        </div>
+        <div style="padding-top:26px">
+          <div class="d">[ interactive mail form ]</div>
+          <div class="d">──────────────────────────────</div>
+          <div><span class="o">From</span><span class="d">:</span> <span class="c">visitor@internet</span></div>
+          <div><span class="o">To</span><span class="d">:</span> &nbsp;&nbsp;<span class="c">paros.pr@gmail.com</span></div>
+          <div><span class="o">Subj</span><span class="d">:</span> <span class="c">collaboration</span></div>
+          <div><span class="o">Body</span><span class="d">:</span> <span class="c">Hi Parsa, I saw your CLAS project...</span></div>
+          <br>
+          <div><span class="d">[y] Send &nbsp;[n] Cancel &nbsp;[e] Edit</span></div>
+          <div><span class="p">send-mail</span><span class="d">></span> <span class="c">y</span></div>
+          <div><span class="o">Message sent. 250 OK.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p style="text-align:center;margin-top:24px;font-size:12px;color:#334155;">Does this look right? Say yes to see Section 3 — mobile handling & implementation approach.</p>
+
+</body>
+</html>

@@ -1,0 +1,236 @@
+<style>
+  .scene {
+    background: linear-gradient(135deg, #0f0f1a 0%, #0a0a14 100%);
+    border-radius: 14px;
+    padding: 40px 36px;
+    position: relative;
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    min-height: 340px;
+  }
+  .scene::before {
+    content: '';
+    position: absolute;
+    top: -20px; right: -20px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: rgba(124,58,237,0.15);
+    filter: blur(60px);
+    pointer-events: none;
+  }
+  .scene::after {
+    content: '';
+    position: absolute;
+    bottom: -30px; left: -10px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: rgba(37,99,235,0.12);
+    filter: blur(50px);
+    pointer-events: none;
+  }
+  .hero-cols {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  .col-left { flex: 1.1; }
+  .col-right { flex: 1; display: flex; justify-content: center; }
+
+  /* Left column */
+  .eyebrow {
+    color: #64748b;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .hero-name {
+    font-size: 32px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+  .hero-role {
+    color: #94a3b8;
+    font-size: 11px;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .hero-desc {
+    color: #64748b;
+    font-size: 10px;
+    line-height: 1.65;
+    margin-bottom: 16px;
+    max-width: 240px;
+  }
+  .ctas { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+  .btn-p {
+    background: #7c3aed; color: white;
+    padding: 7px 16px; border-radius: 10px;
+    font-size: 10px; font-weight: 500;
+  }
+  .btn-g {
+    background: transparent; color: #94a3b8;
+    border: 1px solid rgba(255,255,255,0.14);
+    padding: 7px 16px; border-radius: 10px;
+    font-size: 10px; font-weight: 500;
+  }
+  .stats { display: flex; gap: 8px; }
+  .stat {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 10px;
+    padding: 8px 12px;
+    text-align: center;
+    min-width: 54px;
+  }
+  .stat-v { color: white; font-size: 16px; font-weight: 700; }
+  .stat-l { color: #475569; font-size: 7.5px; margin-top: 2px; }
+
+  /* Terminal widget */
+  .term-widget {
+    width: 100%;
+    max-width: 280px;
+    background: rgba(13, 8, 0, 0.94);
+    border: 1px solid rgba(255, 179, 0, 0.22);
+    border-radius: 12px;
+    overflow: hidden;
+    font-family: 'Courier New', monospace;
+    transform: rotate(2deg);
+    box-shadow:
+      0 20px 60px rgba(0,0,0,0.65),
+      0 0 0 1px rgba(255,179,0,0.07),
+      0 0 30px rgba(255,140,0,0.06);
+    position: relative;
+  }
+  .term-chrome {
+    background: rgba(10, 6, 0, 0.95);
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-bottom: 1px solid rgba(255,179,0,0.12);
+  }
+  .dot { width: 9px; height: 9px; border-radius: 50%; }
+  .dr { background: #ff5f57; } .dy { background: #febc2e; } .dg { background: #28c840; }
+  .t-title { color: #3d2800; font-size: 8px; margin-left: 6px; letter-spacing: 0.04em; }
+  .term-body { padding: 12px 14px; }
+  .tl { font-size: 9px; line-height: 1.9; }
+  .td { color: #3d2800; }
+  .to { color: #ff8f00; }
+  .tc { color: #ffd54f; }
+  .tp { color: #ffb300; }
+  .cursor {
+    display: inline-block;
+    width: 7px; height: 12px;
+    background: #ffb300;
+    vertical-align: middle;
+    animation: blink 1s step-end infinite;
+    margin-left: 1px;
+    border-radius: 1px;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  /* Scanline effect */
+  .term-widget::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent, transparent 3px,
+      rgba(255,179,0,0.015) 3px, rgba(255,179,0,0.015) 4px
+    );
+    pointer-events: none;
+    z-index: 2;
+    border-radius: 12px;
+  }
+
+  /* "after typing skills" state */
+  .demo-output { margin-top: 4px; }
+
+  .annotation {
+    font-size: 9px;
+    color: #64748b;
+    text-align: center;
+    margin-top: 10px;
+    font-style: italic;
+  }
+</style>
+
+<h2>Hero section — full mockup</h2>
+<p class="subtitle">Left: your name + CTAs + stats &nbsp;·&nbsp; Right: floating terminal widget</p>
+
+<div class="mockup">
+  <div class="mockup-header">Hero — desktop view</div>
+  <div class="mockup-body">
+    <div class="scene">
+      <div class="hero-cols">
+        <!-- Left -->
+        <div class="col-left">
+          <div class="eyebrow">Welcome — I build things that matter</div>
+          <div class="hero-name">Parsa Rostamzadeh</div>
+          <div class="hero-role">ML Engineer · Hardware Developer</div>
+          <div class="hero-desc">Building intelligent systems at the intersection of software, hardware, and machine learning.</div>
+          <div class="ctas">
+            <div class="btn-p">View Projects →</div>
+            <div class="btn-g">Download CV ↓</div>
+          </div>
+          <div class="stats">
+            <div class="stat"><div class="stat-v">10</div><div class="stat-l">Projects</div></div>
+            <div class="stat"><div class="stat-v">1</div><div class="stat-l">Papers</div></div>
+            <div class="stat"><div class="stat-v">3yr</div><div class="stat-l">Exp.</div></div>
+          </div>
+        </div>
+
+        <!-- Right: terminal -->
+        <div class="col-right">
+          <div class="term-widget">
+            <div class="term-chrome">
+              <div class="dot dr"></div>
+              <div class="dot dy"></div>
+              <div class="dot dg"></div>
+              <span class="t-title">paros@paderborn — portfolio v2.0</span>
+            </div>
+            <div class="term-body">
+              <div class="tl td">Type a command. Try <span class="tc">help</span></div>
+              <div class="tl" style="margin-top: 4px;">
+                <span class="tp">paros@paderborn</span><span class="td">:~$ </span><span class="tc">skills</span>
+              </div>
+              <div class="demo-output">
+                <div class="tl td">──────────────────────</div>
+                <div class="tl" style="color: white; font-weight: bold;">[ Languages ]</div>
+                <div class="tl to">&nbsp;&nbsp;Python · C++ · Verilog</div>
+                <div class="tl" style="color: white; font-weight: bold;">[ ML / AI ]</div>
+                <div class="tl to">&nbsp;&nbsp;PyTorch · GNN · XAI</div>
+                <div class="tl" style="color: white; font-weight: bold;">[ Hardware ]</div>
+                <div class="tl to">&nbsp;&nbsp;FPGA · RTL · Approx.</div>
+                <div class="tl td">──────────────────────</div>
+              </div>
+              <div class="tl" style="margin-top: 4px;">
+                <span class="tp">paros@paderborn</span><span class="td">:~$ </span><div class="cursor"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="annotation">Shown after typing "skills" — cursor blinks and waits for next command</div>
+  </div>
+</div>
+
+<div class="section" style="margin-top: 24px;">
+  <h3>Design details</h3>
+  <ul style="color: #94a3b8; font-size: 13px; line-height: 2;">
+    <li><strong style="color:#e2e8f0;">Tilt:</strong> 2° clockwise rotation — "floating window" feel, not perfectly rigid</li>
+    <li><strong style="color:#e2e8f0;">Scanlines:</strong> subtle CRT scanline overlay on the widget only</li>
+    <li><strong style="color:#e2e8f0;">Glow:</strong> faint amber box-shadow around the terminal border</li>
+    <li><strong style="color:#e2e8f0;">Entrance:</strong> slides in from right + fade as hero enters viewport (Framer Motion <code>whileInView</code>)</li>
+    <li><strong style="color:#e2e8f0;">Click-to-focus:</strong> clicking anywhere in the widget focuses the hidden input</li>
+    <li><strong style="color:#e2e8f0;">Mobile:</strong> terminal stacks below the text column, tilt removed, slightly smaller font</li>
+  </ul>
+</div>

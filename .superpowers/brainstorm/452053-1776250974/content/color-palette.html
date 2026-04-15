@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Color Palette</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0a0a0f;
+    color: #e2e8f0;
+    font-family: 'Inter', system-ui, sans-serif;
+    padding: 32px 24px;
+    min-height: 100vh;
+  }
+  .page-title { text-align:center; font-size:12px; letter-spacing:0.15em; text-transform:uppercase; color:#475569; margin-bottom:6px; }
+  .page-heading { text-align:center; font-size:20px; font-weight:700; color:#f1f5f9; margin-bottom:4px; }
+  .page-sub { text-align:center; font-size:12px; color:#475569; margin-bottom:32px; }
+
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 960px; margin: 0 auto; }
+
+  .card {
+    border-radius: 14px;
+    overflow: hidden;
+    border: 2px solid #1e1e2e;
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .card:hover { transform: translateY(-2px); }
+  .card.selected { border-color: #a78bfa; }
+
+  .term-chrome {
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .dot.r { background: #ff5f57; }
+  .dot.y { background: #febc2e; }
+  .dot.g { background: #28c840; }
+  .term-title { font-family: monospace; font-size: 10px; margin-left: 6px; }
+
+  .term-body {
+    padding: 18px 20px;
+    font-family: 'Courier New', monospace;
+    font-size: 11.5px;
+    line-height: 1.8;
+    min-height: 200px;
+    position: relative;
+  }
+  .term-body::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,255,255,0.012) 3px, rgba(255,255,255,0.012) 4px);
+    pointer-events: none;
+  }
+  .cursor {
+    display: inline-block;
+    width: 7px; height: 13px;
+    vertical-align: bottom;
+    animation: blink 1s infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  /* Palette A — Classic Phosphor Green */
+  .pa { background: #000; }
+  .pa .term-chrome { background: #0a0a0a; border-bottom: 1px solid #111; }
+  .pa .term-title { color: #333; }
+  .pa .prompt { color: #00ff41; }
+  .pa .cmd { color: #e0e0e0; }
+  .pa .out { color: #00cc33; }
+  .pa .dim { color: #1a3320; }
+  .pa .cursor { background: #00ff41; }
+  .pa .hi { color: #ffffff; font-weight: bold; }
+
+  /* Palette B — Amber / Vintage */
+  .pb { background: #0d0800; }
+  .pb .term-chrome { background: #0a0600; border-bottom: 1px solid #1a1000; }
+  .pb .term-title { color: #3d2800; }
+  .pb .prompt { color: #ffb300; }
+  .pb .cmd { color: #ffd54f; }
+  .pb .out { color: #ff8f00; }
+  .pb .dim { color: #3d2800; }
+  .pb .cursor { background: #ffb300; }
+  .pb .hi { color: #ffffff; font-weight: bold; }
+
+  /* Palette C — Cyan / Hacker Blue */
+  .pc { background: #000d1a; }
+  .pc .term-chrome { background: #000a14; border-bottom: 1px solid #001a2e; }
+  .pc .term-title { color: #003344; }
+  .pc .prompt { color: #00e5ff; }
+  .pc .cmd { color: #b3e5fc; }
+  .pc .out { color: #0097a7; }
+  .pc .dim { color: #002233; }
+  .pc .cursor { background: #00e5ff; }
+  .pc .hi { color: #ffffff; font-weight: bold; }
+
+  /* Palette D — Violet Dark (current palette evolved) */
+  .pd { background: #07050f; }
+  .pd .term-chrome { background: #050310; border-bottom: 1px solid #0f0a1e; }
+  .pd .term-title { color: #2d1f4e; }
+  .pd .prompt { color: #a78bfa; }
+  .pd .cmd { color: #e2d9ff; }
+  .pd .out { color: #7c3aed; }
+  .pd .dim { color: #1e1040; }
+  .pd .cursor { background: #a78bfa; }
+  .pd .hi { color: #ffffff; font-weight: bold; }
+
+  .card-info { padding: 14px 16px; }
+  .card-name { font-size: 13px; font-weight: 700; color: #e2e8f0; margin-bottom: 3px; }
+  .card-desc { font-size: 11px; color: #475569; line-height: 1.5; margin-bottom: 10px; }
+  .swatch-row { display: flex; gap: 6px; }
+  .swatch { width: 20px; height: 20px; border-radius: 4px; }
+
+  .hint { text-align:center; margin-top:24px; font-size:12px; color:#334155; }
+</style>
+</head>
+<body>
+
+<p class="page-title">Question 3 of 4 — Color</p>
+<h1 class="page-heading">Which terminal palette?</h1>
+<p class="page-sub">Same full-CLI concept — different phosphor color. Each has a distinct mood.</p>
+
+<div class="grid">
+
+  <!-- A: Classic Green -->
+  <div class="card pa" data-choice="a" onclick="toggleSelect(this)">
+    <div class="term-chrome pa">
+      <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+      <span class="term-title pa">bash — 80×24</span>
+    </div>
+    <div class="term-body pa">
+      <div><span class="prompt pa">paros@paderborn:~$</span> <span class="cmd pa">whoami</span></div>
+      <div class="out pa">Parsa Rostamzadeh</div>
+      <div class="dim pa">───────────────────────────</div>
+      <div><span class="prompt pa">paros@paderborn:~$</span> <span class="cmd pa">cat about.txt</span></div>
+      <div class="out pa">role: <span class="hi pa">Approx. Computing Researcher</span></div>
+      <div class="out pa">inst: Paderborn University</div>
+      <div class="out pa">spec: FPGA · Neural Approx · GNN</div>
+      <div class="dim pa">───────────────────────────</div>
+      <div><span class="prompt pa">paros@paderborn:~$</span> <span class="cursor pa"></span></div>
+    </div>
+    <div class="card-info">
+      <div class="card-name">A — Classic Phosphor Green</div>
+      <div class="card-desc">The real thing. Matrix green on pure black. Most recognizable terminal aesthetic — immediately communicates systems/hardware roots.</div>
+      <div class="swatch-row">
+        <div class="swatch" style="background:#000"></div>
+        <div class="swatch" style="background:#00ff41"></div>
+        <div class="swatch" style="background:#00cc33"></div>
+        <div class="swatch" style="background:#1a3320"></div>
+        <div class="swatch" style="background:#ffffff"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- B: Amber -->
+  <div class="card pb" data-choice="b" onclick="toggleSelect(this)">
+    <div class="term-chrome pb">
+      <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+      <span class="term-title pb">bash — 80×24</span>
+    </div>
+    <div class="term-body pb">
+      <div><span class="prompt pb">paros@paderborn:~$</span> <span class="cmd pb">whoami</span></div>
+      <div class="out pb">Parsa Rostamzadeh</div>
+      <div class="dim pb">───────────────────────────</div>
+      <div><span class="prompt pb">paros@paderborn:~$</span> <span class="cmd pb">cat about.txt</span></div>
+      <div class="out pb">role: <span class="hi pb">Approx. Computing Researcher</span></div>
+      <div class="out pb">inst: Paderborn University</div>
+      <div class="out pb">spec: FPGA · Neural Approx · GNN</div>
+      <div class="dim pb">───────────────────────────</div>
+      <div><span class="prompt pb">paros@paderborn:~$</span> <span class="cursor pb"></span></div>
+    </div>
+    <div class="card-info">
+      <div class="card-name">B — Amber / Vintage CRT</div>
+      <div class="card-desc">Warm amber on near-black. Vintage VAX terminal energy. Feels more personal and unusual — fewer people have seen this palette in portfolios.</div>
+      <div class="swatch-row">
+        <div class="swatch" style="background:#0d0800"></div>
+        <div class="swatch" style="background:#ffb300"></div>
+        <div class="swatch" style="background:#ff8f00"></div>
+        <div class="swatch" style="background:#3d2800"></div>
+        <div class="swatch" style="background:#ffd54f"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- C: Cyan -->
+  <div class="card pc" data-choice="c" onclick="toggleSelect(this)">
+    <div class="term-chrome pc">
+      <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+      <span class="term-title pc">bash — 80×24</span>
+    </div>
+    <div class="term-body pc">
+      <div><span class="prompt pc">paros@paderborn:~$</span> <span class="cmd pc">whoami</span></div>
+      <div class="out pc">Parsa Rostamzadeh</div>
+      <div class="dim pc">───────────────────────────</div>
+      <div><span class="prompt pc">paros@paderborn:~$</span> <span class="cmd pc">cat about.txt</span></div>
+      <div class="out pc">role: <span class="hi pc">Approx. Computing Researcher</span></div>
+      <div class="out pc">inst: Paderborn University</div>
+      <div class="out pc">spec: FPGA · Neural Approx · GNN</div>
+      <div class="dim pc">───────────────────────────</div>
+      <div><span class="prompt pc">paros@paderborn:~$</span> <span class="cursor pc"></span></div>
+    </div>
+    <div class="card-info">
+      <div class="card-name">C — Cyan / Hacker Blue</div>
+      <div class="card-desc">Electric cyan on deep navy-black. Sci-fi workstation feel. More "future research lab" than retro CRT — connects well to the hardware/ML space.</div>
+      <div class="swatch-row">
+        <div class="swatch" style="background:#000d1a"></div>
+        <div class="swatch" style="background:#00e5ff"></div>
+        <div class="swatch" style="background:#0097a7"></div>
+        <div class="swatch" style="background:#002233"></div>
+        <div class="swatch" style="background:#b3e5fc"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- D: Violet -->
+  <div class="card pd" data-choice="d" onclick="toggleSelect(this)">
+    <div class="term-chrome pd">
+      <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+      <span class="term-title pd">bash — 80×24</span>
+    </div>
+    <div class="term-body pd">
+      <div><span class="prompt pd">paros@paderborn:~$</span> <span class="cmd pd">whoami</span></div>
+      <div class="out pd">Parsa Rostamzadeh</div>
+      <div class="dim pd">───────────────────────────</div>
+      <div><span class="prompt pd">paros@paderborn:~$</span> <span class="cmd pd">cat about.txt</span></div>
+      <div class="out pd">role: <span class="hi pd">Approx. Computing Researcher</span></div>
+      <div class="out pd">inst: Paderborn University</div>
+      <div class="out pd">spec: FPGA · Neural Approx · GNN</div>
+      <div class="dim pd">───────────────────────────</div>
+      <div><span class="prompt pd">paros@paderborn:~$</span> <span class="cursor pd"></span></div>
+    </div>
+    <div class="card-info">
+      <div class="card-name">D — Violet Dark (Current Palette)</div>
+      <div class="card-desc">Your existing violet/purple accent, recast as a terminal. Continuity with the current brand. Less "classic terminal" but more distinctively yours.</div>
+      <div class="swatch-row">
+        <div class="swatch" style="background:#07050f"></div>
+        <div class="swatch" style="background:#a78bfa"></div>
+        <div class="swatch" style="background:#7c3aed"></div>
+        <div class="swatch" style="background:#1e1040"></div>
+        <div class="swatch" style="background:#e2d9ff"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p class="hint">Pick the palette that feels most like you. You can also say "A but with a touch of D for accents."</p>
+
+<script>
+function toggleSelect(el) {
+  const wasSelected = el.classList.contains('selected');
+  document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
+  if (!wasSelected) el.classList.add('selected');
+  if (window.recordChoice) window.recordChoice(el.dataset.choice, el.querySelector('.card-name').textContent);
+}
+</script>
+</body>
+</html>

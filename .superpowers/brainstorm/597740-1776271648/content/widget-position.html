@@ -1,0 +1,281 @@
+<style>
+  .hero-mock {
+    background: linear-gradient(135deg, #0f0f1a 0%, #0a0a14 100%);
+    border-radius: 12px;
+    padding: 28px 24px 20px;
+    position: relative;
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  .hero-mock::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    right: 8%;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: rgba(124, 58, 237, 0.18);
+    filter: blur(40px);
+    pointer-events: none;
+  }
+  .hero-mock::after {
+    content: '';
+    position: absolute;
+    bottom: 10%;
+    left: 5%;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: rgba(37, 99, 235, 0.15);
+    filter: blur(36px);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    color: #64748b;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .hero-name {
+    font-size: 28px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #a78bfa, #60a5fa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 4px;
+    line-height: 1.1;
+  }
+  .hero-role {
+    color: #94a3b8;
+    font-size: 11px;
+    margin-bottom: 10px;
+  }
+  .hero-desc {
+    color: #64748b;
+    font-size: 9.5px;
+    max-width: 280px;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .btn-primary {
+    background: #7c3aed;
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 9px;
+    font-weight: 500;
+    cursor: default;
+  }
+  .btn-ghost {
+    background: transparent;
+    color: #94a3b8;
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 9px;
+    font-weight: 500;
+    cursor: default;
+  }
+  .stats-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .stat-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 8px 12px;
+    text-align: center;
+    flex: 1;
+  }
+  .stat-val {
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .stat-label {
+    color: #475569;
+    font-size: 7px;
+    margin-top: 2px;
+  }
+
+  /* Terminal widget styles */
+  .term-window {
+    background: rgba(13, 8, 0, 0.92);
+    border: 1px solid rgba(255,179,0,0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    font-family: 'Courier New', monospace;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,179,0,0.08);
+  }
+  .term-chrome {
+    background: rgba(10,6,0,0.9);
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border-bottom: 1px solid rgba(255,179,0,0.12);
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .dot-r { background: #ff5f57; }
+  .dot-y { background: #febc2e; }
+  .dot-g { background: #28c840; }
+  .term-title { color: #3d2800; font-size: 7.5px; margin-left: 6px; letter-spacing: 0.05em; }
+  .term-body { padding: 8px 10px; }
+  .term-line { font-size: 8px; line-height: 1.8; }
+  .t-dim { color: #3d2800; }
+  .t-out { color: #ff8f00; }
+  .t-cmd { color: #ffd54f; }
+  .t-prompt { color: #ffb300; }
+  .t-cursor {
+    display: inline-block;
+    width: 6px;
+    height: 11px;
+    background: #ffb300;
+    vertical-align: middle;
+    animation: blink 1s step-end infinite;
+    margin-left: 1px;
+  }
+  @keyframes blink { 0%,100% { opacity:1 } 50% { opacity:0 } }
+</style>
+
+<h2>Where does the terminal widget sit in the hero?</h2>
+<p class="subtitle">Three layout approaches — same glassmorphism design, different terminal placement</p>
+
+<div class="cards">
+
+  <!-- Option A: Centered below CTAs + stats -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding: 12px; background: #0a0a14; border-radius: 8px;">
+      <div class="hero-mock">
+        <div class="hero-eyebrow">Welcome — I build things that matter</div>
+        <div class="hero-name">Parsa Rostamzadeh</div>
+        <div class="hero-role">ML Engineer · Hardware Developer</div>
+        <div class="hero-desc">Building intelligent systems at the intersection of software, hardware, and ML.</div>
+        <div class="hero-ctas">
+          <div class="btn-primary">View Projects →</div>
+          <div class="btn-ghost">Download CV ↓</div>
+        </div>
+        <div class="stats-row">
+          <div class="stat-card"><div class="stat-val">10</div><div class="stat-label">Projects</div></div>
+          <div class="stat-card"><div class="stat-val">1</div><div class="stat-label">Papers</div></div>
+          <div class="stat-card"><div class="stat-val">3yr</div><div class="stat-label">Exp.</div></div>
+        </div>
+        <!-- Terminal below -->
+        <div class="term-window" style="width: 100%;">
+          <div class="term-chrome">
+            <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+            <span class="term-title">paros@paderborn — interactive terminal</span>
+          </div>
+          <div class="term-body">
+            <div class="term-line t-dim">Type a command to explore. Try <span class="t-cmd">help</span></div>
+            <div class="term-line" style="margin-top:4px">
+              <span class="t-prompt">paros@paderborn</span><span class="t-dim">:~$ </span><div class="t-cursor"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Inline, below stats</h3>
+      <p>Terminal sits full-width below the stats row. Part of the natural scroll flow. Feels like a built-in section of the hero.</p>
+    </div>
+  </div>
+
+  <!-- Option B: Side by side (text left, terminal right) -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding: 12px; background: #0a0a14; border-radius: 8px;">
+      <div class="hero-mock">
+        <div style="display: flex; gap: 12px; align-items: flex-start;">
+          <div style="flex: 1.2; min-width: 0;">
+            <div class="hero-eyebrow">Welcome</div>
+            <div class="hero-name" style="font-size: 22px;">Parsa Rostamzadeh</div>
+            <div class="hero-role">ML Engineer · Hardware Developer</div>
+            <div class="hero-desc">Building intelligent systems at the intersection of software, hardware, and ML.</div>
+            <div class="hero-ctas">
+              <div class="btn-primary">View Projects →</div>
+              <div class="btn-ghost">CV ↓</div>
+            </div>
+            <div class="stats-row">
+              <div class="stat-card"><div class="stat-val">10</div><div class="stat-label">Projects</div></div>
+              <div class="stat-card"><div class="stat-val">1</div><div class="stat-label">Papers</div></div>
+              <div class="stat-card"><div class="stat-val">3</div><div class="stat-label">Years</div></div>
+            </div>
+          </div>
+          <!-- Terminal on right -->
+          <div style="flex: 1; min-width: 0;">
+            <div class="term-window" style="transform: rotate(1.5deg); box-shadow: 0 16px 48px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,179,0,0.1);">
+              <div class="term-chrome">
+                <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+                <span class="term-title">paros@paderborn</span>
+              </div>
+              <div class="term-body">
+                <div class="term-line t-dim">$ neofetch</div>
+                <div class="term-line t-out">▸ Parsa Rostamzadeh</div>
+                <div class="term-line t-out">▸ PhD · ML Systems</div>
+                <div class="term-line" style="color:#3d2800; margin-top:4px">────────────</div>
+                <div class="term-line" style="margin-top:4px">
+                  <span class="t-prompt">~$</span><span class="t-dim"> </span><div class="t-cursor"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Split: text left, terminal right</h3>
+      <p>Two-column hero. Name + CTAs on left, floating terminal window on right — slightly tilted for a "real window" effect. Very editorial.</p>
+    </div>
+  </div>
+
+  <!-- Option C: Floating, below name/role, above CTAs -->
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding: 12px; background: #0a0a14; border-radius: 8px;">
+      <div class="hero-mock" style="text-align: center;">
+        <div class="hero-eyebrow">Welcome — I build things that matter</div>
+        <div class="hero-name">Parsa Rostamzadeh</div>
+        <div class="hero-role">ML Engineer · Hardware Developer</div>
+        <!-- Terminal HERE — between role and CTAs -->
+        <div style="max-width: 340px; margin: 10px auto 12px;">
+          <div class="term-window" style="box-shadow: 0 12px 40px rgba(0,0,0,0.7), 0 0 24px rgba(255,179,0,0.06);">
+            <div class="term-chrome">
+              <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+              <span class="term-title">paros@paderborn — interactive</span>
+            </div>
+            <div class="term-body">
+              <div class="term-line t-dim">Hi, I'm a terminal. Type <span class="t-cmd">help</span></div>
+              <div class="term-line" style="margin-top:4px">
+                <span class="t-prompt">paros@paderborn</span><span class="t-dim">:~$ </span><div class="t-cursor"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-ctas" style="justify-content: center;">
+          <div class="btn-primary">View Projects →</div>
+          <div class="btn-ghost">Download CV ↓</div>
+        </div>
+        <div class="stats-row" style="max-width: 220px; margin: 0 auto;">
+          <div class="stat-card"><div class="stat-val">10</div><div class="stat-label">Projects</div></div>
+          <div class="stat-card"><div class="stat-val">1</div><div class="stat-label">Papers</div></div>
+          <div class="stat-card"><div class="stat-val">3</div><div class="stat-label">Years</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C — Centered, between name and CTAs</h3>
+      <p>Terminal is the first thing you see after the name — a bold statement. CTAs and stats sit below it. Keeps the centered layout but makes the terminal the hero's centerpiece.</p>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Navigation Style</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0a0a0f;
+    color: #e2e8f0;
+    font-family: 'Inter', system-ui, sans-serif;
+    padding: 32px 24px;
+    min-height: 100vh;
+  }
+  .page-title { text-align:center; font-size:12px; letter-spacing:0.15em; text-transform:uppercase; color:#475569; margin-bottom:6px; }
+  .page-heading { text-align:center; font-size:20px; font-weight:700; color:#f1f5f9; margin-bottom:4px; }
+  .page-sub { text-align:center; font-size:12px; color:#475569; margin-bottom:32px; }
+
+  .options-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .opt {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid #1e1e2e;
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.15s;
+    background: #0d0d15;
+  }
+  .opt:hover { transform: translateY(-2px); border-color: #2d2d3d; }
+  .opt.selected { border-color: #4ade80; }
+
+  /* shared terminal chrome */
+  .term-chrome {
+    background: #111;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-bottom: 1px solid #1e1e1e;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .dot.r { background: #ff5f57; }
+  .dot.y { background: #febc2e; }
+  .dot.g { background: #28c840; }
+  .term-title {
+    font-family: monospace;
+    font-size: 10px;
+    color: #444;
+    margin-left: 6px;
+    letter-spacing: 0.05em;
+  }
+
+  .term-body {
+    padding: 16px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    line-height: 1.7;
+    min-height: 260px;
+    position: relative;
+  }
+
+  /* scanlines */
+  .term-body::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,255,70,0.02) 3px, rgba(0,255,70,0.02) 4px);
+    pointer-events: none;
+  }
+
+  .green { color: #4ade80; }
+  .bright { color: #86efac; }
+  .dim { color: #1a4a2a; }
+  .white { color: #e2e8f0; }
+  .yellow { color: #fbbf24; }
+  .cyan { color: #22d3ee; }
+  .gray { color: #374151; }
+  .cursor {
+    display: inline-block;
+    width: 7px; height: 13px;
+    background: #4ade80;
+    vertical-align: bottom;
+    animation: blink 1s infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  /* Option A — typed commands */
+  .cmd-input {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+  }
+  .cmd-input .prompt { color: #4ade80; }
+  .cmd-input .typed { color: #e2e8f0; font-size: 11px; }
+  .fake-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: #e2e8f0;
+    caret-color: #4ade80;
+  }
+
+  /* Option B — clickable menu */
+  .menu-item {
+    padding: 3px 0;
+    cursor: pointer;
+  }
+  .menu-item:hover .menu-label { color: #4ade80; text-decoration: underline; }
+  .menu-num { color: #1a4a2a; margin-right: 4px; }
+  .menu-label { color: #86efac; }
+  .menu-desc { color: #374151; font-size: 10px; }
+
+  /* Option C — hybrid */
+  .hybrid-section {
+    margin-bottom: 8px;
+  }
+  .clickable-cmd {
+    display: inline-block;
+    color: #4ade80;
+    cursor: pointer;
+    border-bottom: 1px solid #1a4a2a;
+    transition: color 0.1s, border-color 0.1s;
+  }
+  .clickable-cmd:hover {
+    color: #86efac;
+    border-color: #4ade80;
+  }
+
+  .opt-info { padding: 14px 16px; background: #0a0a12; }
+  .opt-name { font-size: 13px; font-weight: 700; color: #e2e8f0; margin-bottom: 4px; }
+  .opt-desc { font-size: 11px; color: #475569; line-height: 1.5; }
+
+  .hint { text-align:center; margin-top:24px; font-size:12px; color:#334155; }
+</style>
+</head>
+<body>
+
+<p class="page-title">Question 2 of 4 — Navigation</p>
+<h1 class="page-heading">How do visitors move through the site?</h1>
+<p class="page-sub">All three feel like a terminal. They differ in how much interaction is required.</p>
+
+<div class="options-row">
+
+  <!-- A: Real typed commands -->
+  <div class="opt" data-choice="a" onclick="toggleSelect(this)">
+    <div class="term-chrome">
+      <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+      <span class="term-title">paros@paderborn — bash</span>
+    </div>
+    <div class="term-body">
+      <div><span class="green">paros@paderborn</span><span class="gray">:</span><span class="cyan">~</span><span class="gray">$</span> <span class="white">ls</span></div>
+      <div class="dim">──────────────────────</div>
+      <div><span class="bright">about/</span> &nbsp;<span class="bright">projects/</span> &nbsp;<span class="bright">research/</span></div>
+      <div><span class="bright">blog/</span> &nbsp;&nbsp;<span class="bright">contact/</span></div>
+      <br>
+      <div><span class="green">paros@paderborn</span><span class="gray">:</span><span class="cyan">~</span><span class="gray">$</span> <span class="white">cd projects</span></div>
+      <div class="dim">──────────────────────</div>
+      <div><span class="green">paros@paderborn</span><span class="gray">:</span><span class="cyan">~/projects</span><span class="gray">$</span> <span class="white">cat CLAS.md</span></div>
+      <br>
+      <div><span class="green">paros@paderborn</span><span class="gray">:</span><span class="cyan">~/projects</span><span class="gray">$</span> <span class="cursor"></span></div>
+      <div style="margin-top:8px; border-top:1px solid #1e1e1e; padding-top:8px;">
+        <div style="font-size:10px; color:#1a4a2a;">→ Visitor actually types commands</div>
+        <div style="font-size:10px; color:#1a4a2a;">→ Tab-completion for section names</div>
+        <div style="font-size:10px; color:#1a4a2a;">→ `help` shows available commands</div>
+      </div>
+    </div>
+    <div class="opt-info">
+      <div class="opt-name">A — Fully Interactive CLI</div>
+      <div class="opt-desc">Visitor types real commands. Highest wow factor. Highest friction — some people won't know what to type. Best for tech-savvy audiences.</div>
+    </div>
+  </div>
+
+  <!-- B: Numbered clickable menu -->
+  <div class="opt" data-choice="b" onclick="toggleSelect(this)">
+    <div class="term-chrome">
+      <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+      <span class="term-title">paros@paderborn — bash</span>
+    </div>
+    <div class="term-body">
+      <div><span class="green">$</span> <span class="white">./portfolio --init</span></div>
+      <div class="dim">Loading profile of Parsa Rostamzadeh...</div>
+      <br>
+      <div><span class="yellow">[ MENU ]</span> Select a section:</div>
+      <br>
+      <div class="menu-item"><span class="menu-num">[01]</span><span class="menu-label">about</span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="menu-desc">// who i am</span></div>
+      <div class="menu-item"><span class="menu-num">[02]</span><span class="menu-label">projects</span> &nbsp;&nbsp;<span class="menu-desc">// 10 repos</span></div>
+      <div class="menu-item"><span class="menu-num">[03]</span><span class="menu-label">research</span> &nbsp;&nbsp;<span class="menu-desc">// papers & methods</span></div>
+      <div class="menu-item"><span class="menu-num">[04]</span><span class="menu-label">skills</span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="menu-desc">// stack</span></div>
+      <div class="menu-item"><span class="menu-num">[05]</span><span class="menu-label">contact</span> &nbsp;&nbsp;&nbsp;<span class="menu-desc">// reach me</span></div>
+      <br>
+      <div><span class="green">$</span> <span class="cursor"></span></div>
+    </div>
+    <div class="opt-info">
+      <div class="opt-name">B — Clickable Menu System</div>
+      <div class="opt-desc">Looks like a terminal, navigates like a menu. Click [01] about — the terminal "runs" the command and renders the section. Zero friction, full aesthetic.</div>
+    </div>
+  </div>
+
+  <!-- C: Hybrid -->
+  <div class="opt" data-choice="c" onclick="toggleSelect(this)">
+    <div class="term-chrome">
+      <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+      <span class="term-title">paros@paderborn — bash</span>
+    </div>
+    <div class="term-body">
+      <div><span class="green">$</span> <span class="white">whoami</span></div>
+      <div class="bright">Parsa Rostamzadeh — Approx. Computing</div>
+      <br>
+      <div class="hybrid-section">
+        <div><span class="green">$</span> run <span class="clickable-cmd">about</span> | <span class="clickable-cmd">projects</span> | <span class="clickable-cmd">research</span></div>
+      </div>
+      <div class="hybrid-section">
+        <div><span class="green">$</span> open <span class="clickable-cmd">github.com/P4R0S</span></div>
+      </div>
+      <div class="hybrid-section">
+        <div><span class="green">$</span> <span class="white">scroll</span> <span class="dim">↓ to navigate</span></div>
+      </div>
+      <br>
+      <div class="dim">──────────────────────────────</div>
+      <div><span class="yellow">TIP:</span> <span class="dim">try typing</span> <span class="bright">help</span></div>
+      <div><span class="green">$</span> <span class="cursor"></span></div>
+    </div>
+    <div class="opt-info">
+      <div class="opt-name">C — Hybrid (Click + Scroll + Type)</div>
+      <div class="opt-desc">Clickable command links in the hero, then normal scroll reveals sections. Optional real typing for power users. Best of both worlds — zero friction but full immersion.</div>
+    </div>
+  </div>
+
+</div>
+
+<p class="hint">Click your preferred navigation style above, then tell me in the terminal.</p>
+
+<script>
+function toggleSelect(el) {
+  const wasSelected = el.classList.contains('selected');
+  document.querySelectorAll('.opt').forEach(c => c.classList.remove('selected'));
+  if (!wasSelected) el.classList.add('selected');
+  if (window.recordChoice) window.recordChoice(el.dataset.choice, el.querySelector('.opt-name').textContent);
+}
+</script>
+</body>
+</html>

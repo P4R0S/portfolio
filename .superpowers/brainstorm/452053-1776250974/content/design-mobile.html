@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mobile & Implementation</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0a0a0f;
+    color: #e2e8f0;
+    font-family: 'Inter', system-ui, sans-serif;
+    padding: 32px 24px;
+    min-height: 100vh;
+  }
+  .page-title { text-align:center; font-size:12px; letter-spacing:0.15em; text-transform:uppercase; color:#475569; margin-bottom:6px; }
+  .page-heading { text-align:center; font-size:20px; font-weight:700; color:#f1f5f9; margin-bottom:4px; }
+  .page-sub { text-align:center; font-size:12px; color:#475569; margin-bottom:28px; }
+
+  .layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 1100px; margin: 0 auto; }
+  .full { grid-column: 1 / -1; }
+
+  .panel {
+    background: #0d0d16;
+    border: 1px solid #1e1e2e;
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  .panel-title {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #ffb300;
+    font-family: monospace;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #1e1e2e;
+  }
+
+  .terminal {
+    background: #0d0800;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #1a1000;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+  }
+  .term-chrome {
+    background: #0a0600;
+    padding: 7px 12px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border-bottom: 1px solid #1a1000;
+  }
+  .dot{width:7px;height:7px;border-radius:50%}
+  .dot.r{background:#ff5f57}.dot.y{background:#febc2e}.dot.g{background:#28c840}
+  .tlabel{font-family:monospace;font-size:9px;color:#3d2800;margin-left:6px}
+  .tb { padding: 14px 16px; line-height: 1.75; position: relative; }
+  .tb::before {
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(255,179,0,0.018) 3px,rgba(255,179,0,0.018) 4px);
+  }
+  .p{color:#ffb300}.c{color:#ffd54f}.o{color:#ff8f00}.d{color:#3d2800}.w{color:#fff;font-weight:bold}
+  .cursor{display:inline-block;width:7px;height:12px;background:#ffb300;vertical-align:bottom;animation:blink 1s infinite}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+  /* mobile phone frame */
+  .phone-wrap { display: flex; justify-content: center; align-items: flex-start; gap: 24px; }
+  .phone {
+    width: 220px;
+    border: 2px solid #3d2800;
+    border-radius: 28px;
+    background: #0d0800;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .phone-notch {
+    background: #0a0600;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #1a1000;
+  }
+  .phone-notch-bar { width: 60px; height: 6px; border-radius: 3px; background: #1a1000; }
+  .phone-screen {
+    padding: 10px 12px;
+    font-family: 'Courier New', monospace;
+    font-size: 9px;
+    line-height: 1.7;
+    min-height: 320px;
+    position: relative;
+  }
+  .phone-screen::before {
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(255,179,0,0.018) 3px,rgba(255,179,0,0.018) 4px);
+  }
+  .phone-home { height: 20px; background: #0a0600; display: flex; align-items: center; justify-content: center; border-top: 1px solid #1a1000; }
+  .phone-home-bar { width: 80px; height: 4px; border-radius: 2px; background: #3d2800; }
+  .phone-caption { font-size: 11px; color: #475569; text-align: center; margin-top: 8px; }
+
+  /* softkey bar */
+  .softkey {
+    background: #0a0600;
+    border-top: 1px solid #1a1000;
+    padding: 8px 12px;
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .sk {
+    font-family: monospace;
+    font-size: 9px;
+    background: #1a1000;
+    border: 1px solid #3d2800;
+    color: #ff8f00;
+    padding: 3px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .sk.active { background: #3d2800; color: #ffb300; }
+
+  /* implementation steps */
+  .step-list { list-style: none; }
+  .step { display: flex; gap: 12px; padding: 8px 0; border-bottom: 1px solid #111118; font-size: 12px; }
+  .step:last-child { border-bottom: none; }
+  .step-num { font-family: monospace; color: #ffb300; min-width: 28px; font-size: 11px; }
+  .step-body { flex: 1; }
+  .step-title { color: #ffd54f; font-weight: 600; margin-bottom: 2px; font-size: 12px; }
+  .step-desc { color: #475569; font-size: 11px; line-height: 1.5; }
+  .step-files { margin-top: 4px; }
+  .step-file { display: inline-block; font-family: monospace; font-size: 10px; color: #ff8f00; background: #0a0600; border: 1px solid #1a1000; padding: 1px 6px; margin: 2px 2px 0 0; border-radius: 3px; }
+
+  /* edge cases */
+  .edge-item { padding: 6px 0; border-bottom: 1px solid #111118; font-size: 12px; }
+  .edge-item:last-child { border-bottom: none; }
+  .edge-q { color: #ffd54f; font-family: monospace; font-size: 11px; margin-bottom: 2px; }
+  .edge-a { color: #475569; font-size: 11px; line-height: 1.5; }
+
+  .section-label {
+    font-family: monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #ffb300;
+    margin-bottom: 8px;
+    padding: 0 2px;
+  }
+
+  .tag { display: inline-block; font-family: monospace; font-size: 10px; padding: 2px 8px; border-radius: 4px; background: #0a0600; border: 1px solid #1a1000; color: #ff8f00; margin: 2px; }
+  .tag.new { border-color: #ffb300; color: #ffb300; }
+</style>
+</head>
+<body>
+
+<p class="page-title">Design Section 3 of 3 — Mobile & Implementation</p>
+<h1 class="page-heading">Phones, Edge Cases & Build Order</h1>
+<p class="page-sub">How the terminal adapts to touch screens, and the exact order we build it.</p>
+
+<div class="layout">
+
+  <!-- Mobile view -->
+  <div>
+    <div class="section-label">// mobile terminal</div>
+    <div class="phone-wrap">
+      <div>
+        <div class="phone">
+          <div class="phone-notch"><div class="phone-notch-bar"></div></div>
+          <div class="phone-screen">
+            <div><span class="p" style="font-size:8px">paros@paderborn:~$</span> <span class="c">help</span></div>
+            <br>
+            <div class="w" style="font-size:9px">Available commands:</div>
+            <div class="d">──────────────────────</div>
+            <div><span class="c">&nbsp;neofetch</span> &nbsp;<span class="d"># start here</span></div>
+            <div><span class="c">&nbsp;about</span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="d"># who I am</span></div>
+            <div><span class="c">&nbsp;ls projects/</span></div>
+            <div><span class="c">&nbsp;skills</span></div>
+            <div><span class="c">&nbsp;history</span></div>
+            <div><span class="c">&nbsp;contact</span></div>
+            <div class="d">──────────────────────</div>
+            <br>
+            <div><span class="p" style="font-size:8px">paros@paderborn:~$</span> <span class="cursor"></span></div>
+          </div>
+          <div class="softkey">
+            <span class="sk active">neofetch</span>
+            <span class="sk">ls projects/</span>
+            <span class="sk">skills</span>
+            <span class="sk">history</span>
+            <span class="sk">contact</span>
+            <span class="sk">clear</span>
+          </div>
+          <div class="phone-home"><div class="phone-home-bar"></div></div>
+        </div>
+        <p class="phone-caption">Softkey bar — tap to run</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile strategy -->
+  <div class="panel">
+    <div class="panel-title">// mobile strategy</div>
+    <div class="edge-item">
+      <div class="edge-q">Input method?</div>
+      <div class="edge-a">Native keyboard works. Also: a softkey bar at the bottom with the 6 most useful commands. Tap a softkey = runs that command instantly. No typing required on phone.</div>
+    </div>
+    <div class="edge-item">
+      <div class="edge-q">Font size?</div>
+      <div class="edge-a">10px on desktop → 12px on mobile (minimum for readability). Line length auto-wraps. No horizontal scroll.</div>
+    </div>
+    <div class="edge-item">
+      <div class="edge-q">Viewport height?</div>
+      <div class="edge-a">Terminal fills 100dvh. Output scrolls inside the terminal container. Keyboard push handled with dvh units (not vh).</div>
+    </div>
+    <div class="edge-item">
+      <div class="edge-q">Tab completion?</div>
+      <div class="edge-a">Works on desktop keyboard. On mobile: softkey bar replaces it. No broken UX when tab isn't available.</div>
+    </div>
+    <div class="edge-item">
+      <div class="edge-q">Touch scrolling?</div>
+      <div class="edge-a">Terminal output is `-webkit-overflow-scrolling: touch`. Natural momentum scroll inside the terminal.</div>
+    </div>
+    <div class="edge-item">
+      <div class="edge-q">prefers-reduced-motion?</div>
+      <div class="edge-a">All typewriter animations disabled. Output appears instantly. Blinking cursor still works (respects user system pref).</div>
+    </div>
+  </div>
+
+  <!-- Implementation phases -->
+  <div class="panel full">
+    <div class="panel-title">// implementation — 5 phases, in order</div>
+    <ul class="step-list">
+      <li class="step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <div class="step-title">Shell scaffold — TerminalEngine context + layout</div>
+          <div class="step-desc">New root layout with amber palette. TerminalEngine React context (history, output buffer, running state). Full-viewport terminal container. CRT scanline overlay CSS. Fira Code font loaded.</div>
+          <div class="step-files">
+            <span class="step-file">app/layout.tsx</span>
+            <span class="step-file">app/page.tsx</span>
+            <span class="step-file">components/terminal/TerminalEngine.tsx</span>
+            <span class="step-file">components/terminal/Terminal.tsx</span>
+          </div>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <div class="step-title">Input layer — prompt, cursor, history, tab complete</div>
+          <div class="step-desc">Blinking amber cursor. Typing area with focus trap. ↑/↓ command history. Tab autocomplete for command names and project filenames. Enter submits. Escape clears input.</div>
+          <div class="step-files">
+            <span class="step-file">components/terminal/PromptInput.tsx</span>
+            <span class="step-file">lib/terminal/history.ts</span>
+            <span class="step-file">lib/terminal/autocomplete.ts</span>
+          </div>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <div class="step-title">Command parser + output renderer</div>
+          <div class="step-desc">CommandParser maps input string → command + args. OutputRenderer takes a command result and streams it line-by-line with typewriter animation. Skippable with Enter mid-output.</div>
+          <div class="step-files">
+            <span class="step-file">lib/terminal/parser.ts</span>
+            <span class="step-file">components/terminal/OutputRenderer.tsx</span>
+            <span class="step-file">lib/terminal/typewriter.ts</span>
+          </div>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <div class="step-title">All commands wired to real content</div>
+          <div class="step-desc">Each command reads from existing content/*.ts files. neofetch → about info. ls projects/ → projects list. cat projects/X.md → project detail. skills, history, contact all implemented. `open github` opens link. `clear` wipes output.</div>
+          <div class="step-files">
+            <span class="step-file">lib/terminal/commands/</span>
+            <span class="step-file">content/projects.ts</span>
+            <span class="step-file">content/skills.ts</span>
+            <span class="step-file">content/experience.ts</span>
+          </div>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-num">05</div>
+        <div class="step-body">
+          <div class="step-title">Boot sequence + mobile + polish</div>
+          <div class="step-desc">First-load boot animation (BIOS-style lines → shell prompt). Mobile softkey bar with 6 quick commands. dvh viewport fix. prefers-reduced-motion mode. `crt off` toggle. Final amber color pass.</div>
+          <div class="step-files">
+            <span class="step-file">components/terminal/BootSequence.tsx</span>
+            <span class="step-file">components/terminal/SoftkeyBar.tsx</span>
+            <span class="step-file">app/globals.css</span>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- What stays / what goes -->
+  <div class="panel">
+    <div class="panel-title">// what is deleted vs kept</div>
+    <div class="edge-item">
+      <div class="edge-q">Deleted entirely</div>
+      <div class="edge-a">All section components (Hero, About, Projects, Skills, Contact, Footer, Navbar). All glassmorphism CSS. All Framer Motion page transitions.</div>
+    </div>
+    <div class="edge-item">
+      <div class="edge-q">Kept as-is</div>
+      <div class="edge-a">content/*.ts data files. app/api/contact/ email API. Next.js App Router. Tailwind v4 config. Vercel deployment config.</div>
+    </div>
+    <div class="edge-item">
+      <div class="edge-q">Framer Motion</div>
+      <div class="edge-a">Used only for typewriter character animation and the boot sequence fade-ins. Not used for page transitions (there are no pages — it's one terminal).</div>
+    </div>
+  </div>
+
+  <!-- Risk / mitigations -->
+  <div class="panel">
+    <div class="panel-title">// risks & mitigations</div>
+    <div class="edge-item">
+      <div class="edge-q">SEO — no HTML content visible to crawlers?</div>
+      <div class="edge-a">Add a hidden &lt;main&gt; with aria-hidden="false" containing pre-rendered text of all content. Screen readers and bots see it. Terminal users don't.</div>
+    </div>
+    <div class="edge-item">
+      <div class="edge-q">Contact form — how does it work in a terminal?</div>
+      <div class="edge-a">`send-mail` command opens an inline form in the terminal output. Name → Subject → Body → y/n confirm. Submits to existing app/api/contact/ API. No page navigation.</div>
+    </div>
+    <div class="edge-item">
+      <div class="edge-q">First-time visitors who don't know CLI?</div>
+      <div class="edge-a">Boot sequence ends with: "Type `help` to see available commands." Help output lists everything. Softkey bar on mobile removes all friction.</div>
+    </div>
+    <div class="edge-item">
+      <div class="edge-q">Long project lists — terminal gets cluttered?</div>
+      <div class="edge-a">`ls projects/` shows the list. `cat projects/NAME.md` shows one project. `clear` resets. User controls the flow — no infinite scroll problems.</div>
+    </div>
+  </div>
+
+</div>
+
+<p style="text-align:center;margin-top:24px;font-size:12px;color:#334155;">Does the full design look right? Say yes to lock it and write the spec doc.</p>
+
+</body>
+</html>

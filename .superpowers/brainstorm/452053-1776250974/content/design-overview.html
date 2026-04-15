@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Overview</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0a0a0f;
+    color: #e2e8f0;
+    font-family: 'Inter', system-ui, sans-serif;
+    padding: 32px 24px;
+    min-height: 100vh;
+  }
+  .page-title { text-align:center; font-size:12px; letter-spacing:0.15em; text-transform:uppercase; color:#475569; margin-bottom:6px; }
+  .page-heading { text-align:center; font-size:20px; font-weight:700; color:#f1f5f9; margin-bottom:4px; }
+  .page-sub { text-align:center; font-size:12px; color:#475569; margin-bottom:28px; }
+
+  .layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 1100px; margin: 0 auto; }
+  .full { grid-column: 1 / -1; }
+
+  /* Terminal mockup */
+  .terminal {
+    background: #0d0800;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid #1a1000;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+  }
+  .term-chrome {
+    background: #0a0600;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-bottom: 1px solid #1a1000;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .dot.r{background:#ff5f57}.dot.y{background:#febc2e}.dot.g{background:#28c840}
+  .term-title { font-family: monospace; font-size: 10px; color: #3d2800; margin-left: 6px; }
+  .term-body {
+    padding: 16px 18px;
+    line-height: 1.75;
+    position: relative;
+  }
+  .term-body::before {
+    content:'';position:absolute;inset:0;
+    background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(255,179,0,0.018) 3px,rgba(255,179,0,0.018) 4px);
+    pointer-events:none;
+  }
+  .p{color:#ffb300}.c{color:#ffd54f}.o{color:#ff8f00}.d{color:#3d2800}.w{color:#fff;font-weight:bold}.g{color:#86efac}
+  .cursor{display:inline-block;width:7px;height:13px;background:#ffb300;vertical-align:bottom;animation:blink 1s infinite}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+  /* Info panels */
+  .panel {
+    background: #0d0d16;
+    border: 1px solid #1e1e2e;
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  .panel-title {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #ffb300;
+    font-family: monospace;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #1e1e2e;
+  }
+  .cmd-list { list-style: none; }
+  .cmd-list li {
+    display: flex;
+    gap: 12px;
+    padding: 4px 0;
+    border-bottom: 1px solid #111118;
+    font-size: 12px;
+  }
+  .cmd-list li:last-child { border-bottom: none; }
+  .cmd { font-family: monospace; color: #ffd54f; min-width: 160px; font-size: 11px; }
+  .cmd-desc { color: #475569; font-size: 11px; }
+  .cmd-section { color: #3d2800; font-size: 10px; font-family: monospace; margin-top: 8px; margin-bottom: 2px; letter-spacing: 0.1em; }
+
+  .fs-tree { font-family: monospace; font-size: 11px; line-height: 1.8; color: #ff8f00; }
+  .fs-tree .dir { color: #ffb300; font-weight: bold; }
+  .fs-tree .file { color: #ffd54f; }
+  .fs-tree .comment { color: #3d2800; }
+
+  .anim-row { display: flex; flex-direction: column; gap: 8px; }
+  .anim-item { display: flex; gap: 10px; align-items: flex-start; font-size: 12px; }
+  .anim-label { font-family: monospace; color: #ffb300; font-size: 11px; min-width: 120px; }
+  .anim-desc { color: #475569; line-height: 1.5; }
+
+  .stack-list { display: flex; flex-wrap: wrap; gap: 8px; }
+  .stack-tag {
+    font-size: 11px;
+    font-family: monospace;
+    padding: 3px 10px;
+    border-radius: 4px;
+    background: #0a0600;
+    border: 1px solid #1a1000;
+    color: #ff8f00;
+  }
+  .stack-tag.new { border-color: #ffb300; color: #ffb300; }
+</style>
+</head>
+<body>
+
+<p class="page-title">Design Section 1 of 3 — Architecture</p>
+<h1 class="page-heading">The Terminal World</h1>
+<p class="page-sub">What visitors experience when they land. Approve this section, then we move to visual components.</p>
+
+<div class="layout">
+
+  <!-- Boot + first interaction mockup -->
+  <div class="terminal full">
+    <div class="term-chrome">
+      <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+      <span class="term-title">paros@paderborn — portfolio v2.0 — amber on #0d0800</span>
+    </div>
+    <div class="term-body">
+      <div><span class="d">╔══════════════════════════════════════════════════╗</span></div>
+      <div><span class="d">║</span>  <span class="w">PAROS-PORTFOLIO</span> <span class="o">v2.0</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="d">║</span></div>
+      <div><span class="d">║</span>  <span class="o">Mohammadparsa Rostamzadeh · Paderborn Univ.</span>  <span class="d">║</span></div>
+      <div><span class="d">╚══════════════════════════════════════════════════╝</span></div>
+      <br>
+      <div><span class="o">Last login: Tue Apr 15 2025 from visitor@internet</span></div>
+      <div><span class="d">Type `help` to see available commands. Tab to autocomplete.</span></div>
+      <br>
+      <div><span class="p">paros@paderborn</span><span class="d">:</span><span class="o">~</span><span class="d">$</span> <span class="c">help</span></div>
+      <br>
+      <div><span class="w">Available commands:</span></div>
+      <div><span class="d">─────────────────────────────────────────────────────────</span></div>
+      <div>&nbsp;&nbsp;<span class="c">neofetch</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="d"># system info card (start here)</span></div>
+      <div>&nbsp;&nbsp;<span class="c">about</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="d"># who I am</span></div>
+      <div>&nbsp;&nbsp;<span class="c">ls projects/</span> &nbsp;&nbsp;&nbsp;<span class="d"># list all projects</span></div>
+      <div>&nbsp;&nbsp;<span class="c">cat projects/CLAS.md</span> &nbsp;&nbsp;&nbsp;<span class="d"># open a project</span></div>
+      <div>&nbsp;&nbsp;<span class="c">ls research/</span> &nbsp;&nbsp;&nbsp;<span class="d"># list papers</span></div>
+      <div>&nbsp;&nbsp;<span class="c">skills</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="d"># skill tree</span></div>
+      <div>&nbsp;&nbsp;<span class="c">history</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="d"># experience timeline</span></div>
+      <div>&nbsp;&nbsp;<span class="c">contact</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="d"># reach me</span></div>
+      <div>&nbsp;&nbsp;<span class="c">open github</span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="d"># github.com/P4R0S</span></div>
+      <div>&nbsp;&nbsp;<span class="c">clear</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="d"># clear terminal</span></div>
+      <div><span class="d">─────────────────────────────────────────────────────────</span></div>
+      <br>
+      <div><span class="p">paros@paderborn</span><span class="d">:</span><span class="o">~</span><span class="d">$</span> <span class="c">neofetch</span></div>
+      <br>
+      <div style="display:grid;grid-template-columns:auto 1fr;gap:0 24px">
+        <div style="color:#3d2800;font-size:10px;line-height:1.6">
+          &nbsp;&nbsp;&nbsp;&nbsp;▄▄▄▄▄<br>
+          &nbsp;&nbsp;▄█████████▄<br>
+          &nbsp;███&nbsp;PAROS&nbsp;███<br>
+          &nbsp;&nbsp;▀█████████▀<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;▀▀▀▀▀
+        </div>
+        <div style="line-height:1.7;font-size:11px">
+          <div><span class="o">name</span><span class="d">:</span> <span class="w">Parsa Rostamzadeh</span></div>
+          <div><span class="o">role</span><span class="d">:</span> <span class="c">Approximate Computing Researcher</span></div>
+          <div><span class="o">inst</span><span class="d">:</span> <span class="c">Paderborn University</span></div>
+          <div><span class="o">spec</span><span class="d">:</span> <span class="c">FPGA · Hardware ML · GNN · XAI</span></div>
+          <div><span class="o">proj</span><span class="d">:</span> <span class="c">10 repositories</span></div>
+          <div><span class="o">lang</span><span class="d">:</span> <span class="c">Python C++ Verilog</span></div>
+          <div><span class="o">mail</span><span class="d">:</span> <span class="c">paros.pr@gmail.com</span></div>
+        </div>
+      </div>
+      <br>
+      <div><span class="p">paros@paderborn</span><span class="d">:</span><span class="o">~</span><span class="d">$</span> <span class="cursor"></span></div>
+    </div>
+  </div>
+
+  <!-- Command set -->
+  <div class="panel">
+    <div class="panel-title">// filesystem structure</div>
+    <div class="fs-tree">
+      <div><span class="dir">~/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># home (landing)</span></div>
+      <div>├── <span class="file">about.txt</span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># bio</span></div>
+      <div>├── <span class="file">skills.json</span> &nbsp;&nbsp;<span class="comment"># skill tree</span></div>
+      <div>├── <span class="file">contact.vcf</span> &nbsp;&nbsp;<span class="comment"># contact info</span></div>
+      <div>├── <span class="dir">projects/</span></div>
+      <div>│&nbsp;&nbsp; ├── <span class="file">CLAS.md</span></div>
+      <div>│&nbsp;&nbsp; ├── <span class="file">BLASYS.md</span></div>
+      <div>│&nbsp;&nbsp; ├── <span class="file">Partioning.md</span></div>
+      <div>│&nbsp;&nbsp; └── <span class="file">... 4 more</span></div>
+      <div>├── <span class="dir">research/</span></div>
+      <div>│&nbsp;&nbsp; ├── <span class="file">paper-01.md</span></div>
+      <div>│&nbsp;&nbsp; └── <span class="file">... more</span></div>
+      <div>└── <span class="dir">experience/</span></div>
+      <div>&nbsp;&nbsp;&nbsp; └── <span class="file">timeline.log</span></div>
+    </div>
+  </div>
+
+  <!-- Animations -->
+  <div class="panel">
+    <div class="panel-title">// animation system</div>
+    <div class="anim-row">
+      <div class="anim-item">
+        <div class="anim-label">welcome text</div>
+        <div class="anim-desc">Types out character-by-character on first load. ~40ms per char. Skippable with Enter.</div>
+      </div>
+      <div class="anim-item">
+        <div class="anim-label">command input</div>
+        <div class="anim-desc">User types freely. Blinking amber block cursor. Tab autocompletes command and filename.</div>
+      </div>
+      <div class="anim-item">
+        <div class="anim-label">command output</div>
+        <div class="anim-desc">Output types line-by-line at 20ms/char. Long outputs stream faster. Skippable.</div>
+      </div>
+      <div class="anim-item">
+        <div class="anim-label">↑ / ↓ arrows</div>
+        <div class="anim-desc">Command history navigation, exactly like a real shell.</div>
+      </div>
+      <div class="anim-item">
+        <div class="anim-label">CRT effect</div>
+        <div class="anim-desc">Subtle scanline overlay + very slight vignette. Optional: user can type `crt off`.</div>
+      </div>
+      <div class="anim-item">
+        <div class="anim-label">prefers-reduced-motion</div>
+        <div class="anim-desc">All typewriter effects disabled. Output appears instantly. Cursor still blinks.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tech stack -->
+  <div class="panel full">
+    <div class="panel-title">// tech stack — what stays, what changes</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+      <div>
+        <div style="font-size:11px;color:#475569;margin-bottom:8px;">STAYS (data layer untouched)</div>
+        <div class="stack-list">
+          <span class="stack-tag">content/projects.ts</span>
+          <span class="stack-tag">content/skills.ts</span>
+          <span class="stack-tag">content/experience.ts</span>
+          <span class="stack-tag">content/publications.ts</span>
+          <span class="stack-tag">content/blog/*.mdx</span>
+          <span class="stack-tag">app/api/contact/</span>
+          <span class="stack-tag">Next.js App Router</span>
+          <span class="stack-tag">Tailwind v4</span>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;color:#ffb300;margin-bottom:8px;">NEW (presentation layer)</div>
+        <div class="stack-list">
+          <span class="stack-tag new">TerminalEngine (React context)</span>
+          <span class="stack-tag new">CommandParser</span>
+          <span class="stack-tag new">OutputRenderer</span>
+          <span class="stack-tag new">Fira Code font</span>
+          <span class="stack-tag new">Framer Motion (typewriter)</span>
+          <span class="stack-tag new">CRT scanlines CSS</span>
+          <span class="stack-tag new">Tab completion</span>
+          <span class="stack-tag new">Command history</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p style="text-align:center;margin-top:24px;font-size:12px;color:#334155;">Does this architecture look right? Respond in terminal to approve and see section 2 (visual components).</p>
+
+</body>
+</html>

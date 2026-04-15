@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animation Style</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0a0a0f;
+    color: #e2e8f0;
+    font-family: 'Inter', system-ui, sans-serif;
+    padding: 32px 24px;
+    min-height: 100vh;
+  }
+  .page-title { text-align:center; font-size:12px; letter-spacing:0.15em; text-transform:uppercase; color:#475569; margin-bottom:6px; }
+  .page-heading { text-align:center; font-size:20px; font-weight:700; color:#f1f5f9; margin-bottom:4px; }
+  .page-sub { text-align:center; font-size:12px; color:#475569; margin-bottom:32px; }
+
+  .options-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; max-width: 1080px; margin: 0 auto; }
+
+  .card {
+    border-radius: 14px;
+    overflow: hidden;
+    border: 2px solid #1e1e2e;
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.15s;
+    background: #0d0800;
+  }
+  .card:hover { transform: translateY(-2px); border-color: #3d2800; }
+  .card.selected { border-color: #ffb300; }
+
+  .term-chrome {
+    background: #0a0600;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-bottom: 1px solid #1a1000;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .dot.r { background: #ff5f57; }
+  .dot.y { background: #febc2e; }
+  .dot.g { background: #28c840; }
+  .term-title { font-family: monospace; font-size: 10px; color: #3d2800; margin-left: 6px; }
+
+  .term-body {
+    padding: 16px 18px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    line-height: 1.8;
+    min-height: 220px;
+    background: #0d0800;
+    position: relative;
+  }
+  .term-body::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,179,0,0.018) 3px, rgba(255,179,0,0.018) 4px);
+    pointer-events: none;
+  }
+
+  .prompt { color: #ffb300; }
+  .cmd { color: #ffd54f; }
+  .out { color: #ff8f00; }
+  .dim { color: #3d2800; }
+  .hi { color: #fff; font-weight: bold; }
+  .cursor {
+    display: inline-block;
+    width: 7px; height: 13px;
+    background: #ffb300;
+    vertical-align: bottom;
+    animation: blink 1s infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  /* Typewriter animation */
+  .typewriter { overflow: hidden; white-space: nowrap; }
+  .tw1 { animation: type 1.2s steps(22, end) 0.3s both; }
+  .tw2 { animation: type 0.8s steps(16, end) 1.6s both; }
+  .tw3 { animation: type 0.6s steps(24, end) 2.5s both; }
+  .tw4 { animation: type 0.4s steps(20, end) 3.2s both; }
+  .tw5 { animation: type 0.5s steps(18, end) 3.7s both; }
+  @keyframes type { from { max-width: 0 } to { max-width: 100% } }
+
+  /* Fade-in lines */
+  .fadein { opacity: 0; animation: fadeup 0.4s ease forwards; }
+  .fd1 { animation-delay: 0.2s; }
+  .fd2 { animation-delay: 0.6s; }
+  .fd3 { animation-delay: 1.0s; }
+  .fd4 { animation-delay: 1.5s; }
+  .fd5 { animation-delay: 2.0s; }
+  .fd6 { animation-delay: 2.6s; }
+  @keyframes fadeup { from { opacity:0; transform: translateY(4px); } to { opacity:1; transform: none; } }
+
+  /* Boot sequence */
+  .boot { opacity: 0; animation: appear 0.1s step-end forwards; }
+  .bt0 { animation-delay: 0.1s; }
+  .bt1 { animation-delay: 0.4s; }
+  .bt2 { animation-delay: 0.7s; }
+  .bt3 { animation-delay: 1.0s; }
+  .bt4 { animation-delay: 1.3s; }
+  .bt5 { animation-delay: 1.8s; }
+  .bt6 { animation-delay: 2.1s; }
+  .bt7 { animation-delay: 2.5s; }
+  .bt8 { animation-delay: 3.2s; }
+  @keyframes appear { from { opacity:0 } to { opacity:1 } }
+
+  .progress-bar {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    color: #ff8f00;
+    opacity: 0;
+    animation: appear 0.1s step-end 1.5s forwards;
+  }
+  .bar-fill {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: type 1.2s steps(20, end) 1.6s both;
+    color: #ffb300;
+  }
+
+  .card-info { padding: 14px 16px; background: #0a0600; }
+  .card-name { font-size: 13px; font-weight: 700; color: #ffd54f; margin-bottom: 4px; }
+  .card-desc { font-size: 11px; color: #614a1e; line-height: 1.5; }
+
+  .replay-btn {
+    display: block;
+    margin: 8px auto 0;
+    font-family: monospace;
+    font-size: 10px;
+    background: none;
+    border: 1px solid #3d2800;
+    color: #ff8f00;
+    padding: 3px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  .replay-btn:hover { background: #1a1000; }
+
+  .hint { text-align:center; margin-top:24px; font-size:12px; color:#334155; }
+</style>
+</head>
+<body>
+
+<p class="page-title">Question 4 of 4 — Animation</p>
+<h1 class="page-heading">How does content appear?</h1>
+<p class="page-sub">All three use amber palette. Watch how each one animates — then pick.</p>
+
+<div class="options-row">
+
+  <!-- A: Typewriter -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="term-chrome">
+      <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+      <span class="term-title">paros — typewriter</span>
+    </div>
+    <div class="term-body" id="tw-body">
+      <div class="typewriter tw1"><span class="prompt">paros@paderborn:~$</span> <span class="cmd">whoami</span></div>
+      <div class="typewriter tw2"><span class="out">Parsa Rostamzadeh</span></div>
+      <div class="typewriter tw3"><span class="prompt">paros@paderborn:~$</span> <span class="cmd">ls projects/</span></div>
+      <div class="typewriter tw4"><span class="out">CLAS/ &nbsp;BLASYS/ &nbsp;Partioning/</span></div>
+      <div class="typewriter tw5"><span class="out">PubMed_GNN/ &nbsp;Reservoir/ &nbsp;NN_Scratch/</span></div>
+      <br>
+      <div><span class="prompt">paros@paderborn:~$</span> <span class="cursor"></span></div>
+    </div>
+    <div class="card-info">
+      <div class="card-name">A — Character-by-Character Typewriter</div>
+      <div class="card-desc">Every character types out in real time, exactly like a human typing. Hypnotic but slow. Each command output types before the next prompt appears.</div>
+    </div>
+    <button class="replay-btn" onclick="event.stopPropagation(); replayA()">[ replay ]</button>
+  </div>
+
+  <!-- B: Instant with delay -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="term-chrome">
+      <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+      <span class="term-title">paros — line reveal</span>
+    </div>
+    <div class="term-body" id="fd-body">
+      <div class="fadein fd1"><span class="prompt">paros@paderborn:~$</span> <span class="cmd">whoami</span></div>
+      <div class="fadein fd2"><span class="out">Parsa Rostamzadeh</span></div>
+      <div class="fadein fd3"><span class="dim">────────────────────────</span></div>
+      <div class="fadein fd4"><span class="prompt">paros@paderborn:~$</span> <span class="cmd">ls projects/</span></div>
+      <div class="fadein fd5"><span class="out">CLAS/ &nbsp;&nbsp;BLASYS/ &nbsp;&nbsp;Partioning/</span></div>
+      <div class="fadein fd6"><span class="out">PubMed_GNN/ &nbsp;Reservoir/ &nbsp;NN_Scratch/</span></div>
+      <br>
+      <div class="fadein" style="animation-delay:3.0s"><span class="prompt">paros@paderborn:~$</span> <span class="cursor"></span></div>
+    </div>
+    <div class="card-info">
+      <div class="card-name">B — Line-by-Line Reveal</div>
+      <div class="card-desc">Full lines appear instantly, staggered with short delays. Feels like command output streaming in. Fast and readable — doesn't make visitors wait.</div>
+    </div>
+    <button class="replay-btn" onclick="event.stopPropagation(); replayB()">[ replay ]</button>
+  </div>
+
+  <!-- C: Boot sequence -->
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="term-chrome">
+      <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+      <span class="term-title">paros — boot sequence</span>
+    </div>
+    <div class="term-body" id="bt-body">
+      <div class="boot bt0"><span class="dim">BIOS v2.4.1 — Initializing...</span></div>
+      <div class="boot bt1"><span class="dim">RAM: 32768MB OK &nbsp;CPU: 16-core OK</span></div>
+      <div class="boot bt2"><span class="dim">Loading kernel modules... DONE</span></div>
+      <div class="boot bt3"><span class="dim">────────────────────────────────</span></div>
+      <div class="boot bt4"><span class="out">Welcome to <span class="hi">PAROS-PORTFOLIO</span> v2.0</span></div>
+      <div class="boot bt5"><span class="out">Authenticated: Parsa Rostamzadeh</span></div>
+      <div class="progress-bar">Loading profile: [<span class="bar-fill">████████████████████</span>] 100%</div>
+      <div class="boot bt7"><span class="dim">────────────────────────────────</span></div>
+      <div class="boot bt8"><span class="prompt">paros@paderborn:~$</span> <span class="cursor"></span></div>
+    </div>
+    <div class="card-info">
+      <div class="card-name">C — Boot Sequence on First Load</div>
+      <div class="card-desc">Site boots like a machine on first visit: BIOS messages, kernel loading, progress bar, then drops into the shell. Unforgettable first impression. Runs once, then stays in shell.</div>
+    </div>
+    <button class="replay-btn" onclick="event.stopPropagation(); replayC()">[ replay ]</button>
+  </div>
+
+</div>
+
+<p class="hint">Hit <b>[ replay ]</b> on any card to watch it again. You can also combine — e.g. "C on first load, then B for commands"</p>
+
+<script>
+function toggleSelect(el) {
+  const wasSelected = el.classList.contains('selected');
+  document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
+  if (!wasSelected) el.classList.add('selected');
+  if (window.recordChoice) window.recordChoice(el.dataset.choice, el.querySelector('.card-name').textContent);
+}
+
+function replayA() {
+  const b = document.getElementById('tw-body');
+  b.innerHTML = b.innerHTML;
+  void b.offsetWidth;
+  b.querySelectorAll('.typewriter').forEach(el => {
+    el.style.animation = 'none'; void el.offsetWidth; el.style.animation = '';
+  });
+}
+function replayB() {
+  const b = document.getElementById('fd-body');
+  b.querySelectorAll('.fadein').forEach(el => {
+    el.style.animation = 'none'; void el.offsetWidth; el.style.animation = '';
+  });
+}
+function replayC() {
+  const b = document.getElementById('bt-body');
+  b.querySelectorAll('.boot, .progress-bar, .bar-fill').forEach(el => {
+    el.style.animation = 'none'; void el.offsetWidth; el.style.animation = '';
+  });
+}
+</script>
+</body>
+</html>

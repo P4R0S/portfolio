@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Direction</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0a0a0f;
+    color: #e2e8f0;
+    font-family: 'Inter', system-ui, sans-serif;
+    padding: 32px 24px;
+    min-height: 100vh;
+  }
+
+  .page-title {
+    text-align: center;
+    margin-bottom: 8px;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #64748b;
+  }
+  .page-heading {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin-bottom: 6px;
+  }
+  .page-sub {
+    text-align: center;
+    font-size: 13px;
+    color: #475569;
+    margin-bottom: 36px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .card {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.2s;
+    background: #111118;
+  }
+  .card:hover { transform: translateY(-2px); }
+  .card.selected { border-color: #7c3aed; }
+
+  .card-preview {
+    height: 240px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Direction A — Brutalist Technical */
+  .preview-a {
+    background: #000;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .preview-a .label-bar {
+    font-family: 'Courier New', monospace;
+    font-size: 9px;
+    color: #4ade80;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid #1a1a1a;
+    padding-bottom: 6px;
+  }
+  .preview-a .big-name {
+    font-family: 'Georgia', serif;
+    font-size: 36px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+    letter-spacing: -2px;
+  }
+  .preview-a .role-tag {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    color: #4ade80;
+    background: #0a1a0a;
+    border: 1px solid #166534;
+    padding: 3px 8px;
+    display: inline-block;
+    width: fit-content;
+  }
+  .preview-a .divider {
+    height: 2px;
+    background: #fff;
+    margin: 4px 0;
+  }
+  .preview-a .stats-row {
+    display: flex;
+    gap: 20px;
+  }
+  .preview-a .stat {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    color: #6b7280;
+  }
+  .preview-a .stat span {
+    display: block;
+    font-size: 20px;
+    color: #fff;
+    font-weight: 900;
+  }
+  .preview-a .nav-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0; right: 0;
+    background: #000;
+    border-top: 2px solid #fff;
+    padding: 8px 20px;
+    display: flex;
+    gap: 16px;
+  }
+  .preview-a .nav-bar span {
+    font-family: 'Courier New', monospace;
+    font-size: 9px;
+    color: #6b7280;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Direction B — Dark Kinetic / Premium Agency */
+  .preview-b {
+    background: linear-gradient(135deg, #070714 0%, #0d0d1f 100%);
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .preview-b .orb1 {
+    position: absolute;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(124,58,237,0.4) 0%, transparent 70%);
+    top: -40px; right: -40px;
+  }
+  .preview-b .orb2 {
+    position: absolute;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(59,130,246,0.3) 0%, transparent 70%);
+    bottom: 20px; left: -20px;
+  }
+  .preview-b .pill {
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #a78bfa;
+    border: 1px solid rgba(167,139,250,0.3);
+    padding: 3px 10px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 12px;
+    backdrop-filter: blur(4px);
+  }
+  .preview-b .name {
+    font-size: 38px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -1.5px;
+    background: linear-gradient(135deg, #fff 30%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+  .preview-b .subtitle {
+    font-size: 11px;
+    color: #64748b;
+    margin-bottom: 16px;
+  }
+  .preview-b .glass-strip {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 10px 14px;
+    display: flex;
+    gap: 20px;
+    backdrop-filter: blur(8px);
+  }
+  .preview-b .glass-stat {
+    font-size: 9px;
+    color: #64748b;
+  }
+  .preview-b .glass-stat b {
+    display: block;
+    font-size: 18px;
+    color: #c4b5fd;
+    font-weight: 700;
+  }
+
+  /* Direction C — Monochrome Editorial */
+  .preview-c {
+    background: #f8f8f5;
+    padding: 20px;
+    position: relative;
+  }
+  .preview-c .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #111;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+  }
+  .preview-c .logo {
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #111;
+  }
+  .preview-c .nav-items {
+    display: flex;
+    gap: 12px;
+    font-size: 8px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #666;
+  }
+  .preview-c .issue-label {
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    color: #999;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .preview-c .big-headline {
+    font-family: 'Georgia', serif;
+    font-size: 42px;
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -2px;
+    color: #111;
+    margin-bottom: 10px;
+  }
+  .preview-c .byline {
+    font-size: 10px;
+    color: #555;
+    border-top: 1px solid #ccc;
+    padding-top: 8px;
+    display: flex;
+    gap: 16px;
+  }
+  .preview-c .tag {
+    font-size: 8px;
+    background: #111;
+    color: #f8f8f5;
+    padding: 2px 6px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .preview-c .accent-line {
+    width: 40px;
+    height: 3px;
+    background: #111;
+    margin: 10px 0;
+  }
+
+  /* Direction D — Retro Terminal / Research Lab */
+  .preview-d {
+    background: #030d06;
+    padding: 20px;
+    font-family: 'Courier New', monospace;
+    position: relative;
+  }
+  .preview-d::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,255,70,0.015) 2px,
+      rgba(0,255,70,0.015) 4px
+    );
+    pointer-events: none;
+  }
+  .preview-d .prompt-line {
+    font-size: 10px;
+    color: #4ade80;
+    margin-bottom: 4px;
+  }
+  .preview-d .prompt-line .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 12px;
+    background: #4ade80;
+    vertical-align: bottom;
+    animation: blink 1s infinite;
+  }
+  .preview-d .output {
+    color: #86efac;
+    font-size: 9px;
+    margin: 4px 0 4px 12px;
+    line-height: 1.6;
+  }
+  .preview-d .output .highlight {
+    color: #fff;
+    font-weight: bold;
+  }
+  .preview-d .divider-line {
+    color: #166534;
+    font-size: 9px;
+    margin: 8px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .preview-d .big-output {
+    font-size: 28px;
+    color: #4ade80;
+    font-weight: 900;
+    letter-spacing: -1px;
+    line-height: 1;
+    margin: 8px 0;
+    text-shadow: 0 0 20px rgba(74,222,128,0.5);
+  }
+  .preview-d .status-bar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: #4ade80;
+    padding: 4px 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .preview-d .status-bar span {
+    font-size: 9px;
+    color: #030d06;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  .card-info {
+    padding: 16px 18px;
+    background: #0e0e18;
+  }
+  .card-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #e2e8f0;
+    margin-bottom: 4px;
+  }
+  .card-desc {
+    font-size: 12px;
+    color: #475569;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .tag-pill {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: #94a3b8;
+  }
+
+  .select-hint {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 12px;
+    color: #334155;
+  }
+  .select-hint b { color: #7c3aed; }
+</style>
+</head>
+<body>
+
+<p class="page-title">UI/UX Overhaul — Step 1 of 5</p>
+<h1 class="page-heading">Choose Your Design Direction</h1>
+<p class="page-sub">Each is genuinely distinct. Not a single gradient blob in sight (except B, intentionally).</p>
+
+<div class="grid">
+
+  <!-- A: Brutalist Technical -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-preview preview-a">
+      <div class="label-bar">PAROS.DEV — PORTFOLIO v2.0 — INITIALIZED</div>
+      <div class="big-name">Parsa<br>Rostamzadeh</div>
+      <div class="role-tag">[ APPROX. COMPUTING RESEARCHER ]</div>
+      <div class="divider"></div>
+      <div class="stats-row">
+        <div class="stat"><span>10</span>PROJECTS</div>
+        <div class="stat"><span>3Y</span>EXP.</div>
+        <div class="stat"><span>01</span>PAPERS</div>
+      </div>
+      <div class="nav-bar">
+        <span>WORK</span><span>RESEARCH</span><span>ABOUT</span><span>CONTACT</span>
+      </div>
+    </div>
+    <div class="card-info">
+      <div class="card-name">A — Brutalist Technical</div>
+      <div class="card-desc">Raw, confident, zero decoration. Serif headlines + monospace data. Looks like a research paper meets a hacker terminal. Very rare on portfolio sites.</div>
+      <div class="tags">
+        <span class="tag-pill">Bold serif + mono</span>
+        <span class="tag-pill">Black/white/green</span>
+        <span class="tag-pill">No blur effects</span>
+        <span class="tag-pill">Heavy typography</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- B: Dark Kinetic (elevated current) -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-preview preview-b">
+      <div class="orb1"></div>
+      <div class="orb2"></div>
+      <div style="position:relative;z-index:1">
+        <div class="pill">PADERBORN UNIVERSITY · ML RESEARCHER</div>
+        <div class="name">Parsa<br>Rostamzadeh</div>
+        <div class="subtitle">Approximate computing · Hardware-aware ML · FPGA</div>
+        <div class="glass-strip">
+          <div class="glass-stat"><b>10</b>Projects</div>
+          <div class="glass-stat"><b>3+</b>Years</div>
+          <div class="glass-stat"><b>01</b>Papers</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-info">
+      <div class="card-name">B — Dark Kinetic (Current Elevated)</div>
+      <div class="card-desc">Your current glassmorphism, but overhauled with scroll-linked animations, magnetic cursor, GSAP-powered reveals, and tighter typography. Premium agency energy.</div>
+      <div class="tags">
+        <span class="tag-pill">GSAP / Framer Motion</span>
+        <span class="tag-pill">Glassmorphism</span>
+        <span class="tag-pill">Magnetic cursor</span>
+        <span class="tag-pill">Scroll parallax</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- C: Editorial / Swiss Grid -->
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-preview preview-c">
+      <div class="top-bar">
+        <div class="logo">P·R</div>
+        <div class="nav-items"><span>Research</span><span>Projects</span><span>Writing</span><span>Contact</span></div>
+      </div>
+      <div class="issue-label">Computer Engineer · Paderborn University</div>
+      <div class="big-headline">Parsa<br>Rosta-<br>mzadeh</div>
+      <div class="accent-line"></div>
+      <div class="byline">
+        <span class="tag">Approx. Computing</span>
+        <span class="tag">Hardware ML</span>
+        <span class="tag">FPGA</span>
+      </div>
+    </div>
+    <div class="card-info">
+      <div class="card-name">C — Light Editorial / Swiss Grid</div>
+      <div class="card-desc">High-end editorial magazine aesthetic. Light background, ink-black type, mathematical grid. Confident without needing dark mode. Extremely rare for ML researchers.</div>
+      <div class="tags">
+        <span class="tag-pill">Light mode</span>
+        <span class="tag-pill">Serif headlines</span>
+        <span class="tag-pill">12-col grid</span>
+        <span class="tag-pill">Swiss modernism</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- D: Retro Terminal -->
+  <div class="card" data-choice="d" onclick="toggleSelect(this)">
+    <div class="card-preview preview-d">
+      <div class="prompt-line">paros@paderborn:~$ whoami<span class="cursor"></span></div>
+      <div class="output">
+        <span class="highlight">Mohammadparsa Rostamzadehkhameneh</span><br>
+        role: Approximate Computing Researcher<br>
+        inst: Paderborn University<br>
+        spec: [FPGA, Neural Approx, GNN, XAI]
+      </div>
+      <div class="divider-line">───────────────────────────────────────────</div>
+      <div class="prompt-line">paros@paderborn:~$ cat projects/CLAS.md</div>
+      <div class="big-output">CLAS_</div>
+      <div class="output">
+        Cross-Layer Approximate Synthesis<br>
+        <span class="highlight">Status: [████████░░] 80% area reduction</span>
+      </div>
+      <div class="status-bar">
+        <span>PORTFOLIO v2.0</span>
+        <span>10 PROJECTS · 3 YRS · 1 PAPER</span>
+      </div>
+    </div>
+    <div class="card-info">
+      <div class="card-name">D — Retro Terminal / Research Lab</div>
+      <div class="card-desc">Portfolio as a terminal session. Monospace everywhere, CRT scanlines, green phosphor glow. Reinforces your hardware/systems background in the most direct way possible.</div>
+      <div class="tags">
+        <span class="tag-pill">Monospace only</span>
+        <span class="tag-pill">Green on black</span>
+        <span class="tag-pill">CRT scanlines</span>
+        <span class="tag-pill">Typed animations</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p class="select-hint">Click a card to select it, then tell me in the terminal. You can also mix ideas — e.g. <b>"B but with some terminal elements from D"</b></p>
+
+<script>
+function toggleSelect(el) {
+  const wasSelected = el.classList.contains('selected');
+  document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
+  if (!wasSelected) el.classList.add('selected');
+  const choice = el.dataset.choice;
+  if (window.recordChoice) window.recordChoice(choice, el.querySelector('.card-name').textContent);
+}
+</script>
+
+</body>
+</html>

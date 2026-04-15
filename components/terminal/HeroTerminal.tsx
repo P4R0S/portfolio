@@ -190,7 +190,7 @@ export function HeroTerminal() {
       {/* Static 3D tilt — plain div so Framer Motion doesn't override it */}
       <div
         style={{
-          transform: 'perspective(900px) rotateY(-6deg) rotateX(2deg) rotate(5deg) skewX(-4deg)',
+          transform: 'perspective(900px) rotateY(-10deg) rotateX(2deg) rotate(3deg) skewX(-2deg)',
           filter:
             'drop-shadow(0 40px 60px rgba(0,0,0,0.85)) drop-shadow(0 8px 24px rgba(0,0,0,0.6)) drop-shadow(0 0 50px rgba(255,140,0,0.13))',
         }}
@@ -231,7 +231,7 @@ export function HeroTerminal() {
             style={{ scrollbarWidth: 'none' }}
           >
             {/* Hint */}
-            <div className="text-[#3d2800] mb-1">{HINT}</div>
+            <div className="text-[#70634a] mb-1">{HINT}</div>
 
             {/* Completed blocks */}
             {blocks.map((block, i) => (

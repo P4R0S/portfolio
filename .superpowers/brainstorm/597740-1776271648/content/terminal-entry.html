@@ -1,0 +1,126 @@
+<style>
+  .preview-wrap {
+    background: #0a0a14;
+    border-radius: 10px;
+    padding: 14px;
+  }
+  .term-window {
+    background: rgba(13, 8, 0, 0.95);
+    border: 1px solid rgba(255,179,0,0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    font-family: 'Courier New', monospace;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6), 0 0 24px rgba(255,179,0,0.05);
+    transform: rotate(1.5deg);
+  }
+  .term-chrome {
+    background: rgba(10,6,0,0.9);
+    padding: 7px 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border-bottom: 1px solid rgba(255,179,0,0.12);
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .dot-r { background: #ff5f57; } .dot-y { background: #febc2e; } .dot-g { background: #28c840; }
+  .term-title { color: #3d2800; font-size: 8px; margin-left: 6px; }
+  .term-body { padding: 10px 12px; min-height: 72px; }
+  .term-line { font-size: 8.5px; line-height: 1.9; }
+  .t-dim { color: #3d2800; } .t-out { color: #ff8f00; } .t-cmd { color: #ffd54f; } .t-prompt { color: #ffb300; }
+  .t-cursor {
+    display: inline-block; width: 6px; height: 11px;
+    background: #ffb300; vertical-align: middle;
+    animation: blink 1s step-end infinite; margin-left: 1px;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+  .badge {
+    display: inline-block;
+    background: rgba(255,179,0,0.1);
+    color: #ffb300;
+    border: 1px solid rgba(255,179,0,0.2);
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-size: 7.5px;
+    font-family: 'Courier New', monospace;
+    margin-left: 4px;
+  }
+</style>
+
+<h2>How does the terminal behave on load?</h2>
+<p class="subtitle">What the user sees when they first arrive at your portfolio</p>
+
+<div class="cards">
+
+  <!-- Option A: Blank, just cursor -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image preview-wrap">
+      <div class="term-window">
+        <div class="term-chrome">
+          <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+          <span class="term-title">paros@paderborn</span>
+        </div>
+        <div class="term-body">
+          <div class="term-line t-dim">Type <span class="t-cmd">help</span> to get started.</div>
+          <div class="term-line" style="margin-top: 6px;">
+            <span class="t-prompt">paros@paderborn</span><span class="t-dim">:~$ </span><div class="t-cursor"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Silent, waiting</h3>
+      <p>Just a blinking cursor and a subtle hint. Clean and minimal — the user discovers it themselves. No fanfare.</p>
+    </div>
+  </div>
+
+  <!-- Option B: Auto-types a greeting -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image preview-wrap">
+      <div class="term-window">
+        <div class="term-chrome">
+          <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+          <span class="term-title">paros@paderborn</span>
+        </div>
+        <div class="term-body">
+          <div class="term-line t-dim"># session started</div>
+          <div class="term-line t-out" style="margin-top:2px">Hello. I'm Parsa's terminal.</div>
+          <div class="term-line t-dim">Try <span class="t-cmd">whoami</span> or <span class="t-cmd">skills</span></div>
+          <div class="term-line" style="margin-top: 6px;">
+            <span class="t-prompt">paros@paderborn</span><span class="t-dim">:~$ </span><div class="t-cursor"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Auto-typed greeting</h3>
+      <p>On load, 2–3 lines type themselves out (typewriter effect), then the cursor lands. Feels alive. Invites interaction naturally.</p>
+    </div>
+  </div>
+
+  <!-- Option C: Pre-run demo — shows `whoami` output already typed -->
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image preview-wrap">
+      <div class="term-window">
+        <div class="term-chrome">
+          <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+          <span class="term-title">paros@paderborn</span>
+        </div>
+        <div class="term-body">
+          <div class="term-line">
+            <span class="t-prompt">paros@paderborn</span><span class="t-dim">:~$ </span><span class="t-cmd">whoami</span>
+          </div>
+          <div class="term-line t-out">Parsa Rostamzadeh — ML Systems PhD</div>
+          <div class="term-line t-out">Paderborn University · github.com/P4R0S</div>
+          <div class="term-line" style="margin-top: 6px;">
+            <span class="t-prompt">paros@paderborn</span><span class="t-dim">:~$ </span><div class="t-cursor"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C — Pre-run demo</h3>
+      <p>Arrives with <span class="badge">whoami</span> already executed and its output visible — shows visitors exactly what the terminal does before they touch it. Then the cursor waits for their input.</p>
+    </div>
+  </div>
+
+</div>
