@@ -192,7 +192,7 @@ export function HeroTerminal() {
         animate={{ y: [0, -12, 0] }}
         transition={{ duration: 4, ease: 'easeInOut', repeat: Infinity }}
         style={{
-          transform: 'perspective(900px) rotateY(-6deg) rotateX(2deg) rotate(5deg)',
+          transform: 'perspective(900px) rotateY(-6deg) rotateX(2deg) rotate(5deg) skewX(-4deg)',
           filter:
             'drop-shadow(0 40px 60px rgba(0,0,0,0.85)) drop-shadow(0 8px 24px rgba(0,0,0,0.6)) drop-shadow(0 0 50px rgba(255,140,0,0.13))',
         }}
