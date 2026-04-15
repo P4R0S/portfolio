@@ -178,31 +178,23 @@ export function HeroTerminal() {
   }[color ?? 'plain'] ?? 'text-[#ffd54f]')
 
   return (
+    /* Entrance: fade + slide from right */
     <motion.div
-      initial={{ opacity: 0, x: 60, rotateY: -15 }}
-      whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
+      initial={{ opacity: 0, x: 60 }}
+      whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.7, ease: 'easeOut', delay: 0.3 }}
-      animate={{ y: [0, -10, 0] }}
-      // @ts-ignore — framer-motion animate overloads fine at runtime
-      // eslint-disable-next-line react/no-unknown-property
-      style={{
-        transformStyle: 'preserve-3d',
-        perspective: '1000px',
-        animationDuration: '4s',
-        animationTimingFunction: 'ease-in-out',
-        animationIterationCount: 'infinite',
-      }}
       className="w-full max-w-[380px] cursor-text relative"
       onClick={() => inputRef.current?.focus()}
     >
-      {/* Floating animation wrapper */}
+      {/* Persistent 3D tilt + float loop */}
       <motion.div
-        animate={{ y: [0, -10, 0] }}
+        animate={{ y: [0, -12, 0] }}
         transition={{ duration: 4, ease: 'easeInOut', repeat: Infinity }}
         style={{
-          transform: 'perspective(900px) rotateY(-8deg) rotateX(3deg) rotate(3deg)',
-          filter: 'drop-shadow(0 32px 48px rgba(0,0,0,0.8)) drop-shadow(0 0 40px rgba(255,140,0,0.12))',
+          transform: 'perspective(900px) rotateY(-6deg) rotateX(2deg) rotate(5deg)',
+          filter:
+            'drop-shadow(0 40px 60px rgba(0,0,0,0.85)) drop-shadow(0 8px 24px rgba(0,0,0,0.6)) drop-shadow(0 0 50px rgba(255,140,0,0.13))',
         }}
       >
         {/* CRT scanlines */}
@@ -226,7 +218,7 @@ export function HeroTerminal() {
             <span className="w-3 h-3 rounded-full bg-[#ff5f57] shadow-[0_0_6px_rgba(255,95,87,0.6)]" />
             <span className="w-3 h-3 rounded-full bg-[#febc2e] shadow-[0_0_6px_rgba(254,188,46,0.5)]" />
             <span className="w-3 h-3 rounded-full bg-[#28c840] shadow-[0_0_6px_rgba(40,200,64,0.5)]" />
-            <span className="ml-3 font-mono text-[9px] text-[#3d2800] tracking-wide">paros@paderborn — portfolio v2.0</span>
+            <span className="ml-3 font-mono text-[9px] text-[#a36e07] tracking-wide">paros@paderborn — portfolio v2.0</span>
           </div>
 
           {/* Body */}
@@ -244,7 +236,7 @@ export function HeroTerminal() {
                 {block.input && (
                   <div>
                     <span className="text-[#ffb300]">paros@paderborn</span>
-                    <span className="text-[#3d2800]">:~$ </span>
+                    <span className="text-[#bfbfbd]">:~$ </span>
                     <span className="text-[#ffd54f]">{block.input}</span>
                   </div>
                 )}
@@ -275,7 +267,7 @@ export function HeroTerminal() {
             {/* Prompt */}
             <div className="flex items-center mt-1">
               <span className="text-[#ffb300]">paros@paderborn</span>
-              <span className="text-[#3d2800]">:~$ </span>
+              <span className="text-[#bfbfbd]">:~$ </span>
               <span className="text-[#ffd54f]">{input}</span>
               <span className="inline-block w-[7px] h-[13px] bg-[#ffb300] ml-px rounded-[1px] animate-[cursor-blink_1s_step-end_infinite]" />
             </div>
