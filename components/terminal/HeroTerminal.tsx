@@ -72,7 +72,7 @@ export function HeroTerminal() {
   const [currentLine, setCurrentLine] = useState(0)
   const [input, setInput] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
-  const bottomRef = useRef<HTMLDivElement>(null)
+  const bodyRef = useRef<HTMLDivElement>(null)
   const historyRef = useRef<string[]>([])
   const historyIdx = useRef(-1)
   const rafRef = useRef<number>(0)
@@ -113,8 +113,11 @@ export function HeroTerminal() {
     return () => clearTimeout(rafRef.current)
   }, [animatingLines, currentLine])
 
+  // Scroll only inside the terminal body — never touch the page scroll
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
+    if (bodyRef.current) {
+      bodyRef.current.scrollTop = bodyRef.current.scrollHeight
+    }
   }, [blocks, animatingLines, visibleText])
 
   const submit = useCallback(() => {
@@ -176,88 +179,109 @@ export function HeroTerminal() {
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: 40 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, x: 60, rotateY: -15 }}
+      whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 }}
-      className="w-full max-w-[300px] cursor-text relative"
-      style={{ transform: 'rotate(2deg)' }}
+      transition={{ duration: 0.7, ease: 'easeOut', delay: 0.3 }}
+      animate={{ y: [0, -10, 0] }}
+      // @ts-ignore — framer-motion animate overloads fine at runtime
+      // eslint-disable-next-line react/no-unknown-property
+      style={{
+        transformStyle: 'preserve-3d',
+        perspective: '1000px',
+        animationDuration: '4s',
+        animationTimingFunction: 'ease-in-out',
+        animationIterationCount: 'infinite',
+      }}
+      className="w-full max-w-[380px] cursor-text relative"
       onClick={() => inputRef.current?.focus()}
     >
-      {/* CRT scanlines */}
-      <div
-        className="absolute inset-0 pointer-events-none z-10 rounded-xl"
+      {/* Floating animation wrapper */}
+      <motion.div
+        animate={{ y: [0, -10, 0] }}
+        transition={{ duration: 4, ease: 'easeInOut', repeat: Infinity }}
         style={{
-          background: 'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,179,0,0.015) 3px, rgba(255,179,0,0.015) 4px)',
-        }}
-      />
-
-      {/* Window */}
-      <div
-        className="rounded-xl overflow-hidden border border-[rgba(255,179,0,0.22)]"
-        style={{
-          background: 'rgba(13,8,0,0.94)',
-          boxShadow: '0 20px 60px rgba(0,0,0,0.65), 0 0 0 1px rgba(255,179,0,0.07), 0 0 30px rgba(255,140,0,0.06)',
+          transform: 'perspective(900px) rotateY(-8deg) rotateX(3deg) rotate(3deg)',
+          filter: 'drop-shadow(0 32px 48px rgba(0,0,0,0.8)) drop-shadow(0 0 40px rgba(255,140,0,0.12))',
         }}
       >
-        {/* Chrome */}
-        <div className="flex items-center gap-1.5 px-3 py-2 border-b border-[rgba(255,179,0,0.12)]" style={{ background: 'rgba(10,6,0,0.95)' }}>
-          <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
-          <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
-          <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
-          <span className="ml-2 font-mono text-[8px] text-[#3d2800]">paros@paderborn — portfolio v2.0</span>
-        </div>
+        {/* CRT scanlines */}
+        <div
+          className="absolute inset-0 pointer-events-none z-10 rounded-xl"
+          style={{
+            background: 'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,179,0,0.018) 3px, rgba(255,179,0,0.018) 4px)',
+          }}
+        />
 
-        {/* Body */}
-        <div className="p-3 font-mono text-[9px] leading-[1.9] max-h-[220px] overflow-y-auto">
-          {/* Hint */}
-          <div className="text-[#3d2800]">{HINT}</div>
-
-          {/* Completed blocks */}
-          {blocks.map((block, i) => (
-            <div key={i}>
-              {block.input && (
-                <div>
-                  <span className="text-[#ffb300]">paros@paderborn</span>
-                  <span className="text-[#3d2800]">:~$ </span>
-                  <span className="text-[#ffd54f]">{block.input}</span>
-                </div>
-              )}
-              {block.lines.map((line, j) => (
-                line.blank
-                  ? <div key={j} className="h-[1em]" />
-                  : <div key={j} className={`${colorClass(line.color)} ${line.bold ? 'font-bold' : ''} whitespace-pre-wrap`}>{line.text}</div>
-              ))}
-            </div>
-          ))}
-
-          {/* Animating block */}
-          {animatingLines && (
-            <div>
-              {animatingLines.slice(0, currentLine).map((line, i) => (
-                line.blank
-                  ? <div key={i} className="h-[1em]" />
-                  : <div key={i} className={`${colorClass(line.color)} ${line.bold ? 'font-bold' : ''} whitespace-pre-wrap`}>{line.text}</div>
-              ))}
-              {currentLine < animatingLines.length && (
-                <div className={`${colorClass(animatingLines[currentLine]?.color)} ${animatingLines[currentLine]?.bold ? 'font-bold' : ''}`}>
-                  {visibleText}
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* Prompt */}
-          <div className="flex items-center mt-0.5">
-            <span className="text-[#ffb300]">paros@paderborn</span>
-            <span className="text-[#3d2800]">:~$ </span>
-            <span className="text-[#ffd54f]">{input}</span>
-            <span className="inline-block w-[6px] h-[11px] bg-[#ffb300] ml-px animate-[cursor-blink_1s_step-end_infinite]" />
+        {/* Window */}
+        <div
+          className="rounded-xl overflow-hidden border border-[rgba(255,179,0,0.28)]"
+          style={{
+            background: 'rgba(13,8,0,0.96)',
+            boxShadow: '0 2px 0 rgba(255,179,0,0.15) inset, 0 -1px 0 rgba(0,0,0,0.8) inset',
+          }}
+        >
+          {/* Chrome */}
+          <div className="flex items-center gap-1.5 px-4 py-2.5 border-b border-[rgba(255,179,0,0.14)]" style={{ background: 'rgba(8,4,0,0.98)' }}>
+            <span className="w-3 h-3 rounded-full bg-[#ff5f57] shadow-[0_0_6px_rgba(255,95,87,0.6)]" />
+            <span className="w-3 h-3 rounded-full bg-[#febc2e] shadow-[0_0_6px_rgba(254,188,46,0.5)]" />
+            <span className="w-3 h-3 rounded-full bg-[#28c840] shadow-[0_0_6px_rgba(40,200,64,0.5)]" />
+            <span className="ml-3 font-mono text-[9px] text-[#3d2800] tracking-wide">paros@paderborn — portfolio v2.0</span>
           </div>
 
-          <div ref={bottomRef} />
+          {/* Body */}
+          <div
+            ref={bodyRef}
+            className="p-4 font-mono text-[11px] leading-[1.85] max-h-[260px] overflow-y-auto"
+            style={{ scrollbarWidth: 'none' }}
+          >
+            {/* Hint */}
+            <div className="text-[#3d2800] mb-1">{HINT}</div>
+
+            {/* Completed blocks */}
+            {blocks.map((block, i) => (
+              <div key={i} className="mt-1">
+                {block.input && (
+                  <div>
+                    <span className="text-[#ffb300]">paros@paderborn</span>
+                    <span className="text-[#3d2800]">:~$ </span>
+                    <span className="text-[#ffd54f]">{block.input}</span>
+                  </div>
+                )}
+                {block.lines.map((line, j) => (
+                  line.blank
+                    ? <div key={j} className="h-[0.8em]" />
+                    : <div key={j} className={`${colorClass(line.color)} ${line.bold ? 'font-bold' : ''} whitespace-pre-wrap`}>{line.text}</div>
+                ))}
+              </div>
+            ))}
+
+            {/* Animating block */}
+            {animatingLines && (
+              <div className="mt-1">
+                {animatingLines.slice(0, currentLine).map((line, i) => (
+                  line.blank
+                    ? <div key={i} className="h-[0.8em]" />
+                    : <div key={i} className={`${colorClass(line.color)} ${line.bold ? 'font-bold' : ''} whitespace-pre-wrap`}>{line.text}</div>
+                ))}
+                {currentLine < animatingLines.length && (
+                  <div className={`${colorClass(animatingLines[currentLine]?.color)} ${animatingLines[currentLine]?.bold ? 'font-bold' : ''}`}>
+                    {visibleText}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Prompt */}
+            <div className="flex items-center mt-1">
+              <span className="text-[#ffb300]">paros@paderborn</span>
+              <span className="text-[#3d2800]">:~$ </span>
+              <span className="text-[#ffd54f]">{input}</span>
+              <span className="inline-block w-[7px] h-[13px] bg-[#ffb300] ml-px rounded-[1px] animate-[cursor-blink_1s_step-end_infinite]" />
+            </div>
+          </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Hidden input */}
       <input
