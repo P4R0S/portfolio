@@ -187,15 +187,18 @@ export function HeroTerminal() {
       className="w-full max-w-[380px] cursor-text relative"
       onClick={() => inputRef.current?.focus()}
     >
-      {/* Persistent 3D tilt + float loop */}
-      <motion.div
-        animate={{ y: [0, -12, 0] }}
-        transition={{ duration: 4, ease: 'easeInOut', repeat: Infinity }}
+      {/* Static 3D tilt — plain div so Framer Motion doesn't override it */}
+      <div
         style={{
           transform: 'perspective(900px) rotateY(-6deg) rotateX(2deg) rotate(5deg) skewX(-4deg)',
           filter:
             'drop-shadow(0 40px 60px rgba(0,0,0,0.85)) drop-shadow(0 8px 24px rgba(0,0,0,0.6)) drop-shadow(0 0 50px rgba(255,140,0,0.13))',
         }}
+      >
+      {/* Float loop — separate motion.div so it doesn't fight the transform above */}
+      <motion.div
+        animate={{ y: [0, -12, 0] }}
+        transition={{ duration: 4, ease: 'easeInOut', repeat: Infinity }}
       >
         {/* CRT scanlines */}
         <div
@@ -274,6 +277,7 @@ export function HeroTerminal() {
           </div>
         </div>
       </motion.div>
+      </div>
 
       {/* Hidden input */}
       <input
