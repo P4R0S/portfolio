@@ -3,6 +3,7 @@ import { Space_Grotesk, DM_Sans } from 'next/font/google'
 import './globals.css'
 import { Navbar } from '@/components/ui/Navbar'
 import { Footer } from '@/components/ui/Footer'
+import { BackgroundLayer } from '@/components/ui/BackgroundLayer'
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -40,9 +41,10 @@ export default function RootLayout({
       lang="en"
       className={`${spaceGrotesk.variable} ${dmSans.variable} scroll-smooth`}
     >
-      <body className="bg-[#0F172A] text-[#F8FAFC] antialiased">
+      <body className="bg-[#18181b] text-[#fafafa] antialiased">
+        <BackgroundLayer />
         <Navbar />
-        <main>{children}</main>
+        <main className="relative z-10">{children}</main>
         <Footer />
       </body>
     </html>

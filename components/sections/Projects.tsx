@@ -34,7 +34,7 @@ export function Projects() {
           <div key={project.title} className="group relative">
             <GlassCard hover className="h-full p-6 flex flex-col">
               {project.featured && (
-                <span className="text-[10px] font-medium uppercase tracking-widest text-violet-400 border border-violet-500/30 rounded-full px-2 py-0.5 self-start mb-3">
+                <span className="text-[10px] font-medium uppercase tracking-widest text-orange-400 border border-orange-400/30 rounded-full px-2 py-0.5 self-start mb-3">
                   Featured
                 </span>
               )}
@@ -81,7 +81,7 @@ export function Projects() {
             </GlassCard>
 
             {/* Hover overlay with long description */}
-            <div className="absolute inset-0 rounded-2xl bg-[#0F172A]/95 backdrop-blur-sm border border-violet-500/30 p-6 flex items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+            <div className="absolute inset-0 rounded-2xl bg-[#18181b]/95 backdrop-blur-sm border border-orange-400/20 p-6 flex items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
               <p className="text-slate-300 text-sm leading-relaxed">{project.longDescription}</p>
             </div>
           </div>

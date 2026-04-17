@@ -9,19 +9,19 @@ const highlights = [
     icon: Cpu,
     title: 'What I Do',
     body: 'I build approximate computing pipelines and hardware-aware ML systems — from FPGA-deployed neural networks to cross-layer circuit synthesis.',
-    color: 'text-violet-400',
+    color: 'text-orange-400',
   },
   {
     icon: Zap,
     title: 'What Drives Me',
     body: 'Making neural networks smaller and faster without breaking them. Approximate computing lets me trade a little accuracy for a lot of efficiency — and I find that trade fascinating.',
-    color: 'text-blue-400',
+    color: 'text-amber-400',
   },
   {
     icon: Target,
     title: 'Current Focus',
     body: 'Cross-layer approximate synthesis for FPGA-deployed neural networks — profiling sensitivity, generating approximate neuron variants, and exploring Pareto-optimal area-accuracy trade-offs.',
-    color: 'text-emerald-400',
+    color: 'text-zinc-400',
   },
 ]
 

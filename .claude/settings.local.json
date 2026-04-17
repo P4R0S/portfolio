@@ -4,7 +4,15 @@
       "mcp__plugin_figma_figma__get_design_context",
       "mcp__plugin_figma_figma__get_screenshot",
       "Bash(npx tsc:*)",
-      "Bash(node_modules/.bin/tsc --noEmit)"
+      "Bash(node_modules/.bin/tsc --noEmit)",
+      "Skill(update-config)",
+      "Bash(bash \"C:/Users/paros/.claude/statusline.sh\")",
+      "Bash(bash *)",
+      "Bash(curl -s http://localhost:61273)",
+      "Bash(export PATH=\"/c/Program Files/nodejs:$PATH\")",
+      "Bash(curl -v http://localhost:61273)",
+      "Bash(node -e \"const http=require\\('http'\\); const s=http.createServer\\(\\(_,r\\)=>{r.end\\('ok'\\)}\\); s.listen\\(9999, \\(\\)=>console.log\\('up'\\)\\); setTimeout\\(\\(\\)=>s.close\\(\\),3000\\)\")",
+      "Bash(curl -s http://localhost:63010)"
     ]
   }
 }

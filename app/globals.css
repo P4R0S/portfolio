@@ -2,12 +2,13 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  /* Colors */
-  --color-bg: #0F172A;
-  --color-accent-purple: #8B5CF6;
-  --color-accent-blue: #3B82F6;
-  --color-accent-green: #22C55E;
-  --color-accent-orange: #F97316;
+  /* Colors — Charcoal & Gold Orange */
+  --color-bg: #18181b;
+  --color-accent-purple: #fb923c;
+  --color-accent-blue: #fdba74;
+  --color-accent-green: #f97316;
+  --color-accent-orange: #fb923c;
+  --color-secondary: #27272a;
 
   /* Fonts */
   --font-heading: var(--font-space-grotesk), sans-serif;
@@ -40,8 +41,8 @@ html {
 }
 
 body {
-  background-color: #0F172A;
-  color: #F8FAFC;
+  background-color: #18181b;
+  color: #fafafa;
   font-family: var(--font-body);
   overflow-x: hidden;
 }
@@ -62,7 +63,7 @@ body {
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #8B5CF6, #3B82F6, #22C55E);
+  background: linear-gradient(135deg, #fb923c, #fdba74, #f97316);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

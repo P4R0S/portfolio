@@ -60,7 +60,7 @@ export function Contact() {
         <GlassCard className="p-6 md:p-8 mb-6">
           {status === 'success' ? (
             <div className="text-center py-8">
-              <CheckCircle className="w-10 h-10 text-emerald-400 mx-auto mb-3" />
+              <CheckCircle className="w-10 h-10 text-orange-400 mx-auto mb-3" />
               <p className="text-white font-medium mb-1">Message sent!</p>
               <p className="text-slate-400 text-sm">I&apos;ll get back to you soon.</p>
               <button
@@ -81,7 +81,7 @@ export function Contact() {
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   placeholder="Your name"
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-violet-500/50 transition-colors duration-200"
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-orange-400/50 transition-colors duration-200"
                 />
               </div>
               <div>
@@ -93,7 +93,7 @@ export function Contact() {
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   placeholder="you@example.com"
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-violet-500/50 transition-colors duration-200"
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-orange-400/50 transition-colors duration-200"
                 />
               </div>
               <div>
@@ -105,7 +105,7 @@ export function Contact() {
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                   placeholder="What's on your mind?"
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-violet-500/50 transition-colors duration-200 resize-none"
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-orange-400/50 transition-colors duration-200 resize-none"
                 />
               </div>
 
@@ -119,7 +119,7 @@ export function Contact() {
               <button
                 type="submit"
                 disabled={status === 'loading'}
-                className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:opacity-60 disabled:cursor-not-allowed text-white font-medium transition-colors duration-200 cursor-pointer"
+                className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-[#27272a] hover:bg-[#3f3f46] disabled:opacity-60 disabled:cursor-not-allowed text-[#fafafa] font-medium transition-colors duration-200 cursor-pointer"
               >
                 {status === 'loading' ? (
                   <><Loader2 className="w-4 h-4 animate-spin" /> Sending&hellip;</>

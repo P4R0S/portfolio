@@ -6,10 +6,10 @@ import { FileText, ExternalLink } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const areaColors: Record<ResearchArea, string> = {
-  ML: 'text-blue-400 border-blue-500/30 bg-blue-500/10',
-  Hardware: 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10',
-  'Approximate Computing': 'text-orange-400 border-orange-500/30 bg-orange-500/10',
-  LLM: 'text-violet-400 border-violet-500/30 bg-violet-500/10',
+  ML: 'text-amber-400 border-amber-400/30 bg-amber-400/10',
+  Hardware: 'text-zinc-300 border-zinc-500/30 bg-zinc-500/10',
+  'Approximate Computing': 'text-orange-400 border-orange-400/30 bg-orange-400/10',
+  LLM: 'text-amber-300 border-amber-300/30 bg-amber-300/10',
 }
 
 export function Publications() {
@@ -39,7 +39,7 @@ export function Publications() {
                 <h3 className="font-heading font-semibold text-white mb-1 leading-snug">
                   {pub.title}
                 </h3>
-                <p className="text-violet-400 text-xs mb-3">{pub.venue}</p>
+                <p className="text-amber-400/70 text-xs mb-3">{pub.venue}</p>
                 <p className="text-slate-400 text-sm leading-relaxed mb-4">{pub.abstract}</p>
                 <div className="flex items-center gap-4">
                   {pub.pdfUrl && (

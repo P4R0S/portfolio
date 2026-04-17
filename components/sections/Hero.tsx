@@ -33,11 +33,11 @@ export function Hero() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8 pt-20">
       {/* Orb blobs */}
       <div
-        className="absolute top-1/4 right-[10%] w-72 h-72 md:w-96 md:h-96 rounded-full bg-violet-600/20 blur-3xl animate-orb-1 pointer-events-none"
+        className="absolute top-1/4 right-[10%] w-72 h-72 md:w-96 md:h-96 rounded-full bg-orange-400/15 blur-3xl animate-orb-1 pointer-events-none"
         aria-hidden="true"
       />
       <div
-        className="absolute bottom-1/4 left-[5%] w-64 h-64 md:w-80 md:h-80 rounded-full bg-blue-600/20 blur-3xl animate-orb-2 pointer-events-none"
+        className="absolute bottom-1/4 left-[5%] w-64 h-64 md:w-80 md:h-80 rounded-full bg-zinc-600/20 blur-3xl animate-orb-2 pointer-events-none"
         aria-hidden="true"
       />
 
@@ -86,7 +86,7 @@ export function Hero() {
             <div className="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-4 mb-10">
               <a
                 href="#projects"
-                className="flex items-center gap-2 px-6 py-3 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-medium transition-colors duration-200 cursor-pointer w-full sm:w-auto justify-center"
+                className="flex items-center gap-2 px-6 py-3 rounded-xl bg-[#27272a] hover:bg-[#3f3f46] text-[#fafafa] font-medium transition-colors duration-200 cursor-pointer w-full sm:w-auto justify-center"
               >
                 View Projects <ArrowRight className="w-4 h-4" />
               </a>
@@ -94,7 +94,7 @@ export function Hero() {
                 href="/cv.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-6 py-3 rounded-xl border border-white/20 hover:border-white/40 text-slate-300 hover:text-white font-medium transition-colors duration-200 cursor-pointer w-full sm:w-auto justify-center"
+                className="flex items-center gap-2 px-6 py-3 rounded-xl border border-orange-400/30 hover:border-orange-400/60 text-zinc-300 hover:text-orange-400 font-medium transition-colors duration-200 cursor-pointer w-full sm:w-auto justify-center"
               >
                 Download CV <Download className="w-4 h-4" />
               </a>

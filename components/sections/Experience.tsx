@@ -16,7 +16,7 @@ export function Experience() {
 
       <div className="relative">
         {/* Timeline line */}
-        <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-violet-500 via-blue-500 to-emerald-500 md:-translate-x-px" />
+        <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-orange-400 via-amber-400 to-zinc-500 md:-translate-x-px" />
 
         <div className="flex flex-col gap-10">
           {experience.map((item, i) => {
@@ -29,8 +29,8 @@ export function Experience() {
                 className={`relative flex items-start gap-6 md:gap-0 ${isLeft ? 'md:flex-row' : 'md:flex-row-reverse'}`}
               >
                 {/* Timeline dot */}
-                <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#0F172A] border-2 border-violet-500 flex items-center justify-center shrink-0 z-10">
-                  <Icon className="w-3.5 h-3.5 text-violet-400" />
+                <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#18181b] border-2 border-orange-400 flex items-center justify-center shrink-0 z-10">
+                  <Icon className="w-3.5 h-3.5 text-orange-400" />
                 </div>
 
                 {/* Card */}
@@ -41,7 +41,7 @@ export function Experience() {
                         <h3 className="font-heading font-semibold text-white text-sm leading-snug">
                           {item.role}
                         </h3>
-                        <p className="text-violet-400 text-xs mt-0.5">{item.company}</p>
+                        <p className="text-orange-400 text-xs mt-0.5">{item.company}</p>
                       </div>
                       <span className="text-slate-500 text-xs whitespace-nowrap shrink-0">
                         {item.startDate} – {item.endDate}
@@ -50,7 +50,7 @@ export function Experience() {
                     <ul className="space-y-1.5">
                       {item.bullets.map((bullet, bi) => (
                         <li key={bi} className="text-slate-400 text-xs leading-relaxed flex gap-2">
-                          <span className="text-violet-500 mt-1 shrink-0">▸</span>
+                          <span className="text-orange-400/60 mt-1 shrink-0">▸</span>
                           {bullet}
                         </li>
                       ))}

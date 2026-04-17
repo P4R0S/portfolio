@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Background Options</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #111; color: #fafafa; font-family: 'Inter', sans-serif; padding: 32px 24px; }
+  h1 { font-size: 20px; font-weight: 600; color: #fafafa; margin-bottom: 6px; }
+  .subtitle { color: #71717a; font-size: 14px; margin-bottom: 32px; }
+
+  .options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+  .option {
+    border: 2px solid #27272a;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.2s;
+    background: #18181b;
+  }
+  .option:hover { border-color: #fb923c; transform: translateY(-2px); }
+  .option.selected { border-color: #fb923c; box-shadow: 0 0 0 4px rgba(251,146,60,0.15); }
+
+  .option-preview {
+    height: 420px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ── OPTION A: Global scattered orbs ── */
+  .preview-a { background: #18181b; }
+  .orb-a1 {
+    position: absolute; border-radius: 50%;
+    width: 280px; height: 280px;
+    top: -60px; right: -40px;
+    background: radial-gradient(circle, rgba(251,146,60,0.18) 0%, transparent 70%);
+    filter: blur(40px);
+  }
+  .orb-a2 {
+    position: absolute; border-radius: 50%;
+    width: 220px; height: 220px;
+    top: 30%; left: -60px;
+    background: radial-gradient(circle, rgba(251,146,60,0.1) 0%, transparent 70%);
+    filter: blur(50px);
+  }
+  .orb-a3 {
+    position: absolute; border-radius: 50%;
+    width: 200px; height: 200px;
+    top: 55%; right: 10%;
+    background: radial-gradient(circle, rgba(251,191,36,0.12) 0%, transparent 70%);
+    filter: blur(45px);
+  }
+  .orb-a4 {
+    position: absolute; border-radius: 50%;
+    width: 180px; height: 180px;
+    bottom: 0; left: 20%;
+    background: radial-gradient(circle, rgba(82,82,91,0.25) 0%, transparent 70%);
+    filter: blur(40px);
+  }
+
+  /* ── OPTION B: Per-section edge glows ── */
+  .preview-b { background: #18181b; }
+  .section-b {
+    position: absolute; left: 0; right: 0;
+    display: flex; align-items: center; padding: 0 20px;
+  }
+  .section-b-1 { top: 0; height: 33.3%; }
+  .section-b-2 { top: 33.3%; height: 33.3%; }
+  .section-b-3 { top: 66.6%; height: 33.4%; }
+  .edge-glow {
+    position: absolute;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    filter: blur(50px);
+  }
+  .eg-1 { left: -40px; top: 50%; transform: translateY(-50%);
+           background: radial-gradient(circle, rgba(251,146,60,0.22) 0%, transparent 70%); }
+  .eg-2 { right: -40px; top: 50%; transform: translateY(-50%);
+           background: radial-gradient(circle, rgba(251,191,36,0.18) 0%, transparent 70%); }
+  .eg-3 { left: -40px; top: 50%; transform: translateY(-50%);
+           background: radial-gradient(circle, rgba(251,146,60,0.15) 0%, transparent 70%); }
+  .section-divider {
+    position: absolute; left: 20px; right: 20px; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(251,146,60,0.15), transparent);
+  }
+  .sd-1 { top: 33.3%; }
+  .sd-2 { top: 66.6%; }
+
+  /* ── OPTION C: Noise texture + orbs ── */
+  .preview-c { background: #18181b; }
+  .noise-overlay {
+    position: absolute; inset: 0; z-index: 1;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
+  .orb-c1 {
+    position: absolute; border-radius: 50%;
+    width: 220px; height: 220px;
+    top: 5%; right: 5%;
+    background: radial-gradient(circle, rgba(251,146,60,0.14) 0%, transparent 70%);
+    filter: blur(50px);
+  }
+  .orb-c2 {
+    position: absolute; border-radius: 50%;
+    width: 180px; height: 180px;
+    bottom: 10%; left: 5%;
+    background: radial-gradient(circle, rgba(251,191,36,0.1) 0%, transparent 70%);
+    filter: blur(45px);
+  }
+  .dot-grid {
+    position: absolute; inset: 0; z-index: 0;
+    background-image: radial-gradient(circle, rgba(251,146,60,0.07) 1px, transparent 1px);
+    background-size: 28px 28px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  }
+
+  /* ── Section labels inside previews ── */
+  .section-labels {
+    position: absolute; inset: 0; z-index: 10;
+    display: flex; flex-direction: column;
+  }
+  .sec-label {
+    flex: 1; display: flex; align-items: center; padding: 0 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .sec-label:last-child { border-bottom: none; }
+  .sec-title {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: rgba(250,250,250,0.25);
+  }
+  .sec-dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: #fb923c; opacity: 0.5; margin-right: 8px;
+    flex-shrink: 0;
+  }
+
+  /* Card labels */
+  .option-label {
+    padding: 16px 20px;
+    border-top: 1px solid #27272a;
+  }
+  .option-label h3 { font-size: 14px; font-weight: 600; color: #fafafa; margin-bottom: 4px; }
+  .option-label p { font-size: 12px; color: #71717a; line-height: 1.5; }
+  .badge {
+    display: inline-block; font-size: 10px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 2px 8px; border-radius: 99px; margin-bottom: 6px;
+  }
+  .badge-rec { background: rgba(251,146,60,0.15); color: #fb923c; border: 1px solid rgba(251,146,60,0.3); }
+  .badge-alt { background: rgba(250,250,250,0.05); color: #a1a1aa; border: 1px solid rgba(255,255,255,0.1); }
+
+  .click-hint {
+    font-size: 11px; color: #52525b; text-align: center; margin-top: 24px;
+  }
+
+  @media (max-width: 900px) {
+    .options { grid-template-columns: 1fr; }
+    .option-preview { height: 280px; }
+  }
+</style>
+</head>
+<body>
+<h1>Background Treatment Options</h1>
+<p class="subtitle">Click an option to select it — which direction fits your portfolio best?</p>
+
+<div class="options">
+
+  <!-- OPTION A -->
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="option-preview preview-a">
+      <div class="orb-a1"></div>
+      <div class="orb-a2"></div>
+      <div class="orb-a3"></div>
+      <div class="orb-a4"></div>
+      <div class="section-labels">
+        <div class="sec-label"><span class="sec-dot"></span><span class="sec-title">Hero</span></div>
+        <div class="sec-label"><span class="sec-dot"></span><span class="sec-title">About</span></div>
+        <div class="sec-label"><span class="sec-dot"></span><span class="sec-title">Skills</span></div>
+        <div class="sec-label"><span class="sec-dot"></span><span class="sec-title">Projects</span></div>
+        <div class="sec-label"><span class="sec-dot"></span><span class="sec-title">Experience</span></div>
+        <div class="sec-label"><span class="sec-dot"></span><span class="sec-title">Contact</span></div>
+      </div>
+    </div>
+    <div class="option-label">
+      <div class="badge badge-rec">★ Recommended</div>
+      <h3>A — Global Scattered Orbs</h3>
+      <p>5–6 large soft blobs across the full page. Warm orange near top fading to zinc at bottom. Orbs are static — ambient warmth, no distraction.</p>
+    </div>
+  </div>
+
+  <!-- OPTION B -->
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="option-preview preview-b">
+      <div class="section-b section-b-1">
+        <div class="edge-glow eg-1"></div>
+      </div>
+      <div class="section-divider sd-1"></div>
+      <div class="section-b section-b-2">
+        <div class="edge-glow eg-2"></div>
+      </div>
+      <div class="section-divider sd-2"></div>
+      <div class="section-b section-b-3">
+        <div class="edge-glow eg-3"></div>
+      </div>
+      <div class="section-labels">
+        <div class="sec-label"><span class="sec-dot"></span><span class="sec-title">Hero / About</span></div>
+        <div class="sec-label"><span class="sec-dot"></span><span class="sec-title">Skills / Projects</span></div>
+        <div class="sec-label"><span class="sec-dot"></span><span class="sec-title">Experience / Contact</span></div>
+      </div>
+    </div>
+    <div class="option-label">
+      <div class="badge badge-alt">Alternative</div>
+      <h3>B — Per-Section Edge Glows</h3>
+      <p>Each section gets its own glow anchored to a side edge. Alternates left/right. Subtle warm dividers between sections.</p>
+    </div>
+  </div>
+
+  <!-- OPTION C -->
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="option-preview preview-c">
+      <div class="dot-grid"></div>
+      <div class="noise-overlay"></div>
+      <div class="orb-c1"></div>
+      <div class="orb-c2"></div>
+      <div class="section-labels">
+        <div class="sec-label"><span class="sec-dot"></span><span class="sec-title">Hero</span></div>
+        <div class="sec-label"><span class="sec-dot"></span><span class="sec-title">About</span></div>
+        <div class="sec-label"><span class="sec-dot"></span><span class="sec-title">Skills</span></div>
+        <div class="sec-label"><span class="sec-dot"></span><span class="sec-title">Projects</span></div>
+        <div class="sec-label"><span class="sec-dot"></span><span class="sec-title">Experience</span></div>
+        <div class="sec-label"><span class="sec-dot"></span><span class="sec-title">Contact</span></div>
+      </div>
+    </div>
+    <div class="option-label">
+      <div class="badge badge-alt">Alternative</div>
+      <h3>C — Dot Grid + Noise Texture</h3>
+      <p>Faint dot grid across the whole page with a subtle grain texture. Minimal orbs. More editorial/print feel — common on high-end portfolios.</p>
+    </div>
+  </div>
+
+</div>
+
+<p class="click-hint">Click a card to select · You can also just tell me in the chat</p>
+
+<script>
+function toggleSelect(el) {
+  document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  const choice = el.dataset.choice;
+  const text = el.querySelector('h3').textContent;
+  if (window.__companion) window.__companion.recordChoice(choice, text);
+}
+</script>
+</body>
+</html>
