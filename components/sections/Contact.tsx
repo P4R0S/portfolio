@@ -8,7 +8,7 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa6'
 
 const socials = [
   { href: 'https://github.com/P4R0S', label: 'GitHub', icon: FaGithub },
-  { href: 'https://linkedin.com/in/paros_1999', label: 'LinkedIn', icon: FaLinkedin },
+  { href: 'https://linkedin.com/in/paros1999', label: 'LinkedIn', icon: FaLinkedin },
   { href: 'mailto:paros.pr@gmail.com', label: 'Email', icon: Mail },
 ]
 
