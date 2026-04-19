@@ -20,7 +20,7 @@ export function Projects() {
           </h2>
         </div>
         <a
-          href="https://github.com/yourusername"
+          href="https://github.com/P4R0S"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors duration-200 cursor-pointer"

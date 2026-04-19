@@ -1,0 +1,136 @@
+<h2>How should the CV page feel?</h2>
+<p class="subtitle">Pick the approach that best fits your vision for an interactive CV</p>
+
+<div class="cards">
+
+  <div class="card" data-choice="document" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#0f1117;padding:16px;min-height:180px;border-radius:8px;position:relative;overflow:hidden;">
+      <!-- Sidebar -->
+      <div style="position:absolute;left:0;top:0;bottom:0;width:34%;background:linear-gradient(180deg,#2c2c2c,#1a1a1a);padding:10px 8px;display:flex;flex-direction:column;gap:6px;">
+        <div style="width:40px;height:40px;border-radius:50%;background:#444;margin:0 auto 6px;"></div>
+        <div style="height:6px;background:#8b2e2e;border-radius:2px;width:80%;margin:0 auto;"></div>
+        <div style="height:4px;background:#555;border-radius:2px;width:90%;"></div>
+        <div style="height:4px;background:#555;border-radius:2px;width:70%;"></div>
+        <div style="height:4px;background:#555;border-radius:2px;width:80%;"></div>
+        <div style="height:6px;background:#8b2e2e;border-radius:2px;width:80%;margin-top:6px;"></div>
+        <div style="height:4px;background:#555;border-radius:2px;width:90%;"></div>
+        <div style="height:4px;background:#555;border-radius:2px;width:60%;"></div>
+      </div>
+      <!-- Main -->
+      <div style="margin-left:36%;padding:8px;display:flex;flex-direction:column;gap:5px;">
+        <div style="height:10px;background:#1a1a1a;border-radius:2px;width:85%;"></div>
+        <div style="height:7px;background:#1a1a1a;border-radius:2px;width:60%;"></div>
+        <div style="height:1px;background:#8b2e2e;width:100%;margin:4px 0;"></div>
+        <div style="height:5px;background:#ccc;border-radius:2px;width:95%;opacity:.5"></div>
+        <div style="height:5px;background:#ccc;border-radius:2px;width:80%;opacity:.5"></div>
+        <div style="height:5px;background:#ccc;border-radius:2px;width:90%;opacity:.5"></div>
+        <div style="height:1px;background:#e0e0e0;width:100%;margin:4px 0;"></div>
+        <div style="height:8px;background:#1a1a1a;border-radius:2px;width:50%;"></div>
+        <div style="height:5px;background:#ccc;border-radius:2px;width:90%;opacity:.5"></div>
+        <div style="height:5px;background:#ccc;border-radius:2px;width:75%;opacity:.5"></div>
+      </div>
+      <!-- "Interactive" badge -->
+      <div style="position:absolute;bottom:8px;right:8px;background:#8b2e2e;color:#fff;font-size:9px;padding:2px 6px;border-radius:10px;font-family:sans-serif;">hover to highlight ✦ scroll to reveal</div>
+    </div>
+    <div class="card-body">
+      <h3>Faithful Document</h3>
+      <p>Your Figma CV design rendered on the page — formal layout preserved, but sections animate in as you scroll, rows highlight on hover, and a "Download PDF" button is front and center. Looks exactly like a real CV, but feels alive.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="timeline" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#0f1117;padding:16px;min-height:180px;border-radius:8px;position:relative;overflow:hidden;">
+      <!-- Timeline spine -->
+      <div style="position:absolute;left:50%;top:12px;bottom:12px;width:2px;background:linear-gradient(180deg,#8b2e2e,#3a3a5c);transform:translateX(-50%);"></div>
+      <!-- Timeline items -->
+      <div style="display:flex;flex-direction:column;gap:12px;position:relative;">
+        <!-- Left item -->
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div style="flex:1;background:#1e2235;border-radius:6px;padding:6px 8px;text-align:right;">
+            <div style="height:5px;background:#8b2e2e;border-radius:2px;width:70%;margin-left:auto;margin-bottom:3px;"></div>
+            <div style="height:3px;background:#555;border-radius:2px;width:90%;margin-left:auto;"></div>
+          </div>
+          <div style="width:10px;height:10px;border-radius:50%;background:#8b2e2e;border:2px solid #0f1117;flex-shrink:0;z-index:1;"></div>
+          <div style="flex:1;"></div>
+        </div>
+        <!-- Right item -->
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div style="flex:1;"></div>
+          <div style="width:10px;height:10px;border-radius:50%;background:#4a90d9;border:2px solid #0f1117;flex-shrink:0;z-index:1;"></div>
+          <div style="flex:1;background:#1e2235;border-radius:6px;padding:6px 8px;">
+            <div style="height:5px;background:#4a90d9;border-radius:2px;width:60%;margin-bottom:3px;"></div>
+            <div style="height:3px;background:#555;border-radius:2px;width:80%;"></div>
+          </div>
+        </div>
+        <!-- Left item -->
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div style="flex:1;background:#1e2235;border-radius:6px;padding:6px 8px;text-align:right;">
+            <div style="height:5px;background:#8b2e2e;border-radius:2px;width:55%;margin-left:auto;margin-bottom:3px;"></div>
+            <div style="height:3px;background:#555;border-radius:2px;width:75%;margin-left:auto;"></div>
+          </div>
+          <div style="width:10px;height:10px;border-radius:50%;background:#8b2e2e;border:2px solid #0f1117;flex-shrink:0;z-index:1;"></div>
+          <div style="flex:1;"></div>
+        </div>
+        <!-- Skills row -->
+        <div style="display:flex;justify-content:center;gap:6px;padding-top:4px;">
+          <div style="background:#222a3d;padding:3px 8px;border-radius:10px;"><div style="height:3px;background:#7c3aed;border-radius:2px;width:30px;"></div></div>
+          <div style="background:#222a3d;padding:3px 8px;border-radius:10px;"><div style="height:3px;background:#4a90d9;border-radius:2px;width:25px;"></div></div>
+          <div style="background:#222a3d;padding:3px 8px;border-radius:10px;"><div style="height:3px;background:#4edea3;border-radius:2px;width:20px;"></div></div>
+        </div>
+      </div>
+      <div style="position:absolute;bottom:8px;right:8px;background:#3a3a5c;color:#aab;font-size:9px;padding:2px 6px;border-radius:10px;font-family:sans-serif;">click to expand ✦ scroll through time</div>
+    </div>
+    <div class="card-body">
+      <h3>Timeline Journey</h3>
+      <p>Your career told as a story — a vertical timeline alternating left/right with education and experience entries. Click each entry to expand details. Skills float in as you reach them. Creative and narrative-driven.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="split" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#0f1117;padding:16px;min-height:180px;border-radius:8px;position:relative;display:flex;gap:8px;overflow:hidden;">
+      <!-- Left nav panel -->
+      <div style="width:28%;background:#111827;border-radius:6px;padding:8px;display:flex;flex-direction:column;gap:4px;">
+        <div style="font-family:sans-serif;font-size:8px;color:#8b2e2e;letter-spacing:1px;margin-bottom:4px;">SECTIONS</div>
+        <div style="background:#8b2e2e22;border-left:2px solid #8b2e2e;padding:3px 6px;border-radius:0 3px 3px 0;">
+          <div style="height:4px;background:#8b2e2e;border-radius:2px;width:70%;"></div>
+        </div>
+        <div style="padding:3px 6px;">
+          <div style="height:4px;background:#555;border-radius:2px;width:80%;"></div>
+        </div>
+        <div style="padding:3px 6px;">
+          <div style="height:4px;background:#555;border-radius:2px;width:65%;"></div>
+        </div>
+        <div style="padding:3px 6px;">
+          <div style="height:4px;background:#555;border-radius:2px;width:75%;"></div>
+        </div>
+        <div style="padding:3px 6px;">
+          <div style="height:4px;background:#555;border-radius:2px;width:60%;"></div>
+        </div>
+        <div style="margin-top:auto;background:#8b2e2e;border-radius:4px;padding:4px;text-align:center;">
+          <div style="height:4px;background:#fff8;border-radius:2px;width:60%;margin:0 auto;"></div>
+        </div>
+      </div>
+      <!-- Right content panel -->
+      <div style="flex:1;background:#141920;border-radius:6px;padding:8px;display:flex;flex-direction:column;gap:5px;">
+        <div style="height:8px;background:#dae2fd22;border-radius:2px;width:50%;"></div>
+        <div style="height:1px;background:#8b2e2e;width:100%;"></div>
+        <div style="display:flex;flex-direction:column;gap:3px;">
+          <div style="background:#1e2235;border-left:2px solid #8b2e2e;padding:4px 6px;border-radius:0 4px 4px 0;">
+            <div style="height:5px;background:#dae2fd55;border-radius:2px;width:60%;margin-bottom:2px;"></div>
+            <div style="height:3px;background:#8b2e2e88;border-radius:2px;width:40%;"></div>
+          </div>
+          <div style="background:#1e2235;border-left:2px solid #555;padding:4px 6px;border-radius:0 4px 4px 0;opacity:.6;">
+            <div style="height:5px;background:#dae2fd44;border-radius:2px;width:50%;margin-bottom:2px;"></div>
+            <div style="height:3px;background:#55555588;border-radius:2px;width:35%;"></div>
+          </div>
+        </div>
+      </div>
+      <div style="position:absolute;bottom:8px;right:8px;background:#222a3d;color:#aab;font-size:9px;padding:2px 6px;border-radius:10px;font-family:sans-serif;">click nav ✦ content updates live</div>
+    </div>
+    <div class="card-body">
+      <h3>Split-Panel App</h3>
+      <p>A sticky left sidebar with CV sections as navigation, and the right panel updates as you click. Feels like an app rather than a document. Download PDF in the sidebar. Professional and slick.</p>
+    </div>
+  </div>
+
+</div>

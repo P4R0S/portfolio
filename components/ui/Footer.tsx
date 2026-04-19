@@ -11,9 +11,6 @@ export function Footer() {
   return (
     <footer className="border-t border-white/10 py-10 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-        <p className="text-slate-500 text-sm">
-          © {new Date().getFullYear()} Parsa Rostamzadeh. All rights reserved.
-        </p>
 
         <div className="flex items-center gap-4">
           {socials.map(({ href, label, icon: Icon }) => (
@@ -30,9 +27,6 @@ export function Footer() {
           ))}
         </div>
 
-        <p className="text-slate-600 text-xs hidden md:block">
-          Built with Next.js + Tailwind
-        </p>
 
         <a
           href="#"

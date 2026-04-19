@@ -12,7 +12,11 @@
       "Bash(export PATH=\"/c/Program Files/nodejs:$PATH\")",
       "Bash(curl -v http://localhost:61273)",
       "Bash(node -e \"const http=require\\('http'\\); const s=http.createServer\\(\\(_,r\\)=>{r.end\\('ok'\\)}\\); s.listen\\(9999, \\(\\)=>console.log\\('up'\\)\\); setTimeout\\(\\(\\)=>s.close\\(\\),3000\\)\")",
-      "Bash(curl -s http://localhost:63010)"
+      "Bash(curl -s http://localhost:63010)",
+      "Bash(npx skills *)",
+      "Bash(npx claude-code-templates@latest *)",
+      "Bash(gh auth *)",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d.get\\('mcpServers',{}\\), indent=2\\)\\)\")"
     ]
   }
 }

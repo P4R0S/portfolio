@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
 
     await resend.emails.send({
       from: 'Portfolio Contact <onboarding@resend.dev>',
-      to: ['you@example.com'],
+      to: ['paros.pr@gmail.com'],
       subject: `Portfolio contact from ${name}`,
       text: `From: ${name} <${email}>\n\n${message}`,
     })

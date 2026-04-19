@@ -91,12 +91,10 @@ export function Hero() {
                 View Projects <ArrowRight className="w-4 h-4" />
               </a>
               <a
-                href="/cv.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/cv"
                 className="flex items-center gap-2 px-6 py-3 rounded-xl border border-orange-400/30 hover:border-orange-400/60 text-zinc-300 hover:text-orange-400 font-medium transition-colors duration-200 cursor-pointer w-full sm:w-auto justify-center"
               >
-                Download CV <Download className="w-4 h-4" />
+                View CV <Download className="w-4 h-4" />
               </a>
             </div>
 

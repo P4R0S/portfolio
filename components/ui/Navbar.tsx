@@ -1,26 +1,33 @@
 'use client'
 import { useState, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
+import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-const links = [
-  { href: '#about', label: 'About' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#experience', label: 'Experience' },
-  { href: '#publications', label: 'Publications' },
-  { href: '#blog', label: 'Blog' },
+const anchorLinks = [
+  { anchor: 'about', label: 'About' },
+  { anchor: 'skills', label: 'Skills' },
+  { anchor: 'projects', label: 'Projects' },
+  { anchor: 'experience', label: 'Experience' },
+  { anchor: 'publications', label: 'Publications' },
+  { anchor: 'blog', label: 'Blog' },
 ]
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const pathname = usePathname()
+  const isHome = pathname === '/'
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20)
     window.addEventListener('scroll', handler, { passive: true })
     return () => window.removeEventListener('scroll', handler)
   }, [])
+
+  const hrefFor = (anchor: string) => isHome ? `#${anchor}` : `/#${anchor}`
+  const contactHref = isHome ? '#contact' : '/#contact'
 
   return (
     <nav
@@ -31,24 +38,35 @@ export function Navbar() {
       )}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14">
-        {/* Logo */}
-        <a href="#" className="font-heading font-bold text-lg gradient-text cursor-pointer">
+        {/* Logo — always goes home */}
+        <Link href="/" className="font-heading font-bold text-lg gradient-text cursor-pointer">
           PR
-        </a>
+        </Link>
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-6">
-          {links.map((link) => (
+          {anchorLinks.map((link) => (
             <a
-              key={link.href}
-              href={link.href}
+              key={link.anchor}
+              href={hrefFor(link.anchor)}
               className="text-sm text-slate-400 hover:text-white transition-colors duration-200 cursor-pointer"
             >
               {link.label}
             </a>
           ))}
+          <Link
+            href="/cv"
+            className={cn(
+              'text-sm transition-colors duration-200 cursor-pointer',
+              pathname === '/cv'
+                ? 'text-white font-medium'
+                : 'text-slate-400 hover:text-white'
+            )}
+          >
+            CV
+          </Link>
           <a
-            href="#contact"
+            href={contactHref}
             className="px-4 py-2 rounded-xl bg-orange-400/10 border border-orange-400/30 text-orange-400 hover:bg-orange-400/20 text-sm font-medium transition-colors duration-200 cursor-pointer"
           >
             Contact
@@ -68,18 +86,28 @@ export function Navbar() {
       {/* Mobile menu */}
       {open && (
         <div className="md:hidden border-t border-white/10 px-4 py-4 flex flex-col gap-3">
-          {links.map((link) => (
+          {anchorLinks.map((link) => (
             <a
-              key={link.href}
-              href={link.href}
+              key={link.anchor}
+              href={hrefFor(link.anchor)}
               onClick={() => setOpen(false)}
               className="text-slate-300 hover:text-white transition-colors duration-200 cursor-pointer py-1"
             >
               {link.label}
             </a>
           ))}
+          <Link
+            href="/cv"
+            onClick={() => setOpen(false)}
+            className={cn(
+              'py-1 transition-colors duration-200 cursor-pointer',
+              pathname === '/cv' ? 'text-white font-medium' : 'text-slate-300 hover:text-white'
+            )}
+          >
+            CV
+          </Link>
           <a
-            href="#contact"
+            href={contactHref}
             onClick={() => setOpen(false)}
             className="px-4 py-2 rounded-xl bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 text-sm font-medium text-center cursor-pointer"
           >

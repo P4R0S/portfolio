@@ -1,16 +1,9 @@
 'use client'
 import { useState, FormEvent } from 'react'
-import { GlassCard } from '@/components/ui/GlassCard'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { GradientText } from '@/components/ui/GradientText'
 import { Mail, Loader2, CheckCircle, AlertCircle } from 'lucide-react'
-import { FaGithub, FaLinkedin } from 'react-icons/fa6'
-
-const socials = [
-  { href: 'https://github.com/P4R0S', label: 'GitHub', icon: FaGithub },
-  { href: 'https://linkedin.com/in/paros1999', label: 'LinkedIn', icon: FaLinkedin },
-  { href: 'mailto:paros.pr@gmail.com', label: 'Email', icon: Mail },
-]
+import { FaLinkedin } from 'react-icons/fa6'
 
 type Status = 'idle' | 'loading' | 'success' | 'error'
 
@@ -46,20 +39,44 @@ export function Contact() {
 
   return (
     <SectionWrapper id="contact">
-      <div className="text-center mb-12">
-        <p className="text-slate-500 text-xs tracking-widest uppercase mb-2">Get in touch</p>
-        <h2 className="font-heading font-bold text-3xl md:text-4xl">
-          Let&apos;s <GradientText>Work Together</GradientText>
-        </h2>
-        <p className="text-slate-400 text-sm mt-3 max-w-md mx-auto">
-          Open to research collaborations, full-time roles, and interesting side projects.
-        </p>
-      </div>
+      <div className="max-w-5xl mx-auto flex flex-col lg:flex-row gap-12 lg:gap-20 items-center">
 
-      <div className="max-w-lg mx-auto">
-        <GlassCard className="p-6 md:p-8 mb-6">
+        {/* Left — heading + contact links */}
+        <div className="flex-1 lg:max-w-sm">
+          <h2 className="font-heading font-bold text-4xl md:text-5xl leading-tight mb-5">
+            Let&apos;s <GradientText>Work<br />Together</GradientText>
+          </h2>
+          <p className="text-slate-400 text-sm leading-relaxed mb-8">
+            Open to research collaborations, full-time roles, and interesting side projects. Feel free to reach out.
+          </p>
+          <div className="flex flex-col gap-4">
+            <a
+              href="mailto:paros.pr@gmail.com"
+              className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors duration-200 group"
+            >
+              <span className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-orange-400/40 transition-colors duration-200">
+                <Mail className="w-4 h-4" />
+              </span>
+              <span className="text-sm">paros.pr@gmail.com</span>
+            </a>
+            <a
+              href="https://linkedin.com/in/paros1999"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors duration-200 group"
+            >
+              <span className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-orange-400/40 transition-colors duration-200">
+                <FaLinkedin className="w-4 h-4" />
+              </span>
+              <span className="text-sm">linkedin.com/in/paros1999</span>
+            </a>
+          </div>
+        </div>
+
+        {/* Right — form */}
+        <div className="flex-1 w-full">
           {status === 'success' ? (
-            <div className="text-center py-8">
+            <div className="text-center py-12">
               <CheckCircle className="w-10 h-10 text-orange-400 mx-auto mb-3" />
               <p className="text-white font-medium mb-1">Message sent!</p>
               <p className="text-slate-400 text-sm">I&apos;ll get back to you soon.</p>
@@ -104,7 +121,7 @@ export function Contact() {
                   rows={5}
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  placeholder="What's on your mind?"
+                  placeholder="Your Message ..."
                   className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-orange-400/50 transition-colors duration-200 resize-none"
                 />
               </div>
@@ -119,7 +136,7 @@ export function Contact() {
               <button
                 type="submit"
                 disabled={status === 'loading'}
-                className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-[#27272a] hover:bg-[#3f3f46] disabled:opacity-60 disabled:cursor-not-allowed text-[#fafafa] font-medium transition-colors duration-200 cursor-pointer"
+                className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-orange-400/10 border border-orange-400/30 hover:bg-orange-400/20 hover:border-orange-400/50 disabled:opacity-60 disabled:cursor-not-allowed text-orange-400 font-medium transition-colors duration-200 cursor-pointer"
               >
                 {status === 'loading' ? (
                   <><Loader2 className="w-4 h-4 animate-spin" /> Sending&hellip;</>
@@ -129,23 +146,8 @@ export function Contact() {
               </button>
             </form>
           )}
-        </GlassCard>
-
-        {/* Social links */}
-        <div className="flex items-center justify-center gap-5">
-          {socials.map(({ href, label, icon: Icon }) => (
-            <a
-              key={label}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={label}
-              className="text-slate-500 hover:text-white transition-colors duration-200 cursor-pointer"
-            >
-              <Icon className="w-5 h-5" />
-            </a>
-          ))}
         </div>
+
       </div>
     </SectionWrapper>
   )
