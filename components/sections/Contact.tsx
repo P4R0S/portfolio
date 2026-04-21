@@ -60,7 +60,7 @@ export function Contact() {
               <span className="text-sm">paros.pr@gmail.com</span>
             </a>
             <a
-              href="https://linkedin.com/in/paros1999"
+              href="https://linkedin.com/in/parsa-rostamzadeh"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors duration-200 group"
@@ -68,7 +68,7 @@ export function Contact() {
               <span className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-orange-400/40 transition-colors duration-200">
                 <FaLinkedin className="w-4 h-4" />
               </span>
-              <span className="text-sm">linkedin.com/in/paros1999</span>
+              <span className="text-sm">linkedin.com/in/parsa-rostamzadeh</span>
             </a>
           </div>
         </div>
