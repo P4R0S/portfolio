@@ -6,6 +6,12 @@ import type { OutputLine } from '@/lib/terminal/types'
 import { parse } from '@/lib/terminal/parser'
 
 const HINT = 'Type a command. Try `help`'
+
+const WELCOME_LINES: OutputLine[] = [
+  { text: 'Welcome. This terminal is interactive.', color: 'white', bold: true },
+  { text: 'Use it to explore who I am and what I do.', color: 'output' },
+  { text: 'Try `whoami`, `skills`, or `help` to get started.', color: 'output' },
+]
 const COMMANDS = ['help', 'whoami', 'skills', 'open github', 'clear']
 
 function getOutput(command: string, args: string[]): OutputLine[] | null {
@@ -77,6 +83,16 @@ export function HeroTerminal() {
   const historyIdx = useRef(-1)
   const rafRef = useRef<number>(0)
   const charIdx = useRef(0)
+
+  // Auto-type welcome message once on mount, after entrance animation
+  useEffect(() => {
+    const t = setTimeout(() => {
+      setAnimatingLines(WELCOME_LINES)
+      setCurrentLine(0)
+      setVisibleText('')
+    }, 1300)
+    return () => clearTimeout(t)
+  }, [])
 
   // Typewriter for one line at a time
   useEffect(() => {
