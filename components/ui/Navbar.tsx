@@ -55,6 +55,17 @@ export function Navbar() {
             </a>
           ))}
           <Link
+            href="/hobbies"
+            className={cn(
+              'text-sm transition-colors duration-200 cursor-pointer',
+              pathname === '/hobbies'
+                ? 'text-white font-medium'
+                : 'text-slate-400 hover:text-white'
+            )}
+          >
+            Hobbies
+          </Link>
+          <Link
             href="/cv"
             className={cn(
               'text-sm transition-colors duration-200 cursor-pointer',
@@ -96,6 +107,16 @@ export function Navbar() {
               {link.label}
             </a>
           ))}
+          <Link
+            href="/hobbies"
+            onClick={() => setOpen(false)}
+            className={cn(
+              'py-1 transition-colors duration-200 cursor-pointer',
+              pathname === '/hobbies' ? 'text-white font-medium' : 'text-slate-300 hover:text-white'
+            )}
+          >
+            Hobbies
+          </Link>
           <Link
             href="/cv"
             onClick={() => setOpen(false)}
