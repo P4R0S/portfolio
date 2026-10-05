@@ -154,7 +154,7 @@ export function Contact() {
               <button
                 type="submit"
                 disabled={status === 'loading'}
-                className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-accent/10 border border-accent/30 hover:bg-accent/20 hover:border-accent/50 disabled:opacity-60 disabled:cursor-not-allowed text-accent-fg font-medium transition-colors duration-200 cursor-pointer"
+                className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-accent-tint border border-accent/30 hover:bg-accent-tint-hover hover:border-accent/50 disabled:opacity-60 disabled:cursor-not-allowed text-accent-fg font-medium transition-colors duration-200 cursor-pointer"
               >
                 {status === 'loading' ? (
                   <><Loader2 className="w-4 h-4 animate-spin" /> Sending&hellip;</>

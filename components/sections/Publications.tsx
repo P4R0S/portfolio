@@ -9,7 +9,7 @@ import { ExpandableText } from '@/components/ui/ExpandableText'
 const areaColors: Record<ResearchArea, string> = {
   ML: 'text-warm border-warm/30 bg-warm/10',
   Hardware: 'text-fg-soft border-line bg-surface',
-  'Approximate Computing': 'text-accent-fg border-accent/30 bg-accent/10',
+  'Approximate Computing': 'text-accent-fg border-accent/30 bg-accent-tint',
   LLM: 'text-warm border-warm/30 bg-warm/10',
 }
 

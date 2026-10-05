@@ -26,6 +26,8 @@
   --accent-fg: oklch(75% 0.183 55.934);     /* orange text */
   --accent-fg-hover: oklch(83.7% 0.128 66.29); /* orange-300 */
   --accent-hex: #fb923c;                    /* inline styles, logo, gradients */
+  --accent-tint: color-mix(in oklab, oklch(75% 0.183 55.934) 10%, transparent);       /* fills behind orange text */
+  --accent-tint-hover: color-mix(in oklab, oklch(75% 0.183 55.934) 20%, transparent);
 
   --grad-1: #fb923c;
   --grad-2: #fdba74;
@@ -76,6 +78,8 @@
   --accent-fg: #c2410c;
   --accent-fg-hover: #9a3412;
   --accent-hex: #ea580c;
+  --accent-tint: #fff4ec;        /* #c2410c on it: 4.78:1 */
+  --accent-tint-hover: #ffecdd;  /* #c2410c on it: 4.51:1 */
 
   --grad-1: #ea580c;
   --grad-2: #d9480f;
@@ -123,6 +127,8 @@
   --color-accent: var(--accent);
   --color-accent-fg: var(--accent-fg);
   --color-accent-fg-hover: var(--accent-fg-hover);
+  --color-accent-tint: var(--accent-tint);
+  --color-accent-tint-hover: var(--accent-tint-hover);
   --color-warm: var(--warm);
   --color-warm-fg: var(--warm-fg);
   --color-danger: var(--danger);

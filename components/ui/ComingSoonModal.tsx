@@ -57,7 +57,7 @@ export function ComingSoonModal({ open, onClose }: ComingSoonModalProps) {
 
             {/* Wobbling coffee */}
             <motion.div
-              className="mx-auto mb-5 w-14 h-14 rounded-2xl flex items-center justify-center border border-accent/30 bg-accent/10"
+              className="mx-auto mb-5 w-14 h-14 rounded-2xl flex items-center justify-center border border-accent/30 bg-accent-tint"
               animate={{ rotate: [0, -10, 10, -6, 6, 0] }}
               transition={{ duration: 1.4, repeat: Infinity, repeatDelay: 1.2 }}
             >
@@ -94,7 +94,7 @@ export function ComingSoonModal({ open, onClose }: ComingSoonModalProps) {
             <button
               ref={buttonRef}
               onClick={onClose}
-              className="w-full py-2.5 rounded-xl bg-accent/10 border border-accent/30 hover:bg-accent/20 hover:border-accent/50 text-accent-fg text-sm font-medium transition-colors duration-200 cursor-pointer"
+              className="w-full py-2.5 rounded-xl bg-accent-tint border border-accent/30 hover:bg-accent-tint-hover hover:border-accent/50 text-accent-fg text-sm font-medium transition-colors duration-200 cursor-pointer"
             >
               Can&apos;t wait
             </button>

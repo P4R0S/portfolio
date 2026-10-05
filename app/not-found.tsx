@@ -71,7 +71,7 @@ export default function NotFound() {
         <div className="flex flex-col sm:flex-row items-center gap-3 mt-10 w-full sm:w-auto">
           <Link
             href="/"
-            className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-accent/10 border border-accent/30 hover:bg-accent/20 hover:border-accent/50 text-accent-fg font-medium transition-colors duration-200 w-full sm:w-auto"
+            className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-accent-tint border border-accent/30 hover:bg-accent-tint-hover hover:border-accent/50 text-accent-fg font-medium transition-colors duration-200 w-full sm:w-auto"
           >
             <ArrowLeft className="w-4 h-4" /> Back to home
           </Link>

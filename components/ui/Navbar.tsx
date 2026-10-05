@@ -76,7 +76,7 @@ export function Navbar() {
           </button>
           <a
             href={contactHref}
-            className="px-4 py-2 rounded-xl bg-accent/10 border border-accent/30 text-accent-fg hover:bg-accent/20 text-sm font-medium transition-colors duration-200 cursor-pointer"
+            className="px-4 py-2 rounded-xl bg-accent-tint border border-accent/30 text-accent-fg hover:bg-accent-tint-hover text-sm font-medium transition-colors duration-200 cursor-pointer"
           >
             Contact
           </a>
@@ -128,7 +128,7 @@ export function Navbar() {
           <a
             href={contactHref}
             onClick={() => setOpen(false)}
-            className="px-4 py-2 rounded-xl bg-accent/10 border border-accent/30 text-accent-fg hover:bg-accent/20 text-sm font-medium text-center cursor-pointer"
+            className="px-4 py-2 rounded-xl bg-accent-tint border border-accent/30 text-accent-fg hover:bg-accent-tint-hover text-sm font-medium text-center cursor-pointer"
           >
             Contact
           </a>
