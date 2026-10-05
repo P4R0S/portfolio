@@ -111,8 +111,9 @@ export function Hero({ stats }: { stats: HeroStat[] }) {
             </div>
           </motion.div>
 
-          {/* Right column — terminal widget */}
-          <div className="flex-1 flex justify-center lg:justify-end">
+          {/* Right column — terminal widget. Desktop only (lg+), where it sits beside the intro;
+              on phones/tablets it would stack below the hero content, so it's hidden there. */}
+          <div className="hidden lg:flex flex-1 justify-end">
             <HeroTerminal />
           </div>
 
