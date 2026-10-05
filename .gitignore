@@ -47,3 +47,6 @@ docs/superpowers/
 liquid_glass.md
 *.stackdump
 memory/
+
+# Generated code graph (local tooling)
+graphify-out/

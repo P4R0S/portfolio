@@ -1,4 +1,3 @@
-'use client'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { GradientText } from '@/components/ui/GradientText'
 import { Brain, Cpu, Code2, Wrench } from 'lucide-react'
