@@ -4,6 +4,7 @@ import { GradientText } from '@/components/ui/GradientText'
 import { publications, type ResearchArea } from '@/content/publications'
 import { FileText } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { ExpandableText } from '@/components/ui/ExpandableText'
 
 const areaColors: Record<ResearchArea, string> = {
   ML: 'text-amber-400 border-amber-400/30 bg-amber-400/10',
@@ -50,7 +51,7 @@ export function Publications() {
                     ? `Submitted to ${pub.venue} ${pub.year} · awaiting acceptance`
                     : pub.venue}
                 </p>
-                <p className="text-slate-400 text-sm leading-relaxed">{pub.abstract}</p>
+                <ExpandableText text={pub.abstract} className="text-slate-400 text-sm leading-relaxed" />
               </div>
             </div>
           </GlassCard>

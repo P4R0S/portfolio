@@ -20,12 +20,12 @@ const dmSans = DM_Sans({
 })
 
 export const metadata: Metadata = {
-  title: 'Parsa Rostamzadeh — ML Engineer & Hardware Researcher',
+  title: 'Parsa Rostamzadeh — Research Assistant · ML × Hardware',
   description:
     'Computer engineer specializing in approximate computing, hardware-aware ML, FPGA neural network optimization, and graph neural networks.',
-  keywords: ['Approximate Computing', 'ML Engineer', 'FPGA', 'Hardware', 'GNN', 'Portfolio', 'Paderborn University'],
+  keywords: ['Approximate Computing', 'Hardware-aware ML', 'FPGA', 'VLSI', 'Research Assistant', 'Portfolio', 'Paderborn University'],
   openGraph: {
-    title: 'Parsa Rostamzadeh — ML Engineer & Hardware Researcher',
+    title: 'Parsa Rostamzadeh — Research Assistant · ML × Hardware',
     description: 'Computer engineer specializing in approximate computing, hardware-aware ML, and FPGA neural network optimization.',
     type: 'website',
   },

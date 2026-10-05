@@ -8,19 +8,19 @@ import { HeroTerminal } from '@/components/terminal/HeroTerminal'
 import { ComingSoonModal } from '@/components/ui/ComingSoonModal'
 
 const roles = [
-  'ML Engineer',
-  'LLM Researcher',
-  'Hardware Developer',
-  'Approximate Computing Specialist',
+  'Research Assistant',
+  'Hardware-aware ML',
+  'Approximate Computing',
+  'FPGA & VLSI Design',
 ]
 
-const stats = [
-  { label: 'Projects Built', value: '10' },
-  { label: 'Papers Published', value: '1' },
-  { label: 'Years of Exp.', value: '3' },
-]
+export interface HeroStat {
+  label: string
+  value: string
+}
 
-export function Hero() {
+/** `stats` are computed server-side from `content/` (see app/page.tsx). */
+export function Hero({ stats }: { stats: HeroStat[] }) {
   const [roleIndex, setRoleIndex] = useState(0)
   const [cvOpen, setCvOpen] = useState(false)
 
