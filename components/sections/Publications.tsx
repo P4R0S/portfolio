@@ -2,7 +2,7 @@ import { GlassCard } from '@/components/ui/GlassCard'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { GradientText } from '@/components/ui/GradientText'
 import { publications, type ResearchArea } from '@/content/publications'
-import { FileText, ExternalLink } from 'lucide-react'
+import { FileText } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const areaColors: Record<ResearchArea, string> = {
@@ -26,7 +26,7 @@ export function Publications() {
 
       <div className="flex flex-col gap-4">
         {sorted.map((pub) => (
-          <GlassCard key={pub.title} hover className="p-6">
+          <GlassCard key={pub.title} className="p-6">
             <div className="flex flex-col sm:flex-row sm:items-start gap-4">
               <FileText className="w-5 h-5 text-slate-500 shrink-0 mt-0.5" />
               <div className="flex-1 min-w-0">
@@ -50,29 +50,7 @@ export function Publications() {
                     ? `Submitted to ${pub.venue} ${pub.year} · awaiting acceptance`
                     : pub.venue}
                 </p>
-                <p className="text-slate-400 text-sm leading-relaxed mb-4">{pub.abstract}</p>
-                <div className="flex items-center gap-4">
-                  {pub.pdfUrl && (
-                    <a
-                      href={pub.pdfUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-white transition-colors duration-200 cursor-pointer"
-                    >
-                      <FileText className="w-3.5 h-3.5" /> PDF
-                    </a>
-                  )}
-                  {pub.doi && (
-                    <a
-                      href={pub.doi}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-white transition-colors duration-200 cursor-pointer"
-                    >
-                      <ExternalLink className="w-3.5 h-3.5" /> DOI
-                    </a>
-                  )}
-                </div>
+                <p className="text-slate-400 text-sm leading-relaxed">{pub.abstract}</p>
               </div>
             </div>
           </GlassCard>
