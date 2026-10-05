@@ -10,7 +10,8 @@ type Status = 'idle' | 'loading' | 'success' | 'error'
 export function Contact() {
   const [status, setStatus] = useState<Status>('idle')
   const [errorMsg, setErrorMsg] = useState('')
-  const [form, setForm] = useState({ name: '', email: '', message: '' })
+  // `website` is a honeypot: hidden from people, but bots tend to fill it in
+  const [form, setForm] = useState({ name: '', email: '', message: '', website: '' })
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault()
@@ -29,7 +30,7 @@ export function Contact() {
         setStatus('error')
       } else {
         setStatus('success')
-        setForm({ name: '', email: '', message: '' })
+        setForm({ name: '', email: '', message: '', website: '' })
       }
     } catch {
       setErrorMsg('Network error. Please try again.')
@@ -96,6 +97,7 @@ export function Contact() {
                   id="name"
                   type="text"
                   required
+                  maxLength={100}
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   placeholder="Your name"
@@ -108,6 +110,7 @@ export function Contact() {
                   id="email"
                   type="email"
                   required
+                  maxLength={254}
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   placeholder="you@example.com"
@@ -119,11 +122,24 @@ export function Contact() {
                 <textarea
                   id="message"
                   required
+                  maxLength={5000}
                   rows={5}
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                   placeholder="Your Message ..."
                   className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-orange-400/50 transition-colors duration-200 resize-none"
+                />
+              </div>
+
+              <div aria-hidden="true" className="absolute -left-[10000px] w-px h-px overflow-hidden">
+                <label htmlFor="website">Website</label>
+                <input
+                  id="website"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={form.website}
+                  onChange={(e) => setForm({ ...form, website: e.target.value })}
                 />
               </div>
 
