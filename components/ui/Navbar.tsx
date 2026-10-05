@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { ComingSoonModal } from '@/components/ui/ComingSoonModal'
+import { Logo } from '@/components/ui/Logo'
 
 const anchorLinks = [
   { anchor: 'about', label: 'About' },
@@ -41,8 +42,8 @@ export function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14">
         {/* Logo — always goes home */}
-        <Link href="/" className="font-heading font-bold text-lg gradient-text cursor-pointer">
-          PR
+        <Link href="/" aria-label="Home" className="cursor-pointer transition-transform duration-200 hover:scale-105">
+          <Logo className="w-[34px] h-[34px]" />
         </Link>
 
         {/* Desktop links */}
