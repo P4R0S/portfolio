@@ -11,11 +11,10 @@
   - `content/projects.ts`, `content/experience.ts`, `content/publications.ts`, `content/skills.ts`
   - blog posts live in `content/blog/*.mdx` and are parsed by `lib/blog.ts`
 - The contact flow is client form → `app/api/contact/route.ts` → Resend email delivery.
-- The CV route is isolated in `app/cv/` and uses `public/cv.pdf` plus `public/images/CV_pic.png`.
 
 ## Conventions
 - Use the `@/` path alias from `tsconfig.json`.
-- Keep components server-side by default; add `'use client'` only for interactivity (`Hero`, `Contact`, `Navbar`, `SectionWrapper`, `HeroTerminal`).
+- Keep components server-side by default; add `'use client'` only for interactivity (`Hero`, `Contact`, `Navbar`, `SectionWrapper`, `HeroTerminal`, `ComingSoonModal`).
 - Reuse shared UI primitives instead of re-creating them: `GlassCard`, `GradientText`, `SectionWrapper`, `BackgroundLayer`.
 - Tailwind v4 + `cn` from `lib/utils.ts` are the standard styling helpers; the site palette is charcoal + orange from `app/globals.css`.
 - Blog frontmatter follows `title`, `date`, `tags`, `excerpt`; `/blog` and `/blog/[slug]` render posts from that folder.
@@ -30,7 +29,7 @@
 
 ## Key files
 - `app/layout.tsx`, `app/page.tsx`, `app/blog/page.tsx`, `app/blog/[slug]/page.tsx`
-- `app/api/contact/route.ts`, `app/cv/layout.tsx`, `app/cv/page.tsx`
+- `app/api/contact/route.ts`
 - `components/sections/Hero.tsx`, `About.tsx`, `Projects.tsx`, `Experience.tsx`, `Publications.tsx`, `BlogSection.tsx`, `Contact.tsx`
 - `components/ui/Navbar.tsx`, `Footer.tsx`, `GlassCard.tsx`, `SectionWrapper.tsx`, `GradientText.tsx`, `BackgroundLayer.tsx`
 - `components/terminal/HeroTerminal.tsx`, `lib/blog.ts`, `lib/terminal/*`, `content/*`

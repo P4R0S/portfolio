@@ -5,6 +5,7 @@ import { ArrowDown, ArrowRight, Download } from 'lucide-react'
 import { GlassCard } from '@/components/ui/GlassCard'
 import { GradientText } from '@/components/ui/GradientText'
 import { HeroTerminal } from '@/components/terminal/HeroTerminal'
+import { ComingSoonModal } from '@/components/ui/ComingSoonModal'
 
 const roles = [
   'ML Engineer',
@@ -21,6 +22,7 @@ const stats = [
 
 export function Hero() {
   const [roleIndex, setRoleIndex] = useState(0)
+  const [cvOpen, setCvOpen] = useState(false)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -90,12 +92,12 @@ export function Hero() {
               >
                 View Projects <ArrowRight className="w-4 h-4" />
               </a>
-              <a
-                href="/cv"
+              <button
+                onClick={() => setCvOpen(true)}
                 className="flex items-center gap-2 px-6 py-3 rounded-xl border border-orange-400/30 hover:border-orange-400/60 text-zinc-300 hover:text-orange-400 font-medium transition-colors duration-200 cursor-pointer w-full sm:w-auto justify-center"
               >
                 View CV <Download className="w-4 h-4" />
-              </a>
+              </button>
             </div>
 
             {/* Stat cards */}
@@ -125,6 +127,8 @@ export function Hero() {
       >
         <ArrowDown className="w-5 h-5" />
       </a>
+
+      <ComingSoonModal open={cvOpen} onClose={() => setCvOpen(false)} />
     </section>
   )
 }
