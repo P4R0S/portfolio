@@ -9,7 +9,7 @@ const highlights = [
     icon: Cpu,
     title: 'What I Do',
     body: 'I build approximate computing pipelines and hardware-aware ML systems — from FPGA-deployed neural networks to cross-layer circuit synthesis.',
-    color: 'text-orange-400',
+    color: 'text-accent-fg',
   },
   {
     icon: Zap,
@@ -29,7 +29,7 @@ export function About() {
   return (
     <SectionWrapper id="about">
       <div className="text-center mb-12">
-        <p className="text-slate-500 text-xs tracking-widest uppercase mb-2">Get to know me</p>
+        <p className="text-fg-3 text-xs tracking-widest uppercase mb-2">Get to know me</p>
         <h2 className="font-heading font-bold text-3xl md:text-4xl">
           About <GradientText>Me</GradientText>
         </h2>
@@ -38,7 +38,7 @@ export function About() {
       <div className="grid md:grid-cols-2 gap-8 items-start">
         {/* Left: photo + bio */}
         <GlassCard className="p-6 md:p-8">
-          <div className="relative w-32 h-32 rounded-2xl overflow-hidden border border-white/10 mb-6 mx-auto md:mx-0">
+          <div className="relative w-32 h-32 rounded-2xl overflow-hidden border border-line mb-6 mx-auto md:mx-0">
             <Image
               src="/images/profile.jpg"
               alt="Parsa Rostamzadeh profile photo"
@@ -48,13 +48,13 @@ export function About() {
               priority
             />
           </div>
-          <h3 className="font-heading font-semibold text-xl text-white mb-3">
+          <h3 className="font-heading font-semibold text-xl text-fg-max mb-3">
             Research Assistant · Paderborn University
           </h3>
-          <p className="text-slate-400 leading-relaxed text-sm mb-4">
+          <p className="text-fg-2 leading-relaxed text-sm mb-4">
             I&apos;m a computer engineer and research assistant at Paderborn University, focusing on approximate computing, hardware-aware machine learning, and FPGA-based neural network optimization. My research centers on making deep learning deployable on resource-constrained hardware — without sacrificing more accuracy than necessary.
           </p>
-          <p className="text-slate-400 leading-relaxed text-sm">
+          <p className="text-fg-2 leading-relaxed text-sm">
             I build end-to-end pipelines that span the full stack: from quantization-aware training and circuit synthesis to multi-objective design space exploration. When I&apos;m not optimizing circuits, I work on graph neural networks and explainability — understanding not just what models predict, but why.
           </p>
         </GlassCard>
@@ -67,8 +67,8 @@ export function About() {
                 <Icon className="w-5 h-5" />
               </div>
               <div>
-                <h4 className="font-heading font-semibold text-white mb-1">{title}</h4>
-                <p className="text-slate-400 text-sm leading-relaxed">{body}</p>
+                <h4 className="font-heading font-semibold text-fg-max mb-1">{title}</h4>
+                <p className="text-fg-2 text-sm leading-relaxed">{body}</p>
               </div>
             </GlassCard>
           ))}

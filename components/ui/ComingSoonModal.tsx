@@ -40,7 +40,7 @@ export function ComingSoonModal({ open, onClose }: ComingSoonModalProps) {
             role="dialog"
             aria-modal="true"
             aria-labelledby="coming-soon-title"
-            className="relative w-full max-w-sm rounded-2xl border border-orange-400/20 bg-[#18181b]/95 p-7 text-center shadow-2xl shadow-orange-400/10"
+            className="relative w-full max-w-sm rounded-2xl border border-accent/20 bg-bg/95 p-7 text-center shadow-2xl shadow-accent/10"
             initial={{ opacity: 0, scale: 0.9, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 8 }}
@@ -50,34 +50,34 @@ export function ComingSoonModal({ open, onClose }: ComingSoonModalProps) {
             <button
               onClick={onClose}
               aria-label="Close"
-              className="absolute top-3 right-3 text-slate-500 hover:text-white transition-colors duration-200 cursor-pointer"
+              className="absolute top-3 right-3 text-fg-3 hover:text-fg-max transition-colors duration-200 cursor-pointer"
             >
               <X className="w-4 h-4" />
             </button>
 
             {/* Wobbling coffee */}
             <motion.div
-              className="mx-auto mb-5 w-14 h-14 rounded-2xl flex items-center justify-center border border-orange-400/30 bg-orange-400/10"
+              className="mx-auto mb-5 w-14 h-14 rounded-2xl flex items-center justify-center border border-accent/30 bg-accent/10"
               animate={{ rotate: [0, -10, 10, -6, 6, 0] }}
               transition={{ duration: 1.4, repeat: Infinity, repeatDelay: 1.2 }}
             >
-              <Coffee className="w-7 h-7 text-orange-400" />
+              <Coffee className="w-7 h-7 text-accent-fg" />
             </motion.div>
 
             <h2 id="coming-soon-title" className="font-heading font-bold text-2xl mb-2">
               Stay <span className="gradient-text">tuned!</span>
             </h2>
-            <p className="text-slate-400 text-sm leading-relaxed mb-6">
+            <p className="text-fg-2 text-sm leading-relaxed mb-6">
               My CV is still compiling. It&apos;s fuelled by coffee and the occasional
               segfault, so it&apos;ll be here soon.
             </p>
 
             {/* Terminal-style progress bar that never quite finishes */}
-            <div className="rounded-xl border border-white/10 bg-black/40 p-3 mb-6 text-left font-mono text-[11px]">
+            <div className="rounded-xl border border-line bg-black/40 p-3 mb-6 text-left font-mono text-[11px]">
               <div className="text-[#ffb300] mb-2">
                 $ make cv.pdf
               </div>
-              <div className="h-1.5 rounded-full bg-white/5 overflow-hidden mb-1.5">
+              <div className="h-1.5 rounded-full bg-surface overflow-hidden mb-1.5">
                 <motion.div
                   className="h-full rounded-full bg-gradient-to-r from-orange-500 to-amber-300"
                   initial={{ width: '0%' }}
@@ -85,16 +85,16 @@ export function ComingSoonModal({ open, onClose }: ComingSoonModalProps) {
                   transition={{ duration: 2.2, ease: [0.22, 1, 0.36, 1] }}
                 />
               </div>
-              <div className="flex justify-between text-slate-500">
+              <div className="flex justify-between text-fg-3">
                 <span>almost there…</span>
-                <span className="text-orange-400">99%</span>
+                <span className="text-accent-fg">99%</span>
               </div>
             </div>
 
             <button
               ref={buttonRef}
               onClick={onClose}
-              className="w-full py-2.5 rounded-xl bg-orange-400/10 border border-orange-400/30 hover:bg-orange-400/20 hover:border-orange-400/50 text-orange-400 text-sm font-medium transition-colors duration-200 cursor-pointer"
+              className="w-full py-2.5 rounded-xl bg-accent/10 border border-accent/30 hover:bg-accent/20 hover:border-accent/50 text-accent-fg text-sm font-medium transition-colors duration-200 cursor-pointer"
             >
               Can&apos;t wait
             </button>

@@ -44,7 +44,7 @@ export default function RootLayout({
       lang="en"
       className={`${spaceGrotesk.variable} ${dmSans.variable} scroll-smooth`}
     >
-      <body className="bg-[#18181b] text-[#fafafa] antialiased">
+      <body className="bg-bg text-fg antialiased">
         <BackgroundLayer />
         <Navbar />
         <main className="relative z-10">{children}</main>

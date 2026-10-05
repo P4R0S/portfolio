@@ -35,8 +35,8 @@ export function Navbar() {
     <nav
       className={cn(
         'fixed top-4 left-4 right-4 z-50 rounded-2xl transition-all duration-300',
-        'backdrop-blur-md border border-white/10',
-        scrolled ? 'bg-[#18181b]/50 shadow-xl shadow-black/20' : 'bg-white/3'
+        'backdrop-blur-md border border-line',
+        scrolled ? 'bg-bg/50 shadow-xl shadow-black/20' : 'bg-nav-idle'
       )}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14">
@@ -51,7 +51,7 @@ export function Navbar() {
             <a
               key={link.anchor}
               href={hrefFor(link.anchor)}
-              className="text-sm text-slate-400 hover:text-white transition-colors duration-200 cursor-pointer"
+              className="text-sm text-fg-2 hover:text-fg-max transition-colors duration-200 cursor-pointer"
             >
               {link.label}
             </a>
@@ -61,21 +61,21 @@ export function Navbar() {
             className={cn(
               'text-sm transition-colors duration-200 cursor-pointer',
               pathname === '/hobbies'
-                ? 'text-white font-medium'
-                : 'text-slate-400 hover:text-white'
+                ? 'text-fg-max font-medium'
+                : 'text-fg-2 hover:text-fg-max'
             )}
           >
             Hobbies
           </Link>
           <button
             onClick={() => setCvOpen(true)}
-            className="text-sm text-slate-400 hover:text-white transition-colors duration-200 cursor-pointer"
+            className="text-sm text-fg-2 hover:text-fg-max transition-colors duration-200 cursor-pointer"
           >
             CV
           </button>
           <a
             href={contactHref}
-            className="px-4 py-2 rounded-xl bg-orange-400/10 border border-orange-400/30 text-orange-400 hover:bg-orange-400/20 text-sm font-medium transition-colors duration-200 cursor-pointer"
+            className="px-4 py-2 rounded-xl bg-accent/10 border border-accent/30 text-accent-fg hover:bg-accent/20 text-sm font-medium transition-colors duration-200 cursor-pointer"
           >
             Contact
           </a>
@@ -83,7 +83,7 @@ export function Navbar() {
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden text-slate-400 hover:text-white transition-colors duration-200 cursor-pointer"
+          className="md:hidden text-fg-2 hover:text-fg-max transition-colors duration-200 cursor-pointer"
           onClick={() => setOpen(!open)}
           aria-label={open ? 'Close menu' : 'Open menu'}
         >
@@ -93,13 +93,13 @@ export function Navbar() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden border-t border-white/10 px-4 py-4 flex flex-col gap-3">
+        <div className="md:hidden border-t border-line px-4 py-4 flex flex-col gap-3">
           {anchorLinks.map((link) => (
             <a
               key={link.anchor}
               href={hrefFor(link.anchor)}
               onClick={() => setOpen(false)}
-              className="text-slate-300 hover:text-white transition-colors duration-200 cursor-pointer py-1"
+              className="text-fg-soft hover:text-fg-max transition-colors duration-200 cursor-pointer py-1"
             >
               {link.label}
             </a>
@@ -109,21 +109,21 @@ export function Navbar() {
             onClick={() => setOpen(false)}
             className={cn(
               'py-1 transition-colors duration-200 cursor-pointer',
-              pathname === '/hobbies' ? 'text-white font-medium' : 'text-slate-300 hover:text-white'
+              pathname === '/hobbies' ? 'text-fg-max font-medium' : 'text-fg-soft hover:text-fg-max'
             )}
           >
             Hobbies
           </Link>
           <button
             onClick={() => { setOpen(false); setCvOpen(true) }}
-            className="py-1 text-left text-slate-300 hover:text-white transition-colors duration-200 cursor-pointer"
+            className="py-1 text-left text-fg-soft hover:text-fg-max transition-colors duration-200 cursor-pointer"
           >
             CV
           </button>
           <a
             href={contactHref}
             onClick={() => setOpen(false)}
-            className="px-4 py-2 rounded-xl bg-orange-400/10 border border-orange-400/30 text-orange-400 hover:bg-orange-400/20 text-sm font-medium text-center cursor-pointer"
+            className="px-4 py-2 rounded-xl bg-accent/10 border border-accent/30 text-accent-fg hover:bg-accent/20 text-sm font-medium text-center cursor-pointer"
           >
             Contact
           </a>

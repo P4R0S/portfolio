@@ -22,7 +22,7 @@ export default function HobbiesPage() {
         {/* Hero — constrained */}
         <div className="max-w-[1000px] mx-auto px-7 mb-20">
           <div
-            className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-orange-400 mb-4 px-3 py-1 rounded-full border border-orange-400/20"
+            className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-accent-fg mb-4 px-3 py-1 rounded-full border border-accent/20"
             style={{ background: 'rgba(251,146,60,0.08)' }}
           >
             ✦ Beyond the code
@@ -63,15 +63,15 @@ export default function HobbiesPage() {
             <div className="max-w-[1000px] mx-auto px-7">
               <div className="flex items-center gap-3.5 mb-6">
                 <div
-                  className="w-10 h-10 rounded-xl flex items-center justify-center text-xl flex-shrink-0 border border-orange-400/20"
+                  className="w-10 h-10 rounded-xl flex items-center justify-center text-xl flex-shrink-0 border border-accent/20"
                   style={{
                     background: 'linear-gradient(135deg, rgba(251,146,60,0.15), rgba(251,146,60,0.05))',
                     boxShadow: '0 0 16px rgba(251,146,60,0.08)',
                   }}
                 >
-                  {(() => { const Icon = categoryIcons[category.id]; return Icon ? <Icon className="w-5 h-5 text-orange-400" /> : null })()}
+                  {(() => { const Icon = categoryIcons[category.id]; return Icon ? <Icon className="w-5 h-5 text-accent-fg" /> : null })()}
                 </div>
-                <span className="font-heading font-bold text-[22px] text-white tracking-tight">
+                <span className="font-heading font-bold text-[22px] text-fg-max tracking-tight">
                   {category.label}
                 </span>
                 <span className="text-xs text-zinc-600 font-medium ml-1">

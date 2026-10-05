@@ -1,14 +1,71 @@
 @import "tailwindcss";
 
-@theme {
-  /* Colors — Charcoal & Gold Orange */
-  --color-bg: #18181b;
-  --color-accent-purple: #fb923c;
-  --color-accent-blue: #fdba74;
-  --color-accent-green: #f97316;
-  --color-accent-orange: #fb923c;
-  --color-secondary: #27272a;
+/*
+ * Theme tokens. Bare :root holds the dark theme (the default, and what visitors
+ * without JavaScript get); [data-theme="light"] overrides it. Components use the
+ * semantic utilities registered below (bg-bg, text-fg-2, border-line, …) or
+ * var(--…) in inline styles — never raw palette colors.
+ */
+:root {
+  color-scheme: dark;
 
+  --bg: #18181b;
+  --fg: #fafafa;
+  --fg-max: #fff;
+  --fg-soft: oklch(86.9% 0.022 252.894);   /* slate-300 */
+  --fg-2: oklch(70.4% 0.04 256.788);       /* slate-400 */
+  --fg-3: oklch(55.4% 0.046 257.417);      /* slate-500 */
+  --fg-4: oklch(44.6% 0.043 257.281);      /* slate-600 */
+
+  --surface: color-mix(in oklab, #fff 5%, transparent);   /* cards, inputs */
+  --surface-strong: color-mix(in oklab, #fff 10%, transparent);
+  --nav-idle: color-mix(in oklab, #fff 3%, transparent);
+  --line: color-mix(in oklab, #fff 10%, transparent);
+  --raised: #27272a;                        /* solid cards, primary button */
+  --raised-2: #3f3f46;                      /* tags on raised cards, button hover */
+
+  --accent: oklch(75% 0.183 55.934);        /* orange-400: icons, borders, tints */
+  --accent-fg: oklch(75% 0.183 55.934);     /* orange text */
+  --accent-fg-hover: oklch(83.7% 0.128 66.29); /* orange-300 */
+  --accent-hex: #fb923c;                    /* inline styles, logo, gradients */
+
+  --grad-1: #fb923c;
+  --grad-2: #fdba74;
+  --grad-3: #f97316;
+
+  --card-shadow: rgba(0, 0, 0, 0.4);
+  --orb-1: color-mix(in oklab, oklch(75% 0.183 55.934) 15%, transparent);
+  --orb-2: color-mix(in oklab, oklch(44.2% 0.017 285.786) 20%, transparent);
+
+  /* BackgroundLayer blobs: [inner, outer] stop per blob */
+  --glow-tr-1: rgba(251, 146, 60, 0.12);  --glow-tr-2: rgba(251, 146, 60, 0.04);
+  --glow-ml-1: rgba(251, 191, 36, 0.09);  --glow-ml-2: rgba(251, 191, 36, 0.03);
+  --glow-cr-1: rgba(251, 146, 60, 0.08);  --glow-cr-2: rgba(251, 146, 60, 0.02);
+  --glow-mc-1: rgba(251, 191, 36, 0.06);  --glow-mc-2: rgba(251, 191, 36, 0.02);
+  --glow-bl-1: rgba(82, 82, 91, 0.18);    --glow-bl-2: rgba(82, 82, 91, 0.05);
+  --glow-br-1: rgba(251, 146, 60, 0.07);  --glow-br-2: rgba(251, 146, 60, 0.02);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-fg-max: var(--fg-max);
+  --color-fg-soft: var(--fg-soft);
+  --color-fg-2: var(--fg-2);
+  --color-fg-3: var(--fg-3);
+  --color-fg-4: var(--fg-4);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-nav-idle: var(--nav-idle);
+  --color-line: var(--line);
+  --color-raised: var(--raised);
+  --color-raised-2: var(--raised-2);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-accent-fg-hover: var(--accent-fg-hover);
+}
+
+@theme {
   /* Fonts */
   --font-heading: var(--font-space-grotesk), sans-serif;
   --font-body: var(--font-dm-sans), sans-serif;
@@ -36,12 +93,11 @@
 /* Base styles */
 html {
   scroll-behavior: smooth;
-  color-scheme: dark;
 }
 
 body {
-  background-color: #18181b;
-  color: #fafafa;
+  background-color: var(--bg);
+  color: var(--fg);
   font-family: var(--font-body);
   overflow-x: hidden;
 }
@@ -55,14 +111,8 @@ body {
 }
 
 /* Utility classes */
-.glass {
-  backdrop-filter: blur(16px);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.10);
-}
-
 .gradient-text {
-  background: linear-gradient(135deg, #fb923c, #fdba74, #f97316);
+  background: linear-gradient(135deg, var(--grad-1), var(--grad-2), var(--grad-3));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -130,7 +180,7 @@ body {
 .hobby-dot.active {
   width: 22px !important;
   border-radius: 3px !important;
-  background-color: #fb923c !important;
+  background-color: var(--accent-hex) !important;
 }
 
 @keyframes fadeUp {

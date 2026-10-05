@@ -11,7 +11,7 @@ export function Experience() {
   return (
     <SectionWrapper id="experience">
       <div className="text-center mb-12">
-        <p className="text-slate-500 text-xs tracking-widest uppercase mb-2">My journey</p>
+        <p className="text-fg-3 text-xs tracking-widest uppercase mb-2">My journey</p>
         <h2 className="font-heading font-bold text-3xl md:text-4xl">
           Experience & <GradientText>Education</GradientText>
         </h2>
@@ -19,7 +19,7 @@ export function Experience() {
 
       <div className="relative">
         {/* Timeline line */}
-        <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-orange-400 via-amber-400 to-zinc-500 md:-translate-x-px" />
+        <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-accent via-amber-400 to-zinc-500 md:-translate-x-px" />
 
         <div className="flex flex-col gap-10">
           {sorted.map((item, i) => {
@@ -32,8 +32,8 @@ export function Experience() {
                 className={`relative flex items-start gap-6 md:gap-0 ${isLeft ? 'md:flex-row' : 'md:flex-row-reverse'}`}
               >
                 {/* Timeline dot */}
-                <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#18181b] border-2 border-orange-400 flex items-center justify-center shrink-0 z-10">
-                  <Icon className="w-3.5 h-3.5 text-orange-400" />
+                <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-bg border-2 border-accent flex items-center justify-center shrink-0 z-10">
+                  <Icon className="w-3.5 h-3.5 text-accent-fg" />
                 </div>
 
                 {/* Card */}
@@ -41,19 +41,19 @@ export function Experience() {
                   <GlassCard className="p-5">
                     <div className="flex items-start justify-between gap-4 mb-3">
                       <div>
-                        <h3 className="font-heading font-semibold text-white text-sm leading-snug">
+                        <h3 className="font-heading font-semibold text-fg-max text-sm leading-snug">
                           {item.role}
                         </h3>
-                        <p className="text-orange-400 text-xs mt-0.5">{item.company}</p>
+                        <p className="text-accent-fg text-xs mt-0.5">{item.company}</p>
                       </div>
-                      <span className="text-slate-500 text-xs whitespace-nowrap shrink-0">
+                      <span className="text-fg-3 text-xs whitespace-nowrap shrink-0">
                         {item.startDate} – {item.endDate}
                       </span>
                     </div>
                     <ul className="space-y-1.5">
                       {item.bullets.map((bullet, bi) => (
-                        <li key={bi} className="text-slate-400 text-xs leading-relaxed flex gap-2">
-                          <span className="text-orange-400/60 mt-1 shrink-0">▸</span>
+                        <li key={bi} className="text-fg-2 text-xs leading-relaxed flex gap-2">
+                          <span className="text-accent-fg/60 mt-1 shrink-0">▸</span>
                           {bullet}
                         </li>
                       ))}

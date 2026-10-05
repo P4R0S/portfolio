@@ -45,19 +45,19 @@ export function Contact() {
 
         {/* Left — heading + contact links */}
         <div className="flex-1 lg:max-w-sm">
-          <p className="text-slate-500 text-xs tracking-widest uppercase mb-2">Get in touch</p>
+          <p className="text-fg-3 text-xs tracking-widest uppercase mb-2">Get in touch</p>
           <h2 className="font-heading font-bold text-4xl md:text-5xl leading-tight mb-5">
             Let&apos;s <GradientText>Work<br />Together</GradientText>
           </h2>
-          <p className="text-slate-400 text-sm leading-relaxed mb-8">
+          <p className="text-fg-2 text-sm leading-relaxed mb-8">
             Open to research collaborations, full-time roles, and interesting side projects. Feel free to reach out.
           </p>
           <div className="flex flex-col gap-4">
             <a
               href="mailto:paros.pr@gmail.com"
-              className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors duration-200 group"
+              className="flex items-center gap-3 text-fg-2 hover:text-fg-max transition-colors duration-200 group"
             >
-              <span className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-orange-400/40 transition-colors duration-200">
+              <span className="w-8 h-8 rounded-lg bg-surface border border-line flex items-center justify-center group-hover:border-accent/40 transition-colors duration-200">
                 <Mail className="w-4 h-4" />
               </span>
               <span className="text-sm">paros.pr@gmail.com</span>
@@ -66,9 +66,9 @@ export function Contact() {
               href="https://linkedin.com/in/parsa-rostamzadeh"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors duration-200 group"
+              className="flex items-center gap-3 text-fg-2 hover:text-fg-max transition-colors duration-200 group"
             >
-              <span className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-orange-400/40 transition-colors duration-200">
+              <span className="w-8 h-8 rounded-lg bg-surface border border-line flex items-center justify-center group-hover:border-accent/40 transition-colors duration-200">
                 <FaLinkedin className="w-4 h-4" />
               </span>
               <span className="text-sm">linkedin.com/in/parsa-rostamzadeh</span>
@@ -80,12 +80,12 @@ export function Contact() {
         <div className="flex-1 w-full">
           {status === 'success' ? (
             <div className="text-center py-12">
-              <CheckCircle className="w-10 h-10 text-orange-400 mx-auto mb-3" />
-              <p className="text-white font-medium mb-1">Message sent!</p>
-              <p className="text-slate-400 text-sm">I&apos;ll get back to you soon.</p>
+              <CheckCircle className="w-10 h-10 text-accent-fg mx-auto mb-3" />
+              <p className="text-fg-max font-medium mb-1">Message sent!</p>
+              <p className="text-fg-2 text-sm">I&apos;ll get back to you soon.</p>
               <button
                 onClick={() => setStatus('idle')}
-                className="mt-4 text-xs text-slate-500 hover:text-white transition-colors duration-200 cursor-pointer"
+                className="mt-4 text-xs text-fg-3 hover:text-fg-max transition-colors duration-200 cursor-pointer"
               >
                 Send another
               </button>
@@ -93,7 +93,7 @@ export function Contact() {
           ) : (
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               <div>
-                <label htmlFor="name" className="block text-xs text-slate-400 mb-1.5">Name</label>
+                <label htmlFor="name" className="block text-xs text-fg-2 mb-1.5">Name</label>
                 <input
                   id="name"
                   type="text"
@@ -102,11 +102,11 @@ export function Contact() {
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   placeholder="Your name"
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-orange-400/50 transition-colors duration-200"
+                  className="w-full bg-surface border border-line rounded-xl px-4 py-2.5 text-sm text-fg-max placeholder:text-fg-4 focus:outline-none focus:border-accent/50 transition-colors duration-200"
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-xs text-slate-400 mb-1.5">Email</label>
+                <label htmlFor="email" className="block text-xs text-fg-2 mb-1.5">Email</label>
                 <input
                   id="email"
                   type="email"
@@ -115,11 +115,11 @@ export function Contact() {
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   placeholder="you@example.com"
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-orange-400/50 transition-colors duration-200"
+                  className="w-full bg-surface border border-line rounded-xl px-4 py-2.5 text-sm text-fg-max placeholder:text-fg-4 focus:outline-none focus:border-accent/50 transition-colors duration-200"
                 />
               </div>
               <div>
-                <label htmlFor="message" className="block text-xs text-slate-400 mb-1.5">Message</label>
+                <label htmlFor="message" className="block text-xs text-fg-2 mb-1.5">Message</label>
                 <textarea
                   id="message"
                   required
@@ -128,7 +128,7 @@ export function Contact() {
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                   placeholder="Your Message ..."
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-orange-400/50 transition-colors duration-200 resize-none"
+                  className="w-full bg-surface border border-line rounded-xl px-4 py-2.5 text-sm text-fg-max placeholder:text-fg-4 focus:outline-none focus:border-accent/50 transition-colors duration-200 resize-none"
                 />
               </div>
 
@@ -154,7 +154,7 @@ export function Contact() {
               <button
                 type="submit"
                 disabled={status === 'loading'}
-                className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-orange-400/10 border border-orange-400/30 hover:bg-orange-400/20 hover:border-orange-400/50 disabled:opacity-60 disabled:cursor-not-allowed text-orange-400 font-medium transition-colors duration-200 cursor-pointer"
+                className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-accent/10 border border-accent/30 hover:bg-accent/20 hover:border-accent/50 disabled:opacity-60 disabled:cursor-not-allowed text-accent-fg font-medium transition-colors duration-200 cursor-pointer"
               >
                 {status === 'loading' ? (
                   <><Loader2 className="w-4 h-4 animate-spin" /> Sending&hellip;</>

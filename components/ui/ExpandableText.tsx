@@ -23,7 +23,7 @@ export function ExpandableText({ text, className }: ExpandableTextProps) {
         onClick={() => setExpanded((v) => !v)}
         aria-expanded={expanded}
         aria-controls={id}
-        className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-orange-400/90 hover:text-orange-300 transition-colors duration-200 cursor-pointer"
+        className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-accent-fg/90 hover:text-accent-fg-hover transition-colors duration-200 cursor-pointer"
       >
         {expanded ? 'Show less' : 'Read more'}
         <ChevronDown className={cn('w-3.5 h-3.5 transition-transform duration-200', expanded && 'rotate-180')} />

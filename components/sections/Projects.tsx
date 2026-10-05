@@ -14,7 +14,7 @@ export function Projects() {
     <SectionWrapper id="projects">
       <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
         <div>
-          <p className="text-slate-500 text-xs tracking-widest uppercase mb-2">What I&apos;ve built</p>
+          <p className="text-fg-3 text-xs tracking-widest uppercase mb-2">What I&apos;ve built</p>
           <h2 className="font-heading font-bold text-3xl md:text-4xl">
             <GradientText>Projects</GradientText>
           </h2>
@@ -23,7 +23,7 @@ export function Projects() {
           href="https://github.com/P4R0S"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors duration-200 cursor-pointer"
+          className="flex items-center gap-2 text-sm text-fg-2 hover:text-fg-max transition-colors duration-200 cursor-pointer"
         >
           <FaGithub className="w-4 h-4" /> View all on GitHub
         </a>
@@ -34,18 +34,18 @@ export function Projects() {
           <div key={project.title} className="group relative">
             <GlassCard hover={!!project.github} className="h-full p-6 flex flex-col">
               {project.featured && (
-                <span className="text-[10px] font-medium uppercase tracking-widest text-orange-400 border border-orange-400/30 rounded-full px-2 py-0.5 self-start mb-3">
+                <span className="text-[10px] font-medium uppercase tracking-widest text-accent-fg border border-accent/30 rounded-full px-2 py-0.5 self-start mb-3">
                   Featured
                 </span>
               )}
-              <h3 className="font-heading font-semibold text-white mb-2 leading-snug">
+              <h3 className="font-heading font-semibold text-fg-max mb-2 leading-snug">
                 {project.github ? (
                   // Stretched link: its ::after covers the whole card, so the card is one click target
                   <a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="focus-visible:outline-none after:absolute after:inset-0 after:rounded-2xl after:content-[''] focus-visible:after:ring-2 focus-visible:after:ring-orange-400/60"
+                    className="focus-visible:outline-none after:absolute after:inset-0 after:rounded-2xl after:content-[''] focus-visible:after:ring-2 focus-visible:after:ring-accent/60"
                   >
                     {project.title}
                   </a>
@@ -53,14 +53,14 @@ export function Projects() {
                   project.title
                 )}
               </h3>
-              <p className="text-slate-400 text-sm leading-relaxed mb-4 flex-1">
+              <p className="text-fg-2 text-sm leading-relaxed mb-4 flex-1">
                 {project.description}
               </p>
               <div className="flex flex-wrap gap-1.5 mb-4">
                 {project.tech.map((t) => (
                   <span
                     key={t}
-                    className="text-[10px] px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-slate-400"
+                    className="text-[10px] px-2 py-0.5 rounded-md bg-surface border border-line text-fg-2"
                   >
                     {t}
                   </span>
@@ -68,11 +68,11 @@ export function Projects() {
               </div>
               <div className="flex items-center gap-3 text-xs">
                 {project.github ? (
-                  <span className="flex items-center gap-1.5 text-slate-500 group-hover:text-orange-400 transition-colors duration-200">
+                  <span className="flex items-center gap-1.5 text-fg-3 group-hover:text-accent-fg transition-colors duration-200">
                     <FaGithub className="w-4 h-4" /> View code
                   </span>
                 ) : (
-                  <span className="flex items-center gap-1.5 text-slate-600">
+                  <span className="flex items-center gap-1.5 text-fg-4">
                     <Lock className="w-3.5 h-3.5" /> Private repository
                   </span>
                 )}
@@ -82,7 +82,7 @@ export function Projects() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`${project.title} live demo`}
-                    className="relative z-10 text-slate-500 hover:text-white transition-colors duration-200 cursor-pointer"
+                    className="relative z-10 text-fg-3 hover:text-fg-max transition-colors duration-200 cursor-pointer"
                   >
                     <ExternalLink className="w-4 h-4" />
                   </a>
@@ -91,8 +91,8 @@ export function Projects() {
             </GlassCard>
 
             {/* Hover overlay with long description */}
-            <div className="absolute inset-0 rounded-2xl bg-[#18181b]/95 backdrop-blur-sm border border-orange-400/20 p-6 flex items-center opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none">
-              <p className="text-slate-300 text-sm leading-relaxed">{project.longDescription}</p>
+            <div className="absolute inset-0 rounded-2xl bg-bg/95 backdrop-blur-sm border border-accent/20 p-6 flex items-center opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none">
+              <p className="text-fg-soft text-sm leading-relaxed">{project.longDescription}</p>
             </div>
           </div>
         ))}

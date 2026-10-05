@@ -35,7 +35,7 @@ export function Hero({ stats }: { stats: HeroStat[] }) {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8 pt-20">
       {/* Orb blobs */}
       <div
-        className="absolute top-1/4 right-[10%] w-72 h-72 md:w-96 md:h-96 rounded-full bg-orange-400/15 blur-3xl animate-orb-1 pointer-events-none"
+        className="absolute top-1/4 right-[10%] w-72 h-72 md:w-96 md:h-96 rounded-full bg-accent/15 blur-3xl animate-orb-1 pointer-events-none"
         aria-hidden="true"
       />
       <div
@@ -53,7 +53,7 @@ export function Hero({ stats }: { stats: HeroStat[] }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: 'easeOut' }}
           >
-            <p className="text-slate-500 text-xs tracking-[0.25em] uppercase mb-6">
+            <p className="text-fg-3 text-xs tracking-[0.25em] uppercase mb-6">
               Welcome — I build things that matter
             </p>
 
@@ -73,14 +73,14 @@ export function Hero({ stats }: { stats: HeroStat[] }) {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -12 }}
                   transition={{ duration: 0.35, ease: 'easeInOut' }}
-                  className="text-xl md:text-2xl text-slate-300 font-medium font-heading"
+                  className="text-xl md:text-2xl text-fg-soft font-medium font-heading"
                 >
                   {roles[roleIndex]}
                 </motion.p>
               </AnimatePresence>
             </div>
 
-            <p className="text-slate-400 text-base md:text-lg max-w-xl lg:mx-0 mx-auto mb-10 leading-relaxed">
+            <p className="text-fg-2 text-base md:text-lg max-w-xl lg:mx-0 mx-auto mb-10 leading-relaxed">
               Building intelligent systems at the intersection of software, hardware, and machine learning.
             </p>
 
@@ -88,13 +88,13 @@ export function Hero({ stats }: { stats: HeroStat[] }) {
             <div className="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-4 mb-10">
               <a
                 href="#projects"
-                className="flex items-center gap-2 px-6 py-3 rounded-xl bg-[#27272a] hover:bg-[#3f3f46] text-[#fafafa] font-medium transition-colors duration-200 cursor-pointer w-full sm:w-auto justify-center"
+                className="flex items-center gap-2 px-6 py-3 rounded-xl bg-raised hover:bg-raised-2 text-fg font-medium transition-colors duration-200 cursor-pointer w-full sm:w-auto justify-center"
               >
                 View Projects <ArrowRight className="w-4 h-4" />
               </a>
               <button
                 onClick={() => setCvOpen(true)}
-                className="flex items-center gap-2 px-6 py-3 rounded-xl border border-orange-400/30 hover:border-orange-400/60 text-zinc-300 hover:text-orange-400 font-medium transition-colors duration-200 cursor-pointer w-full sm:w-auto justify-center"
+                className="flex items-center gap-2 px-6 py-3 rounded-xl border border-accent/30 hover:border-accent/60 text-zinc-300 hover:text-accent-fg font-medium transition-colors duration-200 cursor-pointer w-full sm:w-auto justify-center"
               >
                 View CV <Download className="w-4 h-4" />
               </button>
@@ -104,8 +104,8 @@ export function Hero({ stats }: { stats: HeroStat[] }) {
             <div className="grid grid-cols-3 gap-3 max-w-sm lg:mx-0 mx-auto">
               {stats.map((stat) => (
                 <GlassCard key={stat.label} className="p-4 text-center">
-                  <div className="text-2xl font-bold font-heading text-white">{stat.value}</div>
-                  <div className="text-xs text-slate-500 mt-1 leading-tight">{stat.label}</div>
+                  <div className="text-2xl font-bold font-heading text-fg-max">{stat.value}</div>
+                  <div className="text-xs text-fg-3 mt-1 leading-tight">{stat.label}</div>
                 </GlassCard>
               ))}
             </div>
@@ -124,7 +124,7 @@ export function Hero({ stats }: { stats: HeroStat[] }) {
       <a
         href="#about"
         aria-label="Scroll to About section"
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-slate-600 hover:text-slate-300 transition-colors duration-200 cursor-pointer animate-bounce"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-fg-4 hover:text-fg-soft transition-colors duration-200 cursor-pointer animate-bounce"
       >
         <ArrowDown className="w-5 h-5" />
       </a>
