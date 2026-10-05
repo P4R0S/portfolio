@@ -77,7 +77,7 @@ export default function NotFound() {
           </Link>
           <Link
             href="/#contact"
-            className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-raised hover:bg-raised-2 text-fg font-medium transition-colors duration-200 w-full sm:w-auto"
+            className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-btn hover:bg-btn-hover text-btn-fg font-medium transition-colors duration-200 w-full sm:w-auto"
           >
             <Mail className="w-4 h-4" /> Get in touch
           </Link>

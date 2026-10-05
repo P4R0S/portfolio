@@ -15,7 +15,7 @@ const highlights = [
     icon: Zap,
     title: 'What Drives Me',
     body: 'Making neural networks smaller and faster without breaking them. Approximate computing lets me trade a little accuracy for a lot of efficiency — and I find that trade fascinating.',
-    color: 'text-amber-400',
+    color: 'text-warm',
   },
   {
     icon: Target,

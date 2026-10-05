@@ -6,6 +6,7 @@ import { Menu, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { ComingSoonModal } from '@/components/ui/ComingSoonModal'
 import { Logo } from '@/components/ui/Logo'
+import { ThemeToggle } from '@/components/ui/ThemeToggle'
 
 const anchorLinks = [
   { anchor: 'about', label: 'About' },
@@ -36,7 +37,7 @@ export function Navbar() {
       className={cn(
         'fixed top-4 left-4 right-4 z-50 rounded-2xl transition-all duration-300',
         'backdrop-blur-md border border-line',
-        scrolled ? 'bg-bg/50 shadow-xl shadow-black/20' : 'bg-nav-idle'
+        scrolled ? 'bg-[var(--nav-scrolled)] shadow-xl shadow-(color:--nav-shadow)' : 'bg-nav-idle'
       )}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14">
@@ -46,7 +47,7 @@ export function Navbar() {
         </Link>
 
         {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-6">
+        <div className="hidden md:flex items-center gap-4 lg:gap-6">
           {anchorLinks.map((link) => (
             <a
               key={link.anchor}
@@ -79,16 +80,20 @@ export function Navbar() {
           >
             Contact
           </a>
+          <ThemeToggle />
         </div>
 
-        {/* Mobile hamburger */}
-        <button
-          className="md:hidden text-fg-2 hover:text-fg transition-colors duration-200 cursor-pointer"
-          onClick={() => setOpen(!open)}
-          aria-label={open ? 'Close menu' : 'Open menu'}
-        >
-          {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
+        {/* Mobile: theme toggle + hamburger */}
+        <div className="md:hidden flex items-center gap-3">
+          <ThemeToggle />
+          <button
+            className="text-fg-2 hover:text-fg transition-colors duration-200 cursor-pointer"
+            onClick={() => setOpen(!open)}
+            aria-label={open ? 'Close menu' : 'Open menu'}
+          >
+            {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}

@@ -7,10 +7,10 @@ import { cn } from '@/lib/utils'
 import { ExpandableText } from '@/components/ui/ExpandableText'
 
 const areaColors: Record<ResearchArea, string> = {
-  ML: 'text-amber-400 border-amber-400/30 bg-amber-400/10',
-  Hardware: 'text-fg-soft border-zinc-500/30 bg-zinc-500/10',
+  ML: 'text-warm border-warm/30 bg-warm/10',
+  Hardware: 'text-fg-soft border-line bg-surface',
   'Approximate Computing': 'text-accent-fg border-accent/30 bg-accent/10',
-  LLM: 'text-amber-300 border-amber-300/30 bg-amber-300/10',
+  LLM: 'text-warm border-warm/30 bg-warm/10',
 }
 
 export function Publications() {
@@ -37,8 +37,8 @@ export function Publications() {
                   </span>
                   <span className="text-fg-3 text-xs">{pub.year}</span>
                   {pub.status === 'under-review' && (
-                    <span className="flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-widest px-2 py-0.5 rounded-full border border-slate-500/30 bg-surface text-fg-soft">
-                      <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+                    <span className="flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-widest px-2 py-0.5 rounded-full border border-line bg-surface text-fg-soft">
+                      <span className="w-1.5 h-1.5 rounded-full bg-warm animate-pulse" />
                       Under review
                     </span>
                   )}
@@ -46,7 +46,7 @@ export function Publications() {
                 <h3 className="font-heading font-semibold text-fg mb-1 leading-snug">
                   {pub.title}
                 </h3>
-                <p className="text-amber-400/70 text-xs mb-3">
+                <p className="text-warm-fg text-xs mb-3">
                   {pub.status === 'under-review'
                     ? `Submitted to ${pub.venue} ${pub.year} · awaiting acceptance`
                     : pub.venue}

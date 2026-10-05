@@ -72,12 +72,12 @@ export function ComingSoonModal({ open, onClose }: ComingSoonModalProps) {
               segfault, so it&apos;ll be here soon.
             </p>
 
-            {/* Terminal-style progress bar that never quite finishes */}
-            <div className="rounded-xl border border-line bg-black/40 p-3 mb-6 text-left font-mono text-[11px]">
+            {/* Terminal-style progress bar that never quite finishes (terminal-dark in both themes) */}
+            <div className="rounded-xl border border-[rgba(255,179,0,0.22)] bg-[rgba(13,8,0,0.96)] p-3 mb-6 text-left font-mono text-[11px]">
               <div className="text-[#ffb300] mb-2">
                 $ make cv.pdf
               </div>
-              <div className="h-1.5 rounded-full bg-surface overflow-hidden mb-1.5">
+              <div className="h-1.5 rounded-full bg-white/10 overflow-hidden mb-1.5">
                 <motion.div
                   className="h-full rounded-full bg-gradient-to-r from-orange-500 to-amber-300"
                   initial={{ width: '0%' }}
@@ -85,9 +85,9 @@ export function ComingSoonModal({ open, onClose }: ComingSoonModalProps) {
                   transition={{ duration: 2.2, ease: [0.22, 1, 0.36, 1] }}
                 />
               </div>
-              <div className="flex justify-between text-fg-3">
+              <div className="flex justify-between text-[#a8a29e]">
                 <span>almost there…</span>
-                <span className="text-accent-fg">99%</span>
+                <span className="text-[#ffb300]">99%</span>
               </div>
             </div>
 

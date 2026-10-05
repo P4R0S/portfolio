@@ -326,7 +326,7 @@ export function HobbiesCarousel({ category }: Props) {
           <div
             key={i}
             className="hobby-dot w-1 h-1 rounded-full cursor-pointer"
-            style={{ background: 'rgba(255,255,255,0.1)' }}
+            style={{ background: 'var(--dot)' }}
           />
         ))}
       </div>

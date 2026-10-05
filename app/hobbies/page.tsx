@@ -23,7 +23,7 @@ export default function HobbiesPage() {
         <div className="max-w-[1000px] mx-auto px-7 mb-20">
           <div
             className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-accent-fg mb-4 px-3 py-1 rounded-full border border-accent/20"
-            style={{ background: 'rgba(251,146,60,0.08)' }}
+            style={{ background: 'color-mix(in srgb, var(--accent-hex) 8%, transparent)' }}
           >
             ✦ Beyond the code
           </div>
@@ -65,8 +65,8 @@ export default function HobbiesPage() {
                 <div
                   className="w-10 h-10 rounded-xl flex items-center justify-center text-xl flex-shrink-0 border border-accent/20"
                   style={{
-                    background: 'linear-gradient(135deg, rgba(251,146,60,0.15), rgba(251,146,60,0.05))',
-                    boxShadow: '0 0 16px rgba(251,146,60,0.08)',
+                    background: 'linear-gradient(135deg, color-mix(in srgb, var(--accent-hex) 15%, transparent), color-mix(in srgb, var(--accent-hex) 5%, transparent))',
+                    boxShadow: '0 0 16px color-mix(in srgb, var(--accent-hex) 8%, transparent)',
                   }}
                 >
                   {(() => { const Icon = categoryIcons[category.id]; return Icon ? <Icon className="w-5 h-5 text-accent-fg" /> : null })()}
@@ -78,8 +78,8 @@ export default function HobbiesPage() {
                   drag to explore
                 </span>
                 <span
-                  className="ml-auto text-[11px] text-fg-3 border border-white/[0.07] px-2.5 py-0.5 rounded-full font-medium"
-                  style={{ background: 'rgba(255,255,255,0.03)' }}
+                  className="ml-auto text-[11px] text-fg-3 border border-line px-2.5 py-0.5 rounded-full font-medium"
+                  style={{ background: 'var(--nav-idle)' }}
                 >
                   {category.items.length} favorites
                 </span>
@@ -88,7 +88,7 @@ export default function HobbiesPage() {
               {/* Gradient divider */}
               <div
                 className="mb-6 h-px"
-                style={{ background: 'linear-gradient(to right, rgba(251,146,60,0.3), rgba(251,146,60,0.05))' }}
+                style={{ background: 'linear-gradient(to right, color-mix(in srgb, var(--accent-hex) 30%, transparent), color-mix(in srgb, var(--accent-hex) 5%, transparent))' }}
               />
             </div>
 

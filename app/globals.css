@@ -42,7 +42,71 @@
   --glow-mc-1: rgba(251, 191, 36, 0.06);  --glow-mc-2: rgba(251, 191, 36, 0.02);
   --glow-bl-1: rgba(82, 82, 91, 0.18);    --glow-bl-2: rgba(82, 82, 91, 0.05);
   --glow-br-1: rgba(251, 146, 60, 0.07);  --glow-br-2: rgba(251, 146, 60, 0.02);
+
+  --warm: oklch(82.8% 0.189 84.429);               /* amber-400 accents */
+  --warm-fg: color-mix(in oklab, oklch(82.8% 0.189 84.429) 70%, transparent); /* venue lines */
+  --danger: oklch(70.4% 0.191 22.216);             /* red-400 */
+  --btn: #27272a;  --btn-hover: #3f3f46;  --btn-fg: #fafafa;   /* primary solid button */
+  --nav-scrolled: color-mix(in oklab, #18181b 50%, transparent);
+  --nav-shadow: rgb(0 0 0 / 0.2);
+  --tl-1: oklch(75% 0.183 55.934);  --tl-2: oklch(82.8% 0.189 84.429);  --tl-3: oklch(55.2% 0.016 285.938);
+  --dot: rgba(255, 255, 255, 0.1);                 /* hobby carousel dots */
+  --bloom-opacity: 0.3;  --bloom-opacity-active: 0.65;
+  --hobby-dim: blur(0.4px) saturate(0.55) brightness(0.72);
 }
+
+/* Light theme ("Paper & Ember"). Set by the inline script in app/layout.tsx. */
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --bg: #faf8f5;
+  --fg: #18181b;
+  --fg-soft: #3f3f46;
+  --fg-2: #52525b;
+  --fg-3: #6b6b74;
+
+  --surface: rgb(255 255 255 / 0.78);
+  --surface-strong: #ffffff;
+  --nav-idle: rgb(255 255 255 / 0.55);
+  --line: #e7e2da;
+  --raised: #ffffff;
+  --raised-2: #f2eee8;
+
+  --accent: #ea580c;
+  --accent-fg: #c2410c;
+  --accent-fg-hover: #9a3412;
+  --accent-hex: #ea580c;
+
+  --grad-1: #ea580c;
+  --grad-2: #d9480f;
+  --grad-3: #c2410c;
+
+  --card-shadow: rgba(24, 24, 27, 0.08);
+  --orb-1: rgba(253, 186, 116, 0.42);
+  --orb-2: rgba(234, 223, 207, 0.7);
+
+  /* "Daylight": same blob layout, paler hues; grey haze becomes sand */
+  --glow-tr-1: rgba(254, 215, 170, 0.55); --glow-tr-2: rgba(254, 215, 170, 0.18);
+  --glow-ml-1: rgba(254, 230, 180, 0.5);  --glow-ml-2: rgba(254, 230, 180, 0.16);
+  --glow-cr-1: rgba(253, 186, 116, 0.3);  --glow-cr-2: rgba(253, 186, 116, 0.1);
+  --glow-mc-1: rgba(254, 230, 180, 0.35); --glow-mc-2: rgba(254, 230, 180, 0.1);
+  --glow-bl-1: rgba(234, 223, 207, 0.7);  --glow-bl-2: rgba(234, 223, 207, 0.22);
+  --glow-br-1: rgba(253, 186, 116, 0.28); --glow-br-2: rgba(253, 186, 116, 0.08);
+
+  --warm: #b45309;
+  --warm-fg: #b45309;
+  --danger: #b91c1c;
+  --btn: #18181b;  --btn-hover: #3f3f46;  --btn-fg: #fafafa;
+  --nav-scrolled: rgb(250 248 245 / 0.82);
+  --nav-shadow: rgb(24 24 27 / 0.08);
+  --tl-1: #ea580c;  --tl-2: #f59e0b;  --tl-3: #e7e2da;
+  --dot: rgba(24, 24, 27, 0.15);
+  --bloom-opacity: 0.12;  --bloom-opacity-active: 0.3;
+  --hobby-dim: blur(0.4px) saturate(0.6) opacity(0.6);
+}
+
+/* `light:` variant for the rare one-off that a token can't express */
+@custom-variant light (&:where([data-theme=light], [data-theme=light] *));
 
 @theme inline {
   --color-bg: var(--bg);
@@ -59,6 +123,12 @@
   --color-accent: var(--accent);
   --color-accent-fg: var(--accent-fg);
   --color-accent-fg-hover: var(--accent-fg-hover);
+  --color-warm: var(--warm);
+  --color-warm-fg: var(--warm-fg);
+  --color-danger: var(--danger);
+  --color-btn: var(--btn);
+  --color-btn-hover: var(--btn-hover);
+  --color-btn-fg: var(--btn-fg);
 }
 
 @theme {
@@ -121,7 +191,7 @@ body {
     transform 0.65s cubic-bezier(0.34, 1.15, 0.64, 1),
     filter 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94),
     box-shadow 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  filter: blur(0.4px) saturate(0.55) brightness(0.72);
+  filter: var(--hobby-dim);
   position: relative;
 }
 
@@ -134,7 +204,7 @@ body {
   position: absolute;
   inset: -24px;
   border-radius: 50%;
-  opacity: 0.3;
+  opacity: var(--bloom-opacity);
   filter: blur(28px);
   z-index: 0;
   pointer-events: none;
@@ -142,7 +212,7 @@ body {
 }
 
 .hobby-item.active .hobby-bloom {
-  opacity: 0.65;
+  opacity: var(--bloom-opacity-active);
 }
 
 /* Glass card container */

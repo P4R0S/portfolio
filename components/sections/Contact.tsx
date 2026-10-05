@@ -145,7 +145,7 @@ export function Contact() {
               </div>
 
               {status === 'error' && (
-                <div className="flex items-center gap-2 text-red-400 text-xs">
+                <div className="flex items-center gap-2 text-danger text-xs">
                   <AlertCircle className="w-4 h-4 shrink-0" />
                   {errorMsg}
                 </div>

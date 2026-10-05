@@ -35,11 +35,11 @@ export function Hero({ stats }: { stats: HeroStat[] }) {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8 pt-20">
       {/* Orb blobs */}
       <div
-        className="absolute top-1/4 right-[10%] w-72 h-72 md:w-96 md:h-96 rounded-full bg-accent/15 blur-3xl animate-orb-1 pointer-events-none"
+        className="absolute top-1/4 right-[10%] w-72 h-72 md:w-96 md:h-96 rounded-full bg-[var(--orb-1)] blur-3xl animate-orb-1 pointer-events-none"
         aria-hidden="true"
       />
       <div
-        className="absolute bottom-1/4 left-[5%] w-64 h-64 md:w-80 md:h-80 rounded-full bg-zinc-600/20 blur-3xl animate-orb-2 pointer-events-none"
+        className="absolute bottom-1/4 left-[5%] w-64 h-64 md:w-80 md:h-80 rounded-full bg-[var(--orb-2)] blur-3xl animate-orb-2 pointer-events-none"
         aria-hidden="true"
       />
 
@@ -88,7 +88,7 @@ export function Hero({ stats }: { stats: HeroStat[] }) {
             <div className="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-4 mb-10">
               <a
                 href="#projects"
-                className="flex items-center gap-2 px-6 py-3 rounded-xl bg-raised hover:bg-raised-2 text-fg font-medium transition-colors duration-200 cursor-pointer w-full sm:w-auto justify-center"
+                className="flex items-center gap-2 px-6 py-3 rounded-xl bg-btn hover:bg-btn-hover text-btn-fg font-medium transition-colors duration-200 cursor-pointer w-full sm:w-auto justify-center"
               >
                 View Projects <ArrowRight className="w-4 h-4" />
               </a>

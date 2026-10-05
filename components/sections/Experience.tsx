@@ -19,7 +19,10 @@ export function Experience() {
 
       <div className="relative">
         {/* Timeline line */}
-        <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-accent via-amber-400 to-zinc-500 md:-translate-x-px" />
+        <div
+          className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px md:-translate-x-px"
+          style={{ background: 'linear-gradient(to bottom in oklab, var(--tl-1), var(--tl-2), var(--tl-3))' }}
+        />
 
         <div className="flex flex-col gap-10">
           {sorted.map((item, i) => {

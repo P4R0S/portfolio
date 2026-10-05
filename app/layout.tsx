@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Space_Grotesk, DM_Sans } from 'next/font/google'
 import './globals.css'
 import { Navbar } from '@/components/ui/Navbar'
@@ -34,6 +34,17 @@ export const metadata: Metadata = {
   twitter: { card: 'summary_large_image' },
 }
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#faf8f5' },
+    { media: '(prefers-color-scheme: dark)', color: '#18181b' },
+  ],
+}
+
+// Runs before first paint: apply the saved theme, else the OS preference. Without JS the
+// page stays on the dark default from globals.css. Keep in sync with ThemeToggle.
+const themeScript = `(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.dataset.theme=t;var c=t==='light'?'#faf8f5':'#18181b';var f=function(){document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.content=c})};f();document.addEventListener('DOMContentLoaded',f)}catch(e){}})()`
+
 export default function RootLayout({
   children,
 }: {
@@ -43,7 +54,11 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${spaceGrotesk.variable} ${dmSans.variable} scroll-smooth`}
+      suppressHydrationWarning
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className="bg-bg text-fg antialiased">
         <BackgroundLayer />
         <Navbar />
