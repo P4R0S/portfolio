@@ -258,7 +258,7 @@ export function HobbiesCarousel({ category }: Props) {
                       className="w-full h-full flex items-center justify-center"
                       style={{ background: 'linear-gradient(160deg, #1c1c20, #2a2a2e)' }}
                     >
-                      {(() => { const Icon = categoryIcons[category.id]; return Icon ? <Icon className="w-10 h-10 text-zinc-600" strokeWidth={1.25} /> : null })()}
+                      {(() => { const Icon = categoryIcons[category.id]; return Icon ? <Icon className="w-10 h-10 text-fg-3" strokeWidth={1.25} /> : null })()}
                     </div>
                   )}
 
@@ -338,13 +338,13 @@ export function HobbiesCarousel({ category }: Props) {
             key={i}
             className="hobby-info-slot absolute inset-0 flex flex-col items-center justify-center gap-0.5 px-6"
           >
-            <div className="text-sm font-semibold text-zinc-200 text-center leading-snug">
+            <div className="text-sm font-semibold text-fg text-center leading-snug">
               {item.title}
             </div>
-            <div className="text-xs text-zinc-500 italic text-center leading-relaxed">
-              <span className="text-orange-400 not-italic">&ldquo;</span>
+            <div className="text-xs text-fg-3 italic text-center leading-relaxed">
+              <span className="text-accent-fg not-italic">&ldquo;</span>
               {item.note}
-              <span className="text-orange-400 not-italic">&rdquo;</span>
+              <span className="text-accent-fg not-italic">&rdquo;</span>
             </div>
           </div>
         ))}

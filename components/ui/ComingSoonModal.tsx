@@ -50,7 +50,7 @@ export function ComingSoonModal({ open, onClose }: ComingSoonModalProps) {
             <button
               onClick={onClose}
               aria-label="Close"
-              className="absolute top-3 right-3 text-fg-3 hover:text-fg-max transition-colors duration-200 cursor-pointer"
+              className="absolute top-3 right-3 text-fg-3 hover:text-fg transition-colors duration-200 cursor-pointer"
             >
               <X className="w-4 h-4" />
             </button>

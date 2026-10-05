@@ -51,7 +51,7 @@ export function Navbar() {
             <a
               key={link.anchor}
               href={hrefFor(link.anchor)}
-              className="text-sm text-fg-2 hover:text-fg-max transition-colors duration-200 cursor-pointer"
+              className="text-sm text-fg-2 hover:text-fg transition-colors duration-200 cursor-pointer"
             >
               {link.label}
             </a>
@@ -61,15 +61,15 @@ export function Navbar() {
             className={cn(
               'text-sm transition-colors duration-200 cursor-pointer',
               pathname === '/hobbies'
-                ? 'text-fg-max font-medium'
-                : 'text-fg-2 hover:text-fg-max'
+                ? 'text-fg font-medium'
+                : 'text-fg-2 hover:text-fg'
             )}
           >
             Hobbies
           </Link>
           <button
             onClick={() => setCvOpen(true)}
-            className="text-sm text-fg-2 hover:text-fg-max transition-colors duration-200 cursor-pointer"
+            className="text-sm text-fg-2 hover:text-fg transition-colors duration-200 cursor-pointer"
           >
             CV
           </button>
@@ -83,7 +83,7 @@ export function Navbar() {
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden text-fg-2 hover:text-fg-max transition-colors duration-200 cursor-pointer"
+          className="md:hidden text-fg-2 hover:text-fg transition-colors duration-200 cursor-pointer"
           onClick={() => setOpen(!open)}
           aria-label={open ? 'Close menu' : 'Open menu'}
         >
@@ -99,7 +99,7 @@ export function Navbar() {
               key={link.anchor}
               href={hrefFor(link.anchor)}
               onClick={() => setOpen(false)}
-              className="text-fg-soft hover:text-fg-max transition-colors duration-200 cursor-pointer py-1"
+              className="text-fg-soft hover:text-fg transition-colors duration-200 cursor-pointer py-1"
             >
               {link.label}
             </a>
@@ -109,14 +109,14 @@ export function Navbar() {
             onClick={() => setOpen(false)}
             className={cn(
               'py-1 transition-colors duration-200 cursor-pointer',
-              pathname === '/hobbies' ? 'text-fg-max font-medium' : 'text-fg-soft hover:text-fg-max'
+              pathname === '/hobbies' ? 'text-fg font-medium' : 'text-fg-soft hover:text-fg'
             )}
           >
             Hobbies
           </Link>
           <button
             onClick={() => { setOpen(false); setCvOpen(true) }}
-            className="py-1 text-left text-fg-soft hover:text-fg-max transition-colors duration-200 cursor-pointer"
+            className="py-1 text-left text-fg-soft hover:text-fg transition-colors duration-200 cursor-pointer"
           >
             CV
           </button>

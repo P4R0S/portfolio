@@ -55,7 +55,7 @@ export function Contact() {
           <div className="flex flex-col gap-4">
             <a
               href="mailto:paros.pr@gmail.com"
-              className="flex items-center gap-3 text-fg-2 hover:text-fg-max transition-colors duration-200 group"
+              className="flex items-center gap-3 text-fg-2 hover:text-fg transition-colors duration-200 group"
             >
               <span className="w-8 h-8 rounded-lg bg-surface border border-line flex items-center justify-center group-hover:border-accent/40 transition-colors duration-200">
                 <Mail className="w-4 h-4" />
@@ -66,7 +66,7 @@ export function Contact() {
               href="https://linkedin.com/in/parsa-rostamzadeh"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 text-fg-2 hover:text-fg-max transition-colors duration-200 group"
+              className="flex items-center gap-3 text-fg-2 hover:text-fg transition-colors duration-200 group"
             >
               <span className="w-8 h-8 rounded-lg bg-surface border border-line flex items-center justify-center group-hover:border-accent/40 transition-colors duration-200">
                 <FaLinkedin className="w-4 h-4" />
@@ -81,11 +81,11 @@ export function Contact() {
           {status === 'success' ? (
             <div className="text-center py-12">
               <CheckCircle className="w-10 h-10 text-accent-fg mx-auto mb-3" />
-              <p className="text-fg-max font-medium mb-1">Message sent!</p>
+              <p className="text-fg font-medium mb-1">Message sent!</p>
               <p className="text-fg-2 text-sm">I&apos;ll get back to you soon.</p>
               <button
                 onClick={() => setStatus('idle')}
-                className="mt-4 text-xs text-fg-3 hover:text-fg-max transition-colors duration-200 cursor-pointer"
+                className="mt-4 text-xs text-fg-3 hover:text-fg transition-colors duration-200 cursor-pointer"
               >
                 Send another
               </button>
@@ -102,7 +102,7 @@ export function Contact() {
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   placeholder="Your name"
-                  className="w-full bg-surface border border-line rounded-xl px-4 py-2.5 text-sm text-fg-max placeholder:text-fg-4 focus:outline-none focus:border-accent/50 transition-colors duration-200"
+                  className="w-full bg-surface border border-line rounded-xl px-4 py-2.5 text-sm text-fg placeholder:text-fg-3 focus:outline-none focus:border-accent/50 transition-colors duration-200"
                 />
               </div>
               <div>
@@ -115,7 +115,7 @@ export function Contact() {
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   placeholder="you@example.com"
-                  className="w-full bg-surface border border-line rounded-xl px-4 py-2.5 text-sm text-fg-max placeholder:text-fg-4 focus:outline-none focus:border-accent/50 transition-colors duration-200"
+                  className="w-full bg-surface border border-line rounded-xl px-4 py-2.5 text-sm text-fg placeholder:text-fg-3 focus:outline-none focus:border-accent/50 transition-colors duration-200"
                 />
               </div>
               <div>
@@ -128,7 +128,7 @@ export function Contact() {
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                   placeholder="Your Message ..."
-                  className="w-full bg-surface border border-line rounded-xl px-4 py-2.5 text-sm text-fg-max placeholder:text-fg-4 focus:outline-none focus:border-accent/50 transition-colors duration-200 resize-none"
+                  className="w-full bg-surface border border-line rounded-xl px-4 py-2.5 text-sm text-fg placeholder:text-fg-3 focus:outline-none focus:border-accent/50 transition-colors duration-200 resize-none"
                 />
               </div>
 

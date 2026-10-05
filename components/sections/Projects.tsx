@@ -23,7 +23,7 @@ export function Projects() {
           href="https://github.com/P4R0S"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 text-sm text-fg-2 hover:text-fg-max transition-colors duration-200 cursor-pointer"
+          className="flex items-center gap-2 text-sm text-fg-2 hover:text-fg transition-colors duration-200 cursor-pointer"
         >
           <FaGithub className="w-4 h-4" /> View all on GitHub
         </a>
@@ -38,7 +38,7 @@ export function Projects() {
                   Featured
                 </span>
               )}
-              <h3 className="font-heading font-semibold text-fg-max mb-2 leading-snug">
+              <h3 className="font-heading font-semibold text-fg mb-2 leading-snug">
                 {project.github ? (
                   // Stretched link: its ::after covers the whole card, so the card is one click target
                   <a
@@ -72,7 +72,7 @@ export function Projects() {
                     <FaGithub className="w-4 h-4" /> View code
                   </span>
                 ) : (
-                  <span className="flex items-center gap-1.5 text-fg-4">
+                  <span className="flex items-center gap-1.5 text-fg-3">
                     <Lock className="w-3.5 h-3.5" /> Private repository
                   </span>
                 )}
@@ -82,7 +82,7 @@ export function Projects() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`${project.title} live demo`}
-                    className="relative z-10 text-fg-3 hover:text-fg-max transition-colors duration-200 cursor-pointer"
+                    className="relative z-10 text-fg-3 hover:text-fg transition-colors duration-200 cursor-pointer"
                   >
                     <ExternalLink className="w-4 h-4" />
                   </a>

@@ -107,7 +107,7 @@ export function Skills() {
             </div>
 
             {/* Description */}
-            <p className="text-[14px] leading-relaxed font-light text-[#a1a1aa]">
+            <p className="text-[14px] leading-relaxed font-light text-fg-2">
               Synthesis and verification at the gate-level,
               optimizing for specific silicon constraints.
             </p>
@@ -149,7 +149,7 @@ export function Skills() {
             {/* 2-col language grid */}
             <div className="grid grid-cols-2 gap-x-4 gap-y-2">
               {languages.map((lang) => (
-                <span key={lang} className="text-[13px] text-[#d4d4d8] font-mono">
+                <span key={lang} className="text-[13px] text-fg-soft font-mono">
                   {lang}
                 </span>
               ))}

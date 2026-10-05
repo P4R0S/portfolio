@@ -21,7 +21,7 @@ const highlights = [
     icon: Target,
     title: 'Current Focus',
     body: 'Cross-layer approximate synthesis for FPGA-deployed neural networks — profiling sensitivity, generating approximate neuron variants, and exploring Pareto-optimal area-accuracy trade-offs.',
-    color: 'text-zinc-400',
+    color: 'text-fg-2',
   },
 ]
 
@@ -48,7 +48,7 @@ export function About() {
               priority
             />
           </div>
-          <h3 className="font-heading font-semibold text-xl text-fg-max mb-3">
+          <h3 className="font-heading font-semibold text-xl text-fg mb-3">
             Research Assistant · Paderborn University
           </h3>
           <p className="text-fg-2 leading-relaxed text-sm mb-4">
@@ -67,7 +67,7 @@ export function About() {
                 <Icon className="w-5 h-5" />
               </div>
               <div>
-                <h4 className="font-heading font-semibold text-fg-max mb-1">{title}</h4>
+                <h4 className="font-heading font-semibold text-fg mb-1">{title}</h4>
                 <p className="text-fg-2 text-sm leading-relaxed">{body}</p>
               </div>
             </GlassCard>

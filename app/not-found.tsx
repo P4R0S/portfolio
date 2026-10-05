@@ -59,7 +59,7 @@ export default function NotFound() {
           <span className="gradient-text" aria-hidden="true">4</span>
         </div>
 
-        <h1 className="font-heading font-bold text-2xl md:text-3xl text-fg-max mb-3">
+        <h1 className="font-heading font-bold text-2xl md:text-3xl text-fg mb-3">
           This page never made it to silicon.
         </h1>
         <p className="text-fg-2 text-sm md:text-base leading-relaxed max-w-md mb-10">
@@ -84,12 +84,12 @@ export default function NotFound() {
         </div>
 
         <nav aria-label="Popular pages" className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm">
-          <span className="text-fg-4">Or jump to</span>
+          <span className="text-fg-3">Or jump to</span>
           {quickLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-fg-2 hover:text-fg-max transition-colors duration-200"
+              className="text-fg-2 hover:text-fg transition-colors duration-200"
             >
               {link.label}
             </Link>

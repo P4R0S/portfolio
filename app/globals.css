@@ -11,11 +11,9 @@
 
   --bg: #18181b;
   --fg: #fafafa;
-  --fg-max: #fff;
   --fg-soft: oklch(86.9% 0.022 252.894);   /* slate-300 */
   --fg-2: oklch(70.4% 0.04 256.788);       /* slate-400 */
-  --fg-3: oklch(55.4% 0.046 257.417);      /* slate-500 */
-  --fg-4: oklch(44.6% 0.043 257.281);      /* slate-600 */
+  --fg-3: #7c8ca2;                          /* captions: 5.2:1 on bg, 4.5:1 on cards */
 
   --surface: color-mix(in oklab, #fff 5%, transparent);   /* cards, inputs */
   --surface-strong: color-mix(in oklab, #fff 10%, transparent);
@@ -49,11 +47,9 @@
 @theme inline {
   --color-bg: var(--bg);
   --color-fg: var(--fg);
-  --color-fg-max: var(--fg-max);
   --color-fg-soft: var(--fg-soft);
   --color-fg-2: var(--fg-2);
   --color-fg-3: var(--fg-3);
-  --color-fg-4: var(--fg-4);
   --color-surface: var(--surface);
   --color-surface-strong: var(--surface-strong);
   --color-nav-idle: var(--nav-idle);

@@ -94,7 +94,7 @@ export function Hero({ stats }: { stats: HeroStat[] }) {
               </a>
               <button
                 onClick={() => setCvOpen(true)}
-                className="flex items-center gap-2 px-6 py-3 rounded-xl border border-accent/30 hover:border-accent/60 text-zinc-300 hover:text-accent-fg font-medium transition-colors duration-200 cursor-pointer w-full sm:w-auto justify-center"
+                className="flex items-center gap-2 px-6 py-3 rounded-xl border border-accent/30 hover:border-accent/60 text-fg-soft hover:text-accent-fg font-medium transition-colors duration-200 cursor-pointer w-full sm:w-auto justify-center"
               >
                 View CV <Download className="w-4 h-4" />
               </button>
@@ -104,7 +104,7 @@ export function Hero({ stats }: { stats: HeroStat[] }) {
             <div className="grid grid-cols-3 gap-3 max-w-sm lg:mx-0 mx-auto">
               {stats.map((stat) => (
                 <GlassCard key={stat.label} className="p-4 text-center">
-                  <div className="text-2xl font-bold font-heading text-fg-max">{stat.value}</div>
+                  <div className="text-2xl font-bold font-heading text-fg">{stat.value}</div>
                   <div className="text-xs text-fg-3 mt-1 leading-tight">{stat.label}</div>
                 </GlassCard>
               ))}
@@ -124,7 +124,7 @@ export function Hero({ stats }: { stats: HeroStat[] }) {
       <a
         href="#about"
         aria-label="Scroll to About section"
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-fg-4 hover:text-fg-soft transition-colors duration-200 cursor-pointer animate-bounce"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-fg-3 hover:text-fg-soft transition-colors duration-200 cursor-pointer animate-bounce"
       >
         <ArrowDown className="w-5 h-5" />
       </a>

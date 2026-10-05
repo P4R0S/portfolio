@@ -41,7 +41,7 @@ export function Experience() {
                   <GlassCard className="p-5">
                     <div className="flex items-start justify-between gap-4 mb-3">
                       <div>
-                        <h3 className="font-heading font-semibold text-fg-max text-sm leading-snug">
+                        <h3 className="font-heading font-semibold text-fg text-sm leading-snug">
                           {item.role}
                         </h3>
                         <p className="text-accent-fg text-xs mt-0.5">{item.company}</p>

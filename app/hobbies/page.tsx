@@ -33,7 +33,7 @@ export default function HobbiesPage() {
           >
             <span
               style={{
-                background: 'linear-gradient(135deg, #fafafa 0%, #a1a1aa 100%)',
+                background: 'linear-gradient(135deg, var(--fg) 0%, var(--fg-2) 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
               }}
@@ -43,7 +43,7 @@ export default function HobbiesPage() {
             <br />
             <span className="gradient-text">Interests</span>
           </h1>
-          <p className="text-zinc-500 text-base leading-[1.75] max-w-[520px]">
+          <p className="text-fg-3 text-base leading-[1.75] max-w-[520px]">
             There&apos;s a person behind the research. Here&apos;s what I read, watch,
             play, and listen to — a curated collection of things that shaped how I think.
           </p>
@@ -71,14 +71,14 @@ export default function HobbiesPage() {
                 >
                   {(() => { const Icon = categoryIcons[category.id]; return Icon ? <Icon className="w-5 h-5 text-accent-fg" /> : null })()}
                 </div>
-                <span className="font-heading font-bold text-[22px] text-fg-max tracking-tight">
+                <span className="font-heading font-bold text-[22px] text-fg tracking-tight">
                   {category.label}
                 </span>
-                <span className="text-xs text-zinc-600 font-medium ml-1">
+                <span className="text-xs text-fg-3 font-medium ml-1">
                   drag to explore
                 </span>
                 <span
-                  className="ml-auto text-[11px] text-zinc-600 border border-white/[0.07] px-2.5 py-0.5 rounded-full font-medium"
+                  className="ml-auto text-[11px] text-fg-3 border border-white/[0.07] px-2.5 py-0.5 rounded-full font-medium"
                   style={{ background: 'rgba(255,255,255,0.03)' }}
                 >
                   {category.items.length} favorites
