@@ -13,7 +13,6 @@ const anchorLinks = [
   { anchor: 'projects', label: 'Projects' },
   { anchor: 'experience', label: 'Experience' },
   { anchor: 'publications', label: 'Publications' },
-  { anchor: 'blog', label: 'Blog' },
 ]
 
 export function Navbar() {

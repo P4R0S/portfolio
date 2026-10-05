@@ -11,7 +11,6 @@ export const metadata: Metadata = {
 const quickLinks = [
   { href: '/#projects', label: 'Projects' },
   { href: '/#publications', label: 'Publications' },
-  { href: '/blog', label: 'Blog' },
   { href: '/hobbies', label: 'Hobbies' },
 ]
 
