@@ -17,10 +17,14 @@
 
 ## Conventions
 - Use the `@/` path alias from `tsconfig.json`.
-- Keep components server-side by default; add `'use client'` only for interactivity (`Hero`, `Contact`, `Navbar`, `SectionWrapper`, `HeroTerminal`, `ComingSoonModal`, `ExpandableText`, `NotFoundTerminal`, `HobbiesCarousel`).
+- Keep components server-side by default; add `'use client'` only for interactivity (`Hero`, `Contact`, `Navbar`, `SectionWrapper`, `HeroTerminal`, `ComingSoonModal`, `ExpandableText`, `NotFoundTerminal`, `HobbiesCarousel`, `ThemeToggle`).
 - Reuse shared UI primitives instead of re-creating them: `GlassCard`, `GradientText`, `SectionWrapper`, `BackgroundLayer`, `Logo` (the chip monogram), `ExpandableText`.
 - `BackgroundLayer` is rendered once in the root layout; pages should not add their own or paint an opaque background over it.
-- Tailwind v4 + `cn` from `lib/utils.ts` are the standard styling helpers; the site palette is charcoal + orange from `app/globals.css`.
+- Tailwind v4 + `cn` from `lib/utils.ts` are the standard styling helpers.
+- Theming: two themes, dark (default, bare `:root`) and light (`:root[data-theme="light"]`), both defined as CSS variables in `app/globals.css` and exposed as utilities via `@theme inline` (`bg-bg`, `bg-surface`, `bg-raised`, `bg-btn`, `text-fg`, `text-fg-soft`, `text-fg-2`, `text-fg-3`, `text-accent-fg`, `border-line`, `bg-accent/10`, `text-warm`, `text-danger`, …). Inline styles use `var(--…)`. Never add raw palette classes (`text-slate-400`, `bg-white/5`, `text-orange-400`) or hex colors in components; add/extend a token with both a dark and a light value instead.
+- Use `--accent-fg` for orange text (passes contrast in light mode) and `--accent` for icons, borders and tints. Don't put opacity modifiers on text colors.
+- The initial theme is set before paint by the inline script in `app/layout.tsx` (saved choice in `localStorage.theme`, else OS preference); `components/ui/ThemeToggle.tsx` switches it. Use the `light:` variant only for one-offs a token can't express.
+- Stay dark in both themes on purpose: `HeroTerminal`, `NotFoundTerminal`, the CV popup's progress box, the logo's chip body, and the hobby cover labels.
 - There is no blog (removed deliberately); don't reintroduce MDX/blog tooling.
 - Keep anchor IDs aligned with the navbar links (`about`, `skills`, `projects`, `experience`, `publications`, `contact`).
 
@@ -36,5 +40,5 @@
 - `app/api/contact/route.ts`
 - `components/sections/Hero.tsx`, `About.tsx`, `Projects.tsx`, `Experience.tsx`, `Publications.tsx`, `Contact.tsx`
 - `app/not-found.tsx`, `app/hobbies/page.tsx`, `app/opengraph-image.tsx`, `app/sitemap.ts`, `app/robots.ts`, `lib/site.ts`
-- `components/ui/Navbar.tsx`, `Footer.tsx`, `Logo.tsx`, `GlassCard.tsx`, `SectionWrapper.tsx`, `GradientText.tsx`, `BackgroundLayer.tsx`, `ComingSoonModal.tsx`, `ExpandableText.tsx`, `NotFoundTerminal.tsx`
+- `components/ui/Navbar.tsx`, `Footer.tsx`, `Logo.tsx`, `GlassCard.tsx`, `SectionWrapper.tsx`, `GradientText.tsx`, `BackgroundLayer.tsx`, `ComingSoonModal.tsx`, `ExpandableText.tsx`, `NotFoundTerminal.tsx`, `ThemeToggle.tsx`
 - `components/terminal/HeroTerminal.tsx`, `lib/terminal/*`, `content/*`

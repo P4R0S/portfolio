@@ -15,6 +15,7 @@ Built with Next.js (App Router) and deployed on Vercel.
   and a honeypot spam filter.
 - **Branded 404 page**, chip-monogram logo and favicon set, generated link-preview image,
   `sitemap.xml`, and `robots.txt`.
+- **Light and dark themes** — follows the device setting by default, with a toggle in the navbar that remembers the choice; no flash on load.
 - Responsive from phone to desktop; CSS animations respect `prefers-reduced-motion`.
 
 ## Tech stack
@@ -22,7 +23,7 @@ Built with Next.js (App Router) and deployed on Vercel.
 | Area | Tools |
 | --- | --- |
 | Framework | Next.js 16 (App Router, Turbopack), React 19, TypeScript |
-| Styling | Tailwind CSS v4, `clsx` + `tailwind-merge` (`cn` helper) |
+| Styling | Tailwind CSS v4 with theme tokens (CSS variables in `app/globals.css`), `clsx` + `tailwind-merge` (`cn` helper) |
 | Motion | Framer Motion |
 | Icons | Lucide, React Icons |
 | Email | Resend |
