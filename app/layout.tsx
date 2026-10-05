@@ -4,6 +4,7 @@ import './globals.css'
 import { Navbar } from '@/components/ui/Navbar'
 import { Footer } from '@/components/ui/Footer'
 import { BackgroundLayer } from '@/components/ui/BackgroundLayer'
+import { siteUrl } from '@/lib/site'
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -20,6 +21,7 @@ const dmSans = DM_Sans({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: 'Parsa Rostamzadeh — Research Assistant · ML × Hardware',
   description:
     'Computer engineer specializing in approximate computing, hardware-aware ML, FPGA neural network optimization, and graph neural networks.',
@@ -29,6 +31,7 @@ export const metadata: Metadata = {
     description: 'Computer engineer specializing in approximate computing, hardware-aware ML, and FPGA neural network optimization.',
     type: 'website',
   },
+  twitter: { card: 'summary_large_image' },
 }
 
 export default function RootLayout({
