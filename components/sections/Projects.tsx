@@ -2,7 +2,7 @@ import { GlassCard } from '@/components/ui/GlassCard'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { GradientText } from '@/components/ui/GradientText'
 import { projects } from '@/content/projects'
-import { ExternalLink } from 'lucide-react'
+import { ExternalLink, Lock } from 'lucide-react'
 import { FaGithub } from 'react-icons/fa6'
 
 const featured = projects.filter((p) => p.featured)
@@ -32,14 +32,26 @@ export function Projects() {
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {displayed.map((project) => (
           <div key={project.title} className="group relative">
-            <GlassCard hover className="h-full p-6 flex flex-col">
+            <GlassCard hover={!!project.github} className="h-full p-6 flex flex-col">
               {project.featured && (
                 <span className="text-[10px] font-medium uppercase tracking-widest text-orange-400 border border-orange-400/30 rounded-full px-2 py-0.5 self-start mb-3">
                   Featured
                 </span>
               )}
               <h3 className="font-heading font-semibold text-white mb-2 leading-snug">
-                {project.title}
+                {project.github ? (
+                  // Stretched link: its ::after covers the whole card, so the card is one click target
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="focus-visible:outline-none after:absolute after:inset-0 after:rounded-2xl after:content-[''] focus-visible:after:ring-2 focus-visible:after:ring-orange-400/60"
+                  >
+                    {project.title}
+                  </a>
+                ) : (
+                  project.title
+                )}
               </h3>
               <p className="text-slate-400 text-sm leading-relaxed mb-4 flex-1">
                 {project.description}
@@ -54,17 +66,15 @@ export function Projects() {
                   </span>
                 ))}
               </div>
-              <div className="flex items-center gap-3">
-                {project.github && (
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${project.title} GitHub repository`}
-                    className="text-slate-500 hover:text-white transition-colors duration-200 cursor-pointer"
-                  >
-                    <FaGithub className="w-4 h-4" />
-                  </a>
+              <div className="flex items-center gap-3 text-xs">
+                {project.github ? (
+                  <span className="flex items-center gap-1.5 text-slate-500 group-hover:text-orange-400 transition-colors duration-200">
+                    <FaGithub className="w-4 h-4" /> View code
+                  </span>
+                ) : (
+                  <span className="flex items-center gap-1.5 text-slate-600">
+                    <Lock className="w-3.5 h-3.5" /> Private repository
+                  </span>
                 )}
                 {project.demo && (
                   <a
@@ -72,7 +82,7 @@ export function Projects() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`${project.title} live demo`}
-                    className="text-slate-500 hover:text-white transition-colors duration-200 cursor-pointer"
+                    className="relative z-10 text-slate-500 hover:text-white transition-colors duration-200 cursor-pointer"
                   >
                     <ExternalLink className="w-4 h-4" />
                   </a>
@@ -81,7 +91,7 @@ export function Projects() {
             </GlassCard>
 
             {/* Hover overlay with long description */}
-            <div className="absolute inset-0 rounded-2xl bg-[#18181b]/95 backdrop-blur-sm border border-orange-400/20 p-6 flex items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+            <div className="absolute inset-0 rounded-2xl bg-[#18181b]/95 backdrop-blur-sm border border-orange-400/20 p-6 flex items-center opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none">
               <p className="text-slate-300 text-sm leading-relaxed">{project.longDescription}</p>
             </div>
           </div>

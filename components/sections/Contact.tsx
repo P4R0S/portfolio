@@ -43,6 +43,7 @@ export function Contact() {
 
         {/* Left — heading + contact links */}
         <div className="flex-1 lg:max-w-sm">
+          <p className="text-slate-500 text-xs tracking-widest uppercase mb-2">Get in touch</p>
           <h2 className="font-heading font-bold text-4xl md:text-5xl leading-tight mb-5">
             Let&apos;s <GradientText>Work<br />Together</GradientText>
           </h2>

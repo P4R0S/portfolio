@@ -18,8 +18,8 @@ const hardwareItems = [
 const languages = ['Python', 'C / C++', 'Verilog', 'Bash', 'TypeScript', 'JavaScript']
 
 const toolTags = [
-  'LINUX', 'GIT', 'DOCKER', 'HPC / SLURM', 'JUPYTER', 'LATEX',
-  'SYNOPSYS DESIGN COMPILER', 'CADENCE INNOVUS', 'QUESTASIM',
+  'Linux', 'Git', 'Docker', 'HPC / SLURM', 'Jupyter', 'LaTeX',
+  'Synopsys Design Compiler', 'Cadence Innovus', 'QuestaSim',
 ]
 
 // ── Sub-components ────────────────────────────────────────────────────────────
@@ -150,7 +150,7 @@ export function Skills() {
             {/* 2-col language grid */}
             <div className="grid grid-cols-2 gap-x-4 gap-y-2">
               {languages.map((lang) => (
-                <span key={lang} className="text-[12px] text-[rgba(218,226,253,0.8)] font-mono">
+                <span key={lang} className="text-[13px] text-[#d4d4d8] font-mono">
                   {lang}
                 </span>
               ))}
@@ -175,7 +175,7 @@ export function Skills() {
             <div className="flex items-start justify-between">
               <div className="flex flex-col gap-4">
                 <Wrench className="w-7 h-7 text-orange-400" />
-                <h3 className="font-bold text-[24px] leading-8 text-[#dae2fd]">Tools &amp; Infra</h3>
+                <h3 className="font-bold text-[24px] leading-8 text-[#fafafa]">Tools &amp; Infra</h3>
               </div>
               <CardNumber color="text-[rgba(251,146,60,0.2)]">04</CardNumber>
             </div>
@@ -185,7 +185,7 @@ export function Skills() {
               {toolTags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-3 py-1 rounded-2xl text-[10px] tracking-[-0.5px] uppercase text-[#fafafa]"
+                  className="px-3 py-1 rounded-2xl text-[12px] font-medium text-[#fafafa]"
                   style={{ background: '#3f3f46' }}
                 >
                   {tag}
