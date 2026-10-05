@@ -31,7 +31,7 @@ function getOutput(command: string, args: string[]): OutputLine[] | null {
   if (full === 'whoami') {
     return [
       { text: 'Parsa Rostamzadeh', color: 'white', bold: true },
-      { text: 'PhD Researcher — ML Systems & Approximate Computing', color: 'output' },
+      { text: 'Research Assistant — ML Systems & Approximate Computing', color: 'output' },
       { text: 'Paderborn University · github.com/P4R0S', color: 'output' },
     ]
   }

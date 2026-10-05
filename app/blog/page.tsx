@@ -5,7 +5,7 @@ import { Calendar, Clock, Tag } from 'lucide-react'
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'Blog — Your Name',
+  title: 'Blog — Parsa Rostamzadeh',
   description: 'Articles on ML systems, approximate computing, and hardware design.',
 }
 

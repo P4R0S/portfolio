@@ -130,7 +130,7 @@ export function Navbar() {
           <a
             href={contactHref}
             onClick={() => setOpen(false)}
-            className="px-4 py-2 rounded-xl bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 text-sm font-medium text-center cursor-pointer"
+            className="px-4 py-2 rounded-xl bg-orange-400/10 border border-orange-400/30 text-orange-400 hover:bg-orange-400/20 text-sm font-medium text-center cursor-pointer"
           >
             Contact
           </a>

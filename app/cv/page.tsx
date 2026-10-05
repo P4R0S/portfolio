@@ -151,7 +151,7 @@ export default function CVPage() {
               <ContactRow label="Email" value="paros.pr@gmail.com" />
               <ContactRow label="Phone" value="(+49)-1783396316" />
               <ContactRow label="Location" value="Paderborn, Germany" />
-              <ContactRow label="LinkedIn" value="linkedin.com/in/paros1999" />
+              <ContactRow label="LinkedIn" value="linkedin.com/in/parsa-rostamzadeh" />
               <ContactRow label="Website" value="www.p4r0s.dev" />
             </div>
           </motion.div>

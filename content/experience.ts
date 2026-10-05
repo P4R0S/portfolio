@@ -9,26 +9,26 @@ export interface ExperienceItem {
 
 export const experience: ExperienceItem[] = [
   {
-    company: 'Tehran Azad University ',
+    company: 'Tehran Azad University',
     role: 'B.Sc. in Computer Engineering',
     startDate: '2018',
     endDate: '2023',
     bullets: [
-      'Got the Idea of the Basics of Programming especially with C#, C++ and Python.',
-      'Have Done many implementatipn and Personal Projects in the world of the Web Development with the modern Frameworks (.Net, FastAPI).',
-      'Also have got understanding of Computer Architecture and structure.',
+      'Built a strong programming foundation, especially in C#, C++ and Python.',
+      'Completed many implementations and personal projects in web development with modern frameworks (.NET, FastAPI).',
+      'Gained a solid understanding of computer architecture and organization.',
     ],
     type: 'education',
   },
   {
     company: 'Paderborn University',
-    role: 'M.sc in Computer Engineering',
+    role: 'M.Sc. in Computer Engineering',
     startDate: '2024',
-    endDate: '',
+    endDate: 'Present',
     bullets: [
-      'Studying Master in Computer Engineering specializied in Embedded Systems. ',
-      'Have been working and dealt with many Courses and Projects related to the Hardwares (FPGA, ASICS).',
-      'Done Deep projects in the Field of LLMs and XAI, also have dealt deep in the LLM Fine Tuning and RAG Pipeline.',
+      'Studying for a Master’s in Computer Engineering, specializing in Embedded Systems.',
+      'Worked on many courses and projects related to hardware (FPGA, ASIC).',
+      'Completed in-depth projects in LLMs and XAI, including LLM fine-tuning and RAG pipelines.',
     ],
     type: 'education',
   },
@@ -38,8 +38,8 @@ export const experience: ExperienceItem[] = [
     startDate: '2023',
     endDate: '2024',
     bullets: [
-      'Have gained the Experience to work in teams and with the C# Accounting softwarre Development.',
-      'Have had hands on experience with real world and practical software Development Architecture.',
+      'Gained experience working in a team on C# accounting software development.',
+      'Got hands-on experience with real-world software development and architecture.',
     ],
     type: 'work',
   },
@@ -47,11 +47,11 @@ export const experience: ExperienceItem[] = [
     company: 'Paderborn University',
     role: 'Research Assistant',
     startDate: '2025',
-    endDate: '',
+    endDate: 'Present',
     bullets: [
-      'Has contribute and done Development on the CIRCA (Paderborn approximation Framework).',
-      'Has done many research in the Neural Network Optimisation and approximation (Pruning, Quantization).',
-      'Has Worked and deep dive to solve the Parallel Circuit Partioning Approximation.',
+      'Contributed to the development of CIRCA, Paderborn’s approximate circuit framework.',
+      'Researching neural network optimization and approximation (pruning, quantization).',
+      'Working on parallel circuit partitioning for approximation.',
     ],
     type: 'work',
   }

@@ -86,7 +86,7 @@ export const hobbies: HobbyCategory[] = [
       { title: 'Regret', subtitle: 'Anathema', note: 'Progressive rock that moves you to tears.', cover: '/images/hobbies/music/anathema-regret.jpg', aspect: 'square', dominantColor: '#1a0808' },
       { title: 'Thin Flesh', subtitle: 'Traitrs', note: 'Post-punk that sounds like midnight.', cover: '/images/hobbies/music/traitrs-thin-flesh.jpg', aspect: 'square', dominantColor: '#180818' },
       { title: 'Chamber of Reflection', subtitle: 'Mac DeMarco', note: 'Mac DeMarco at his most melancholic.', cover: '/images/hobbies/music/mac-demarco-chamber.jpg', aspect: 'square', dominantColor: '#081818' },
-      { title: 'Rebel Paradise', subtitle: 'Common Saints', note: 'Soundtrack of late-night PhD sessions.', cover: '/images/hobbies/music/common-saints-rebel-paradise.jpg', aspect: 'square', dominantColor: '#1a1828' },
+      { title: 'Rebel Paradise', subtitle: 'Common Saints', note: 'Soundtrack of late-night research sessions.', cover: '/images/hobbies/music/common-saints-rebel-paradise.jpg', aspect: 'square', dominantColor: '#1a1828' },
       { title: 'illuminate my heart, my darling', subtitle: 'Yndi Halda', note: 'Every listen reveals something new.', cover: '/images/hobbies/music/yndi-halda-illuminate.jpg', aspect: 'square', dominantColor: '#101820' },
       { title: 'Ode to the Mets', subtitle: 'The Strokes', note: 'Perfect from start to finish.', cover: '/images/hobbies/music/strokes-ode.jpg', aspect: 'square', dominantColor: '#201818' },
       { title: 'Imminence', subtitle: 'Sleep Dealer', note: 'The right album for deep focus.', cover: '/images/hobbies/music/sleep-dealer-imminence.jpg', aspect: 'square', dominantColor: '#101020' },

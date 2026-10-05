@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   const post = getPostBySlug(slug)
   if (!post) return {}
-  return { title: `${post.title} — Your Name`, description: post.excerpt }
+  return { title: `${post.title} — Parsa Rostamzadeh`, description: post.excerpt }
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
