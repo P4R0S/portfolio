@@ -44,7 +44,11 @@ function getOutput(command: string, args: string[]): OutputLine[] | null {
       { text: '[ ML / AI ]', color: 'white', bold: true },
       { text: '  PyTorch · GNN · XAI · scikit-learn', color: 'output' },
       { text: '[ Hardware ]', color: 'white', bold: true },
-      { text: '  FPGA · RTL Design · Approx. Circuits', color: 'output' },
+      { text: '  FPGA · RTL · Circuit Design · VLSI', color: 'output' },
+      { text: '  Approximate Circuits · Yosys / ABC', color: 'output' },
+      { text: '[ EDA ]', color: 'white', bold: true },
+      { text: '  Design Compiler · Innovus · QuestaSim', color: 'output' },
+      { text: '  Xilinx Vivado · Icarus Verilog', color: 'output' },
       { text: '[ Tools ]', color: 'white', bold: true },
       { text: '  Git · Linux · Docker · HPC/SLURM', color: 'output' },
       { text: '──────────────────────────────', color: 'dim' },
@@ -96,20 +100,25 @@ export function HeroTerminal() {
 
   // Typewriter for one line at a time
   useEffect(() => {
+    // State updates below are deferred to a timer (never synchronous in the effect body)
+    // to avoid cascading renders.
     if (!animatingLines || currentLine >= animatingLines.length) {
       if (animatingLines && currentLine >= animatingLines.length) {
-        setBlocks(prev => [...prev, { lines: animatingLines }])
-        setAnimatingLines(null)
-        setCurrentLine(0)
-        setVisibleText('')
+        const t = window.setTimeout(() => {
+          setBlocks(prev => [...prev, { lines: animatingLines }])
+          setAnimatingLines(null)
+          setCurrentLine(0)
+          setVisibleText('')
+        }, 0)
+        return () => clearTimeout(t)
       }
       return
     }
 
     const line = animatingLines[currentLine]
     if (line.blank || !line.text) {
-      setCurrentLine(n => n + 1)
-      return
+      const t = window.setTimeout(() => setCurrentLine(n => n + 1), 0)
+      return () => clearTimeout(t)
     }
 
     charIdx.current = 0

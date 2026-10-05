@@ -22,7 +22,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   if (!post) notFound()
 
   return (
-    <main className="min-h-screen pt-28 pb-24 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen pt-28 pb-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-2xl mx-auto">
         <Link
           href="/blog"
@@ -47,10 +47,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </div>
         </header>
 
-        <article className="prose prose-invert prose-slate max-w-none prose-headings:font-heading prose-a:text-violet-400 hover:prose-a:text-violet-300">
+        <article className="prose prose-invert prose-slate max-w-none prose-headings:font-heading prose-a:text-orange-400 hover:prose-a:text-orange-300">
           <MDXRemote source={post.content} />
         </article>
       </div>
-    </main>
+    </div>
   )
 }

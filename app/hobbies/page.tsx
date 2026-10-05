@@ -1,6 +1,5 @@
 import { hobbies } from '@/content/hobbies'
 import { HobbiesCarousel } from '@/components/hobbies/HobbiesCarousel'
-import { BackgroundLayer } from '@/components/ui/BackgroundLayer'
 import { BookOpen, Film, Tv, Gamepad2, Music, Mic, type LucideIcon } from 'lucide-react'
 
 const categoryIcons: Record<string, LucideIcon> = {
@@ -17,9 +16,7 @@ export default function HobbiesPage() {
     // overflow-x-clip: the carousels run past the screen edges by design; without this the
     // page itself grows wider than the viewport on phones (and pushes the navbar menu off-screen).
     // `clip` (not `hidden`) creates no scroll container, so card shadows above/below stay visible.
-    <div className="min-h-screen bg-[#18181b] overflow-x-clip">
-      <BackgroundLayer />
-
+    <div className="min-h-screen overflow-x-clip">
       <div className="relative z-10 pt-24 pb-28">
 
         {/* Hero — constrained */}

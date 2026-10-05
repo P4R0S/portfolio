@@ -13,7 +13,7 @@ export default function BlogPage() {
   const posts = getAllPosts()
 
   return (
-    <main className="min-h-screen pt-28 pb-24 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen pt-28 pb-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
         <div className="mb-12">
           <p className="text-slate-500 text-xs tracking-widest uppercase mb-2">Writing</p>
@@ -59,6 +59,6 @@ export default function BlogPage() {
           </div>
         )}
       </div>
-    </main>
+    </div>
   )
 }

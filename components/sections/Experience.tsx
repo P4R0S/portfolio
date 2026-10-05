@@ -4,6 +4,9 @@ import { GradientText } from '@/components/ui/GradientText'
 import { experience } from '@/content/experience'
 import { Briefcase, GraduationCap } from 'lucide-react'
 
+// Most recent first
+const sorted = [...experience].sort((a, b) => Number(b.startDate) - Number(a.startDate))
+
 export function Experience() {
   return (
     <SectionWrapper id="experience">
@@ -19,7 +22,7 @@ export function Experience() {
         <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-orange-400 via-amber-400 to-zinc-500 md:-translate-x-px" />
 
         <div className="flex flex-col gap-10">
-          {experience.map((item, i) => {
+          {sorted.map((item, i) => {
             const isLeft = i % 2 === 0
             const Icon = item.type === 'education' ? GraduationCap : Briefcase
 
