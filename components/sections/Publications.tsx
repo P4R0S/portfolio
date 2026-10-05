@@ -35,11 +35,21 @@ export function Publications() {
                     {pub.area}
                   </span>
                   <span className="text-slate-600 text-xs">{pub.year}</span>
+                  {pub.status === 'under-review' && (
+                    <span className="flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-widest px-2 py-0.5 rounded-full border border-slate-500/30 bg-white/5 text-slate-300">
+                      <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+                      Under review
+                    </span>
+                  )}
                 </div>
                 <h3 className="font-heading font-semibold text-white mb-1 leading-snug">
                   {pub.title}
                 </h3>
-                <p className="text-amber-400/70 text-xs mb-3">{pub.venue}</p>
+                <p className="text-amber-400/70 text-xs mb-3">
+                  {pub.status === 'under-review'
+                    ? `Submitted to ${pub.venue} ${pub.year} · awaiting acceptance`
+                    : pub.venue}
+                </p>
                 <p className="text-slate-400 text-sm leading-relaxed mb-4">{pub.abstract}</p>
                 <div className="flex items-center gap-4">
                   {pub.pdfUrl && (
