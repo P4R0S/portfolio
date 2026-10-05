@@ -11,13 +11,16 @@ const mlAiTags = [
 ]
 
 const hardwareItems = [
-  'FPGA', 'RTL Design', 'Xilinx Vivado',
-  'Yosys / ABC', 'LSOracle', 'Icarus Verilog', 'BLASYS',
+  'FPGA', 'RTL Design', 'Circuit Design', 'Standard Cell Design (VLSI)',
+  'Xilinx Vivado', 'Yosys / ABC', 'LSOracle', 'Icarus Verilog', 'BLASYS',
 ]
 
 const languages = ['Python', 'C / C++', 'Verilog', 'Bash', 'TypeScript', 'JavaScript']
 
-const toolTags = ['LINUX', 'GIT', 'DOCKER', 'HPC / SLURM', 'JUPYTER', 'LATEX']
+const toolTags = [
+  'LINUX', 'GIT', 'DOCKER', 'HPC / SLURM', 'JUPYTER', 'LATEX',
+  'SYNOPSYS DESIGN COMPILER', 'CADENCE INNOVUS', 'QUESTASIM',
+]
 
 // ── Sub-components ────────────────────────────────────────────────────────────
 
