@@ -203,18 +203,16 @@ export function HeroTerminal() {
       className="w-full max-w-[380px] cursor-text relative"
       onClick={() => inputRef.current?.focus()}
     >
+      {/* Float loop — outside the tilt, so the animated layer only moves the already-tilted terminal */}
+      <motion.div
+        animate={{ y: [0, -12, 0] }}
+        transition={{ duration: 4, ease: 'easeInOut', repeat: Infinity }}
+      >
       {/* Static 3D tilt — plain div so Framer Motion doesn't override it */}
       <div
         style={{
           transform: 'perspective(900px) rotateY(-10deg) rotateX(2deg) rotate(3deg) skewX(-2deg)',
-          filter:
-            'drop-shadow(0 40px 60px rgba(0,0,0,0.85)) drop-shadow(0 8px 24px rgba(0,0,0,0.6)) drop-shadow(0 0 50px rgba(255,140,0,0.13))',
         }}
-      >
-      {/* Float loop — separate motion.div so it doesn't fight the transform above */}
-      <motion.div
-        animate={{ y: [0, -12, 0] }}
-        transition={{ duration: 4, ease: 'easeInOut', repeat: Infinity }}
       >
         {/* CRT scanlines */}
         <div
@@ -229,7 +227,11 @@ export function HeroTerminal() {
           className="rounded-xl overflow-hidden border border-[rgba(255,179,0,0.28)]"
           style={{
             background: 'rgba(13,8,0,0.96)',
-            boxShadow: '0 2px 0 rgba(255,179,0,0.15) inset, 0 -1px 0 rgba(0,0,0,0.8) inset',
+            // Drop shadows live here as box-shadow, not as a `filter` on the tilted wrapper:
+            // a filter can force the whole terminal into a bitmap before the 3D tilt, softening the text.
+            boxShadow:
+              '0 2px 0 rgba(255,179,0,0.15) inset, 0 -1px 0 rgba(0,0,0,0.8) inset, ' +
+              '0 40px 60px rgba(0,0,0,0.85), 0 8px 24px rgba(0,0,0,0.6), 0 0 50px rgba(255,140,0,0.13)',
           }}
         >
           {/* Chrome */}
@@ -292,8 +294,8 @@ export function HeroTerminal() {
             </div>
           </div>
         </div>
-      </motion.div>
       </div>
+      </motion.div>
 
       {/* Hidden input */}
       <input
