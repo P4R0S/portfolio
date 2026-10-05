@@ -13,10 +13,10 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const { name, email, message, website } = body
+    const { name, email, message, extra } = body
 
     // Honeypot: real visitors never see or fill this field. Pretend success so bots don't adapt.
-    if (website) {
+    if (extra) {
       return NextResponse.json({ success: true })
     }
 

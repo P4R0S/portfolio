@@ -2,16 +2,17 @@ import { cn } from '@/lib/utils'
 
 interface LogoProps {
   className?: string
+  /** Set when the name is already visible next to the logo, so screen readers don't repeat it */
+  decorative?: boolean
 }
 
 /** "PR" monogram set in a chip package — pins on four sides, pin-1 marker top-left. */
-export function Logo({ className }: LogoProps) {
+export function Logo({ className, decorative = false }: LogoProps) {
   return (
     <svg
       viewBox="0 0 48 48"
       fill="none"
-      role="img"
-      aria-label="Parsa Rostamzadeh"
+      {...(decorative ? { 'aria-hidden': true } : { role: 'img', 'aria-label': 'Parsa Rostamzadeh' })}
       className={cn('w-8 h-8', className)}
     >
       <path

@@ -10,8 +10,9 @@ type Status = 'idle' | 'loading' | 'success' | 'error'
 export function Contact() {
   const [status, setStatus] = useState<Status>('idle')
   const [errorMsg, setErrorMsg] = useState('')
-  // `website` is a honeypot: hidden from people, but bots tend to fill it in
-  const [form, setForm] = useState({ name: '', email: '', message: '', website: '' })
+  // `extra` is a honeypot: hidden from people, but bots tend to fill it in.
+  // Deliberately non-semantic so browser autofill / password managers leave it empty.
+  const [form, setForm] = useState({ name: '', email: '', message: '', extra: '' })
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault()
@@ -30,7 +31,7 @@ export function Contact() {
         setStatus('error')
       } else {
         setStatus('success')
-        setForm({ name: '', email: '', message: '', website: '' })
+        setForm({ name: '', email: '', message: '', extra: '' })
       }
     } catch {
       setErrorMsg('Network error. Please try again.')
@@ -132,14 +133,14 @@ export function Contact() {
               </div>
 
               <div aria-hidden="true" className="absolute -left-[10000px] w-px h-px overflow-hidden">
-                <label htmlFor="website">Website</label>
+                <label htmlFor="contact-extra">Leave this field empty</label>
                 <input
-                  id="website"
+                  id="contact-extra"
                   type="text"
                   tabIndex={-1}
                   autoComplete="off"
-                  value={form.website}
-                  onChange={(e) => setForm({ ...form, website: e.target.value })}
+                  value={form.extra}
+                  onChange={(e) => setForm({ ...form, extra: e.target.value })}
                 />
               </div>
 

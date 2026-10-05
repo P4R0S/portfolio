@@ -14,7 +14,7 @@ export function Footer() {
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
 
         <div className="flex items-center gap-3">
-          <Logo className="w-7 h-7" />
+          <Logo className="w-7 h-7" decorative />
           <div className="flex flex-col leading-tight text-center md:text-left">
             <span className="font-heading font-semibold text-sm text-slate-200">Parsa Rostamzadeh</span>
             <span className="text-xs text-slate-500">© {new Date().getFullYear()} · Paderborn, Germany</span>

@@ -12,7 +12,7 @@
   - Skills lists live in `components/sections/Skills.tsx`; the terminal's `skills` output in `HeroTerminal.tsx` should be kept in sync with them.
   - Publications have an optional `status: 'under-review'` (shown as a badge, excluded from the "Papers Published" stat). Publications intentionally carry no PDF/DOI links.
 - Routes: `/`, `/hobbies`, plus `app/not-found.tsx` (branded 404). The CV page was removed; CV buttons open `ComingSoonModal`.
-- The contact flow is client form → `app/api/contact/route.ts` → Resend email delivery (honeypot field `website`, length limits mirrored on both sides; needs `RESEND_API_KEY`).
+- The contact flow is client form → `app/api/contact/route.ts` → Resend email delivery (honeypot field `extra`, length limits mirrored on both sides; needs `RESEND_API_KEY`).
 - SEO: `app/icon.svg`, `app/favicon.ico`, `app/apple-icon.png`, `app/opengraph-image.tsx`, `app/sitemap.ts`, `app/robots.ts`; absolute URLs come from `lib/site.ts` (`SITE_URL`, else Vercel's production URL).
 
 ## Conventions

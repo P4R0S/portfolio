@@ -15,7 +15,7 @@ Built with Next.js (App Router) and deployed on Vercel.
   and a honeypot spam filter.
 - **Branded 404 page**, chip-monogram logo and favicon set, generated link-preview image,
   `sitemap.xml`, and `robots.txt`.
-- Responsive from phone to desktop; respects `prefers-reduced-motion`.
+- Responsive from phone to desktop; CSS animations respect `prefers-reduced-motion`.
 
 ## Tech stack
 
