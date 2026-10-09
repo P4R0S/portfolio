@@ -5,6 +5,7 @@ export type PublicationStatus = 'published' | 'under-review'
 export interface Publication {
   title: string
   venue: string
+  venueShort?: string         // e.g. 'DATE', shown with the year on the CV
   year: number
   area: ResearchArea
   status?: PublicationStatus  // defaults to 'published'
@@ -15,6 +16,7 @@ export const publications: Publication[] = [
   {
     title: 'Divide et Approxima: Scalable Design Space Exploration for Approximate Accelerators via Partitioning and Sensitivity-driven Error Allocation',
     venue: 'Design, Automation and Test in Europe Conference (DATE)',
+    venueShort: 'DATE',
     year: 2027,
     area: 'Approximate Computing',
     status: 'under-review',
@@ -24,6 +26,7 @@ export const publications: Publication[] = [
   {
     title: 'CLAS: A Cross-Layer Approximate Synthesis Framework for LUT-based DNN Accelerators',
     venue: 'International Conference on Architecture of Computing Systems (ARCS)',
+    venueShort: 'ARCS',
     year: 2026,
     area: 'Approximate Computing',
     abstract:

@@ -55,6 +55,20 @@
   --dot: rgba(255, 255, 255, 0.1);                 /* hobby carousel dots */
   --bloom-opacity: 0.3;  --bloom-opacity-active: 0.65;
   --hobby-dim: blur(0.4px) saturate(0.55) brightness(0.72);
+
+  /* CV sheet (/cv): a printed-document look, identical in both themes */
+  --cv-accent: #8b2e2e;            /* burgundy rules, dots, company names (8.3:1 on paper) */
+  --cv-paper: #ffffff;
+  --cv-ink: #1a1a1a;
+  --cv-ink-soft: #2c2c2c;
+  --cv-muted: #4a5565;             /* 7.6:1 on paper */
+  --cv-subtle: #6a7282;            /* 4.8:1 on paper */
+  --cv-rule: #e0e0e0;
+  --cv-side-from: #2c2c2c;
+  --cv-side-to: #1a1a1a;
+  --cv-side-muted: #99a1af;        /* 5.4:1 on the sidebar */
+  --cv-side-ink: #ffffff;
+  --cv-accent-on-bg: #d27474;      /* burgundy on the page background, dark: 5.5:1 */
 }
 
 /* Light theme ("Paper & Ember"). Set by the inline script in app/layout.tsx. */
@@ -107,6 +121,8 @@
   --dot: rgba(24, 24, 27, 0.15);
   --bloom-opacity: 0.12;  --bloom-opacity-active: 0.3;
   --hobby-dim: blur(0.4px) saturate(0.6) opacity(0.6);
+
+  --cv-accent-on-bg: #8b2e2e;      /* light: 7.8:1 on paper */
 }
 
 /* `light:` variant for the rare one-off that a token can't express */
