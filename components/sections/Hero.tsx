@@ -5,7 +5,7 @@ import { ArrowDown, ArrowRight, Download } from 'lucide-react'
 import { GlassCard } from '@/components/ui/GlassCard'
 import { GradientText } from '@/components/ui/GradientText'
 import { HeroTerminal } from '@/components/terminal/HeroTerminal'
-import { ComingSoonModal } from '@/components/ui/ComingSoonModal'
+import Link from 'next/link'
 
 const roles = [
   'Research Assistant',
@@ -22,7 +22,6 @@ export interface HeroStat {
 /** `stats` are computed server-side from `content/` (see app/page.tsx). */
 export function Hero({ stats }: { stats: HeroStat[] }) {
   const [roleIndex, setRoleIndex] = useState(0)
-  const [cvOpen, setCvOpen] = useState(false)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -92,12 +91,12 @@ export function Hero({ stats }: { stats: HeroStat[] }) {
               >
                 View Projects <ArrowRight className="w-4 h-4" />
               </a>
-              <button
-                onClick={() => setCvOpen(true)}
+              <Link
+                href="/cv"
                 className="flex items-center gap-2 px-6 py-3 rounded-xl border border-accent/30 hover:border-accent/60 text-fg-soft hover:text-accent-fg font-medium transition-colors duration-200 cursor-pointer w-full sm:w-auto justify-center"
               >
                 View CV <Download className="w-4 h-4" />
-              </button>
+              </Link>
             </div>
 
             {/* Stat cards */}
@@ -129,7 +128,6 @@ export function Hero({ stats }: { stats: HeroStat[] }) {
         <ArrowDown className="w-5 h-5" />
       </a>
 
-      <ComingSoonModal open={cvOpen} onClose={() => setCvOpen(false)} />
     </section>
   )
 }

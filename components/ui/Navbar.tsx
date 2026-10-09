@@ -4,7 +4,6 @@ import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { ComingSoonModal } from '@/components/ui/ComingSoonModal'
 import { Logo } from '@/components/ui/Logo'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
 
@@ -19,7 +18,6 @@ const anchorLinks = [
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
-  const [cvOpen, setCvOpen] = useState(false)
   const pathname = usePathname()
   const isHome = pathname === '/'
 
@@ -68,12 +66,15 @@ export function Navbar() {
           >
             Hobbies
           </Link>
-          <button
-            onClick={() => setCvOpen(true)}
-            className="text-sm text-fg-2 hover:text-fg transition-colors duration-200 cursor-pointer"
+          <Link
+            href="/cv"
+            className={cn(
+              'text-sm transition-colors duration-200 cursor-pointer',
+              pathname === '/cv' ? 'text-fg font-medium' : 'text-fg-2 hover:text-fg'
+            )}
           >
             CV
-          </button>
+          </Link>
           <a
             href={contactHref}
             className="px-4 py-2 rounded-xl bg-accent-tint border border-accent/30 text-accent-fg hover:bg-accent-tint-hover text-sm font-medium transition-colors duration-200 cursor-pointer"
@@ -119,12 +120,16 @@ export function Navbar() {
           >
             Hobbies
           </Link>
-          <button
-            onClick={() => { setOpen(false); setCvOpen(true) }}
-            className="py-1 text-left text-fg-soft hover:text-fg transition-colors duration-200 cursor-pointer"
+          <Link
+            href="/cv"
+            onClick={() => setOpen(false)}
+            className={cn(
+              'py-1 transition-colors duration-200 cursor-pointer',
+              pathname === '/cv' ? 'text-fg font-medium' : 'text-fg-soft hover:text-fg'
+            )}
           >
             CV
-          </button>
+          </Link>
           <a
             href={contactHref}
             onClick={() => setOpen(false)}
@@ -134,7 +139,6 @@ export function Navbar() {
           </a>
         </div>
       )}
-      <ComingSoonModal open={cvOpen} onClose={() => setCvOpen(false)} />
     </nav>
   )
 }
