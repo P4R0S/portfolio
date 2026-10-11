@@ -49,6 +49,9 @@
   --warm-fg: color-mix(in oklab, oklch(82.8% 0.189 84.429) 70%, transparent); /* venue lines */
   --danger: oklch(70.4% 0.191 22.216);             /* red-400 */
   --btn: #27272a;  --btn-hover: #3f3f46;  --btn-fg: #fafafa;   /* primary solid button */
+  --cta: #fb923c;  --cta-hover: #fdba74;  --cta-fg: #18181b;   /* solid orange button (8:1) */
+  --field: color-mix(in oklab, #000 22%, transparent);  --field-line: color-mix(in oklab, #fff 16%, transparent);  /* form inputs */
+  --danger-tint: color-mix(in oklab, oklch(70.4% 0.191 22.216) 10%, transparent);
   --nav-scrolled: color-mix(in oklab, #18181b 50%, transparent);
   --nav-shadow: rgb(0 0 0 / 0.2);
   --tl-1: oklch(75% 0.183 55.934);  --tl-2: oklch(82.8% 0.189 84.429);  --tl-3: oklch(55.2% 0.016 285.938);
@@ -115,6 +118,9 @@
   --warm-fg: #b45309;
   --danger: #b91c1c;
   --btn: #18181b;  --btn-hover: #3f3f46;  --btn-fg: #fafafa;
+  --cta: #c2410c;  --cta-hover: #9a3412;  --cta-fg: #ffffff;   /* 5.2:1 */
+  --field: #ffffff;  --field-line: #d4ccc1;
+  --danger-tint: #fef2f2;
   --nav-scrolled: rgb(250 248 245 / 0.82);
   --nav-shadow: rgb(24 24 27 / 0.08);
   --tl-1: #ea580c;  --tl-2: #f59e0b;  --tl-3: #e7e2da;
@@ -151,6 +157,12 @@
   --color-btn: var(--btn);
   --color-btn-hover: var(--btn-hover);
   --color-btn-fg: var(--btn-fg);
+  --color-cta: var(--cta);
+  --color-cta-hover: var(--cta-hover);
+  --color-cta-fg: var(--cta-fg);
+  --color-field: var(--field);
+  --color-field-line: var(--field-line);
+  --color-danger-tint: var(--danger-tint);
 }
 
 @theme {
