@@ -53,7 +53,7 @@ There is no separate test suite; `npm run lint` and `npm run build` are the chec
 | Variable | Required | Purpose |
 | --- | --- | --- |
 | `RESEND_API_KEY` | Yes, for the contact form | API key used by `app/api/contact/route.ts` |
-| `SITE_URL` | No | Absolute site URL (e.g. `https://example.com`) for metadata, sitemap, and robots. On Vercel it falls back to the production deployment URL automatically. |
+| `SITE_URL` | No | Overrides the absolute site URL used for metadata, sitemap, and robots. Defaults to `https://www.p4ros.de` on Vercel and `http://localhost:3000` locally. |
 
 Locally, put them in `.env.local` (git-ignored). On Vercel, set them under **Project → Settings → Environment Variables**.
 

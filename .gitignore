@@ -50,3 +50,6 @@ memory/
 
 # Generated code graph (local tooling)
 graphify-out/
+
+# Local screenshots (may contain secrets)
+/img*.png

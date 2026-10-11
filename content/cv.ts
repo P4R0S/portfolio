@@ -41,7 +41,7 @@ export const cvContact: CvContactRow[] = [
   { label: 'Location', value: 'Paderborn, Germany' },
   { label: 'LinkedIn', value: 'linkedin.com/in/parsa-rostamzadeh' },
   { label: 'GitHub', value: 'github.com/P4R0S' },
-  { label: 'Website', value: 'www.p4r0s.dev' },
+  { label: 'Website', value: 'p4ros.de' },
 ]
 
 export const cvLanguages = [
