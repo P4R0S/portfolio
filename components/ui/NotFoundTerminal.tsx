@@ -17,9 +17,9 @@ export function NotFoundTerminal() {
         <span className="w-3 h-3 rounded-full bg-[#ff5f57]" />
         <span className="w-3 h-3 rounded-full bg-[#febc2e]" />
         <span className="w-3 h-3 rounded-full bg-[#28c840]" />
-        <span className="ml-3 font-mono text-[11px] text-[#a36e07] tracking-wide">paros@paderborn — zsh</span>
+        <span className="ml-3 font-mono text-[0.6875rem] text-[#a36e07] tracking-wide">paros@paderborn — zsh</span>
       </div>
-      <div className="p-4 sm:p-5 font-mono text-xs sm:text-[13px] leading-relaxed">
+      <div className="p-4 sm:p-5 font-mono text-xs sm:text-[0.8125rem] leading-relaxed">
         <div className="break-all">
           <span className="text-[#ffb300]">paros@paderborn</span>
           <span className="text-[#bfbfbd]">:~$ </span>
@@ -30,7 +30,7 @@ export function NotFoundTerminal() {
           <span className="text-[#ffb300]">paros@paderborn</span>
           <span className="text-[#bfbfbd]">:~$ </span>
           <span className="text-[#ffd54f]">cd ~</span>
-          <span className="inline-block w-[8px] h-[15px] bg-[#ffb300] ml-1 rounded-[1px] align-[-3px] animate-[cursor-blink_1s_step-end_infinite]" />
+          <span className="inline-block w-[0.5rem] h-[0.9375rem] bg-[#ffb300] ml-1 rounded-[1px] align-[-3px] animate-[cursor-blink_1s_step-end_infinite]" />
         </div>
       </div>
     </div>

@@ -41,7 +41,7 @@ export function Experience() {
 
                 {/* Card */}
                 <div className={`ml-12 md:ml-0 md:w-[calc(50%-2rem)] ${isLeft ? 'md:mr-8' : 'md:ml-8'}`}>
-                  <GlassCard className="p-5">
+                  <GlassCard className="p-6 md:p-8">
                     <div className="flex items-start justify-between gap-4 mb-3">
                       <div>
                         <h3 className="font-heading font-semibold text-fg text-sm leading-snug">

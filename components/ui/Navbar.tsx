@@ -41,7 +41,7 @@ export function Navbar() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14">
         {/* Logo — always goes home */}
         <Link href="/" aria-label="Home" className="cursor-pointer transition-transform duration-200 hover:scale-105">
-          <Logo className="w-[34px] h-[34px]" />
+          <Logo className="w-[2.125rem] h-[2.125rem]" />
         </Link>
 
         {/* Desktop links */}

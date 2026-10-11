@@ -209,7 +209,7 @@ export function HeroTerminal() {
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.7, ease: 'easeOut', delay: 0.3 }}
-      className="w-full max-w-[380px] cursor-text relative"
+      className="w-full max-w-[23.75rem] cursor-text relative"
       onClick={() => inputRef.current?.focus()}
     >
       {/* Float loop — outside the tilt, so the animated layer only moves the already-tilted terminal */}
@@ -248,13 +248,13 @@ export function HeroTerminal() {
             <span className="w-3 h-3 rounded-full bg-[#ff5f57] shadow-[0_0_6px_rgba(255,95,87,0.6)]" />
             <span className="w-3 h-3 rounded-full bg-[#febc2e] shadow-[0_0_6px_rgba(254,188,46,0.5)]" />
             <span className="w-3 h-3 rounded-full bg-[#28c840] shadow-[0_0_6px_rgba(40,200,64,0.5)]" />
-            <span className="ml-3 font-mono text-[9px] text-[#a36e07] tracking-wide">paros@paderborn — portfolio v2.0</span>
+            <span className="ml-3 font-mono text-[0.5625rem] text-[#a36e07] tracking-wide">paros@paderborn — portfolio v2.0</span>
           </div>
 
           {/* Body */}
           <div
             ref={bodyRef}
-            className="p-4 font-mono text-[11px] leading-[1.85] max-h-[260px] overflow-y-auto"
+            className="p-4 font-mono text-[0.6875rem] leading-[1.85] max-h-[16.25rem] overflow-y-auto"
             style={{ scrollbarWidth: 'none' }}
           >
             {/* Hint */}
@@ -299,7 +299,7 @@ export function HeroTerminal() {
               <span className="text-[#ffb300]">paros@paderborn</span>
               <span className="text-[#bfbfbd]">:~$ </span>
               <span className="text-[#ffd54f]">{input}</span>
-              <span className="inline-block w-[7px] h-[13px] bg-[#ffb300] ml-px rounded-[1px] animate-[cursor-blink_1s_step-end_infinite]" />
+              <span className="inline-block w-[0.4375rem] h-[0.8125rem] bg-[#ffb300] ml-px rounded-[1px] animate-[cursor-blink_1s_step-end_infinite]" />
             </div>
           </div>
         </div>

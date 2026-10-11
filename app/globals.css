@@ -179,8 +179,14 @@
 }
 
 /* Base styles */
+/* Fluid scale: the root font size is 16px up to a 1280px-wide window and grows to 24px at
+   1920px, so a 1080p screen shows the layout the way a 1280px window does (like 150% browser
+   zoom). Sizes are in rem so everything scales together; phones and tablets stay at 16px.
+   The vh term keeps the scale from outgrowing short windows. Media queries are unaffected
+   (rem there always means the browser default). Smooth scrolling is set by the
+   `motion-safe:scroll-smooth` class in app/layout.tsx. */
 html {
-  scroll-behavior: smooth;
+  font-size: clamp(100%, min(1.25vw, 2.5vh), 150%);
 }
 
 body {

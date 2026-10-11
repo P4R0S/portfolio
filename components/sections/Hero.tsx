@@ -31,7 +31,7 @@ export function Hero({ stats }: { stats: HeroStat[] }) {
   }, [])
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8 pt-20">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8 pt-24 pb-16">
       {/* Orb blobs */}
       <div
         className="absolute top-1/4 right-[10%] w-72 h-72 md:w-96 md:h-96 rounded-full bg-[var(--orb-1)] blur-3xl animate-orb-1 pointer-events-none"
@@ -52,19 +52,19 @@ export function Hero({ stats }: { stats: HeroStat[] }) {
             className="flex-1 text-center lg:text-left"
             style={{ animation: 'fadeUp 0.7s ease-out both' }}
           >
-            <p className="text-fg-3 text-xs tracking-[0.25em] uppercase mb-6">
+            <p className="text-fg-3 text-xs tracking-[0.25em] uppercase mb-4">
               Welcome — I build things that matter
             </p>
 
             <h1
-              className="font-heading font-bold leading-none mb-6"
-              style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)' }}
+              className="font-heading font-bold leading-none mb-4"
+              style={{ fontSize: 'clamp(2.5rem, 5vw, 4.25rem)' }}
             >
               <GradientText>Parsa Rostamzadeh</GradientText>
             </h1>
 
             {/* Animated role switcher */}
-            <div className="h-10 flex items-center lg:justify-start justify-center mb-8 overflow-hidden">
+            <div className="h-10 flex items-center lg:justify-start justify-center mb-5 overflow-hidden">
               <AnimatePresence mode="wait" initial={false}>
                 <motion.p
                   key={roleIndex}
@@ -79,12 +79,12 @@ export function Hero({ stats }: { stats: HeroStat[] }) {
               </AnimatePresence>
             </div>
 
-            <p className="text-fg-2 text-base md:text-lg max-w-xl lg:mx-0 mx-auto mb-10 leading-relaxed">
+            <p className="text-fg-2 text-base md:text-lg max-w-xl lg:mx-0 mx-auto mb-7 leading-relaxed">
               Building intelligent systems at the intersection of software, hardware, and machine learning.
             </p>
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-4 mb-10">
+            <div className="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-4 mb-7">
               <a
                 href="#projects"
                 className="flex items-center gap-2 px-6 py-3 rounded-xl bg-btn hover:bg-btn-hover text-btn-fg font-medium transition-colors duration-200 cursor-pointer w-full sm:w-auto justify-center"
@@ -102,7 +102,7 @@ export function Hero({ stats }: { stats: HeroStat[] }) {
             {/* Stat cards */}
             <div className="grid grid-cols-3 gap-3 max-w-sm lg:mx-0 mx-auto">
               {stats.map((stat) => (
-                <GlassCard key={stat.label} className="p-4 text-center">
+                <GlassCard key={stat.label} className="p-3 text-center">
                   <div className="text-2xl font-bold font-heading text-fg">{stat.value}</div>
                   <div className="text-xs text-fg-3 mt-1 leading-tight">{stat.label}</div>
                 </GlassCard>

@@ -25,7 +25,7 @@ const toolTags = [
 
 function CardNumber({ children, color }: { children: string; color: string }) {
   return (
-    <span className={`font-bold leading-none select-none ${color}`} style={{ fontSize: 'clamp(48px, 6vw, 96px)' }}>
+    <span className={`font-bold leading-none select-none ${color}`} style={{ fontSize: 'clamp(3rem, 6vw, 6rem)' }}>
       {children}
     </span>
   )
@@ -49,7 +49,7 @@ export function Skills() {
 
         {/* ── 01 ML / AI — large top-left card ── */}
         <div
-          className="relative overflow-hidden rounded-[32px] p-8 shadow-[0_20px_40px_var(--card-shadow)]
+          className="relative overflow-hidden rounded-[2rem] p-8 shadow-[0_20px_40px_var(--card-shadow)]
                      md:col-span-8 md:row-start-1"
           style={{ background: 'var(--raised)' }}
         >
@@ -64,7 +64,7 @@ export function Skills() {
             <div className="flex items-start justify-between">
               <div className="flex flex-col gap-4">
                 <Brain className="w-7 h-7 text-accent-fg" />
-                <h3 className="font-bold text-[30px] leading-9 text-fg">ML / AI</h3>
+                <h3 className="font-bold text-[1.875rem] leading-9 text-fg">ML / AI</h3>
               </div>
               <CardNumber color="text-[color-mix(in_srgb,var(--accent-hex)_20%,transparent)]">01</CardNumber>
             </div>
@@ -74,7 +74,7 @@ export function Skills() {
               {mlAiTags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-[17px] py-[7px] rounded-full text-[12px] font-medium text-fg"
+                  className="px-[1.0625rem] py-[0.4375rem] rounded-full text-[0.75rem] font-medium text-fg"
                   style={{ background: 'var(--raised-2)' }}
                 >
                   {tag}
@@ -86,7 +86,7 @@ export function Skills() {
 
         {/* ── 02 Hardware — tall right card (spans both rows) ── */}
         <div
-          className="relative overflow-hidden rounded-[32px] p-8 shadow-[0_20px_40px_var(--card-shadow)]
+          className="relative overflow-hidden rounded-[2rem] p-8 shadow-[0_20px_40px_var(--card-shadow)]
                      md:col-span-4 md:row-start-1 md:row-span-2"
           style={{ background: 'var(--raised)' }}
         >
@@ -101,13 +101,13 @@ export function Skills() {
             <div className="flex items-start justify-between">
               <div className="flex flex-col gap-4">
                 <Cpu className="w-7 h-7 text-accent-fg-hover" />
-                <h3 className="font-bold text-[30px] leading-9 text-fg">Hardware</h3>
+                <h3 className="font-bold text-[1.875rem] leading-9 text-fg">Hardware</h3>
               </div>
               <CardNumber color="text-[color-mix(in_srgb,var(--accent-hex)_20%,transparent)]">02</CardNumber>
             </div>
 
             {/* Description */}
-            <p className="text-[14px] leading-relaxed font-light text-fg-2">
+            <p className="text-[0.875rem] leading-relaxed font-light text-fg-2">
               Synthesis and verification at the gate-level,
               optimizing for specific silicon constraints.
             </p>
@@ -117,7 +117,7 @@ export function Skills() {
               {hardwareItems.map((item) => (
                 <li key={item} className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
-                  <span className="text-[14px] font-medium text-fg">{item}</span>
+                  <span className="text-[0.875rem] font-medium text-fg">{item}</span>
                 </li>
               ))}
             </ul>
@@ -126,7 +126,7 @@ export function Skills() {
 
         {/* ── 03 Languages — bottom-left card ── */}
         <div
-          className="relative overflow-hidden rounded-[32px] p-8 shadow-[0_20px_40px_var(--card-shadow)]
+          className="relative overflow-hidden rounded-[2rem] p-8 shadow-[0_20px_40px_var(--card-shadow)]
                      md:col-span-4 md:row-start-2"
           style={{ background: 'var(--raised)' }}
         >
@@ -141,7 +141,7 @@ export function Skills() {
             <div className="flex items-start justify-between">
               <div className="flex flex-col gap-4">
                 <Code2 className="w-7 h-7 text-accent-fg" />
-                <h3 className="font-bold text-[24px] leading-8 text-fg">Languages</h3>
+                <h3 className="font-bold text-[1.5rem] leading-8 text-fg">Languages</h3>
               </div>
               <CardNumber color="text-[color-mix(in_srgb,var(--accent-hex)_20%,transparent)]">03</CardNumber>
             </div>
@@ -149,7 +149,7 @@ export function Skills() {
             {/* 2-col language grid */}
             <div className="grid grid-cols-2 gap-x-4 gap-y-2">
               {languages.map((lang) => (
-                <span key={lang} className="text-[13px] text-fg-soft font-mono">
+                <span key={lang} className="text-[0.8125rem] text-fg-soft font-mono">
                   {lang}
                 </span>
               ))}
@@ -159,7 +159,7 @@ export function Skills() {
 
         {/* ── 04 Tools & Infra — bottom-middle card ── */}
         <div
-          className="relative overflow-hidden rounded-[32px] p-8 shadow-[0_20px_40px_var(--card-shadow)]
+          className="relative overflow-hidden rounded-[2rem] p-8 shadow-[0_20px_40px_var(--card-shadow)]
                      md:col-span-4 md:row-start-2"
           style={{ background: 'var(--raised)' }}
         >
@@ -174,7 +174,7 @@ export function Skills() {
             <div className="flex items-start justify-between">
               <div className="flex flex-col gap-4">
                 <Wrench className="w-7 h-7 text-accent-fg" />
-                <h3 className="font-bold text-[24px] leading-8 text-fg">Tools &amp; Infra</h3>
+                <h3 className="font-bold text-[1.5rem] leading-8 text-fg">Tools &amp; Infra</h3>
               </div>
               <CardNumber color="text-[color-mix(in_srgb,var(--accent-hex)_20%,transparent)]">04</CardNumber>
             </div>
@@ -184,7 +184,7 @@ export function Skills() {
               {toolTags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-3 py-1 rounded-2xl text-[12px] font-medium text-fg"
+                  className="px-3 py-1 rounded-2xl text-[0.75rem] font-medium text-fg"
                   style={{ background: 'var(--raised-2)' }}
                 >
                   {tag}

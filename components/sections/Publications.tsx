@@ -27,17 +27,17 @@ export function Publications() {
 
       <div className="flex flex-col gap-4">
         {sorted.map((pub) => (
-          <GlassCard key={pub.title} className="p-6">
+          <GlassCard key={pub.title} className="p-6 md:p-8">
             <div className="flex flex-col sm:flex-row sm:items-start gap-4">
               <FileText className="w-5 h-5 text-fg-3 shrink-0 mt-0.5" />
               <div className="flex-1 min-w-0">
                 <div className="flex flex-wrap items-center gap-2 mb-2">
-                  <span className={cn('text-[10px] font-medium uppercase tracking-widest px-2 py-0.5 rounded-full border', areaColors[pub.area])}>
+                  <span className={cn('text-[0.625rem] font-medium uppercase tracking-widest px-2 py-0.5 rounded-full border', areaColors[pub.area])}>
                     {pub.area}
                   </span>
                   <span className="text-fg-3 text-xs">{pub.year}</span>
                   {pub.status === 'under-review' && (
-                    <span className="flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-widest px-2 py-0.5 rounded-full border border-line bg-surface text-fg-soft">
+                    <span className="flex items-center gap-1.5 text-[0.625rem] font-medium uppercase tracking-widest px-2 py-0.5 rounded-full border border-line bg-surface text-fg-soft">
                       <span className="w-1.5 h-1.5 rounded-full bg-warm animate-pulse" />
                       Under review
                     </span>

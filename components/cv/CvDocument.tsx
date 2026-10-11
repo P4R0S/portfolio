@@ -25,7 +25,7 @@ const reveal = (delay: number) => ({
 function SidebarHeading({ children }: { children: React.ReactNode }) {
   return (
     <div className="border-b pb-1 mb-2.5" style={{ borderColor: 'var(--cv-accent)' }}>
-      <p className="text-[14px] font-semibold tracking-[2.8px] uppercase" style={{ ...serif, color: 'var(--cv-side-ink)' }}>
+      <p className="text-[0.875rem] font-semibold tracking-[0.175rem] uppercase" style={{ ...serif, color: 'var(--cv-side-ink)' }}>
         {children}
       </p>
     </div>
@@ -35,7 +35,7 @@ function SidebarHeading({ children }: { children: React.ReactNode }) {
 function MainHeading({ children }: { children: React.ReactNode }) {
   return (
     <div className="border-b pb-1 mb-5" style={{ borderColor: 'var(--cv-rule)' }}>
-      <h2 className="text-[16px] font-semibold tracking-[2.4px] uppercase" style={{ ...serif, color: 'var(--cv-ink)' }}>
+      <h2 className="text-[1rem] font-semibold tracking-[0.15rem] uppercase" style={{ ...serif, color: 'var(--cv-ink)' }}>
         {children}
       </h2>
     </div>
@@ -45,8 +45,8 @@ function MainHeading({ children }: { children: React.ReactNode }) {
 function Bullet({ children }: { children: React.ReactNode }) {
   return (
     <li className="flex gap-3 items-start">
-      <span className="text-[8px] mt-1.5 shrink-0" style={{ color: 'var(--cv-accent)' }} aria-hidden="true">●</span>
-      <span className="text-[14px] leading-snug" style={{ ...sans(300), color: 'var(--cv-ink-soft)' }}>{children}</span>
+      <span className="text-[0.5rem] mt-1.5 shrink-0" style={{ color: 'var(--cv-accent)' }} aria-hidden="true">●</span>
+      <span className="text-[0.875rem] leading-snug" style={{ ...sans(300), color: 'var(--cv-ink-soft)' }}>{children}</span>
     </li>
   )
 }
@@ -55,7 +55,7 @@ function StatusPill({ paper }: { paper: Publication }) {
   if (paper.status !== 'under-review') return null
   return (
     <span
-      className="inline-flex items-center rounded-full border px-2 py-px text-[10.5px] uppercase tracking-[1px]"
+      className="inline-flex items-center rounded-full border px-2 py-px text-[0.6562rem] uppercase tracking-[0.0625rem]"
       style={{ ...sans(500), color: 'var(--cv-accent)', borderColor: 'color-mix(in srgb, var(--cv-accent) 40%, transparent)' }}
     >
       Under review
@@ -76,14 +76,14 @@ function PublicationsSection({ delay }: { delay: number }) {
         {papers.map((p) => (
           <li key={p.title} className="flex flex-col gap-1">
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-              <span className="text-[14px]" style={{ ...sans(500), color: 'var(--cv-accent)' }}>{venueLabel(p)}</span>
+              <span className="text-[0.875rem]" style={{ ...sans(500), color: 'var(--cv-accent)' }}>{venueLabel(p)}</span>
               <StatusPill paper={p} />
             </div>
-            <h3 className="text-[17px] leading-snug" style={{ ...serif, fontWeight: 600, color: 'var(--cv-ink)' }}>
+            <h3 className="text-[1.0625rem] leading-snug" style={{ ...serif, fontWeight: 600, color: 'var(--cv-ink)' }}>
               {p.title}
             </h3>
             {p.authors && (
-              <p className="text-[13px]" style={{ ...sans(300), color: 'var(--cv-ink-soft)' }}>
+              <p className="text-[0.8125rem]" style={{ ...sans(300), color: 'var(--cv-ink-soft)' }}>
                 {p.authors.map((a, i) => (
                   <span key={a}>
                     {a === SELF_AUTHOR ? <strong style={{ fontWeight: 600, color: 'var(--cv-ink)' }}>{a}</strong> : a}
@@ -92,7 +92,7 @@ function PublicationsSection({ delay }: { delay: number }) {
                 ))}
               </p>
             )}
-            <p className="text-[13px]" style={{ ...sans(300), color: 'var(--cv-muted)' }}>
+            <p className="text-[0.8125rem]" style={{ ...sans(300), color: 'var(--cv-muted)' }}>
               {p.status === 'under-review'
                 ? `Submitted to ${p.venue}`
                 : [p.venue, p.venueNote].filter(Boolean).join(' · ')}
@@ -107,14 +107,14 @@ function PublicationsSection({ delay }: { delay: number }) {
 function Job({ job }: { job: CvJob }) {
   return (
     <div className="relative">
-      <div className="absolute -left-[27px] top-2 w-3 h-3 rounded-full" style={{ background: 'var(--cv-accent)' }} />
+      <div className="absolute -left-[1.6875rem] top-2 w-3 h-3 rounded-full" style={{ background: 'var(--cv-accent)' }} />
       <div className="flex flex-col gap-0.5 mb-2">
-        <h3 className="text-[20px] leading-tight" style={{ ...serif, fontWeight: 600, color: 'var(--cv-ink)' }}>
+        <h3 className="text-[1.25rem] leading-tight" style={{ ...serif, fontWeight: 600, color: 'var(--cv-ink)' }}>
           {job.role}
         </h3>
         <div className="flex flex-wrap items-center gap-x-3">
-          <span className="text-[14px]" style={{ ...sans(500), color: 'var(--cv-accent)' }}>{job.company}</span>
-          <span className="text-[13px]" style={{ ...sans(400), color: 'var(--cv-muted)' }}>{job.period}</span>
+          <span className="text-[0.875rem]" style={{ ...sans(500), color: 'var(--cv-accent)' }}>{job.company}</span>
+          <span className="text-[0.8125rem]" style={{ ...sans(400), color: 'var(--cv-muted)' }}>{job.period}</span>
         </div>
       </div>
       <ul className="flex flex-col gap-1.5">
@@ -143,15 +143,15 @@ function EducationSection({ delay }: { delay: number }) {
       <div className="flex flex-col gap-5">
         {cvEducation.map((edu) => (
           <div key={edu.degree}>
-            <h3 className="text-[18px] leading-tight mb-1" style={{ ...serif, fontWeight: 600, color: 'var(--cv-ink)' }}>
+            <h3 className="text-[1.125rem] leading-tight mb-1" style={{ ...serif, fontWeight: 600, color: 'var(--cv-ink)' }}>
               {edu.degree}
             </h3>
             <div className="flex flex-wrap items-center gap-x-3 mb-0.5">
-              <span className="text-[13px]" style={{ color: 'var(--cv-subtle)' }} aria-hidden="true">•</span>
-              <span className="text-[14px]" style={{ ...sans(400), color: 'var(--cv-ink-soft)' }}>{edu.school}</span>
-              <span className="text-[13px]" style={{ ...sans(400), color: 'var(--cv-muted)' }}>{edu.period}</span>
+              <span className="text-[0.8125rem]" style={{ color: 'var(--cv-subtle)' }} aria-hidden="true">•</span>
+              <span className="text-[0.875rem]" style={{ ...sans(400), color: 'var(--cv-ink-soft)' }}>{edu.school}</span>
+              <span className="text-[0.8125rem]" style={{ ...sans(400), color: 'var(--cv-muted)' }}>{edu.period}</span>
             </div>
-            <p className="text-[13px] pl-4" style={{ ...sans(300), color: 'var(--cv-muted)' }}>{edu.note}</p>
+            <p className="text-[0.8125rem] pl-4" style={{ ...sans(300), color: 'var(--cv-muted)' }}>{edu.note}</p>
             {edu.highlights && (
               <ul className="flex flex-col gap-1 mt-2 pl-4">
                 {edu.highlights.map((h) => <Bullet key={h}>{h}</Bullet>)}
@@ -178,14 +178,14 @@ export function CvDocument() {
 
       {/* ── SIDEBAR ── (below md it stacks under the main column, so the name comes first) */}
       <motion.aside
-        className="w-full md:w-[280px] print:w-[230px] shrink-0 flex flex-col gap-6 pt-10 px-8 print:px-6 pb-10"
+        className="w-full md:w-[17.5rem] print:w-[14.375rem] shrink-0 flex flex-col gap-6 pt-10 px-8 print:px-6 pb-10"
         style={{ background: 'linear-gradient(180deg, var(--cv-side-from) 0%, var(--cv-side-to) 100%)' }}
         initial={{ opacity: 0, x: -40 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
       >
         <div className="flex justify-center">
-          <div className="w-[180px] h-[180px] rounded-full overflow-hidden border-2" style={{ borderColor: 'color-mix(in srgb, var(--cv-accent) 40%, transparent)' }}>
+          <div className="w-[11.25rem] h-[11.25rem] rounded-full overflow-hidden border-2" style={{ borderColor: 'color-mix(in srgb, var(--cv-accent) 40%, transparent)' }}>
             <Image src="/images/CV_pic.png" alt="Parsa Rostamzadeh" width={180} height={180} className="object-cover w-full h-full" priority />
           </div>
         </div>
@@ -195,8 +195,8 @@ export function CvDocument() {
           <dl className="flex flex-col gap-3">
             {cvContact.map((row) => (
               <div key={row.label} className="flex flex-col gap-0.5">
-                <dt className="text-[11px] tracking-[0.56px] uppercase" style={{ ...sans(400), color: 'var(--cv-side-muted)' }}>{row.label}</dt>
-                <dd className="text-[13px] leading-snug break-all" style={{ ...sans(300), color: 'var(--cv-side-ink)' }}>{row.value}</dd>
+                <dt className="text-[0.6875rem] tracking-[0.035rem] uppercase" style={{ ...sans(400), color: 'var(--cv-side-muted)' }}>{row.label}</dt>
+                <dd className="text-[0.8125rem] leading-snug break-all" style={{ ...sans(300), color: 'var(--cv-side-ink)' }}>{row.value}</dd>
               </div>
             ))}
           </dl>
@@ -207,8 +207,8 @@ export function CvDocument() {
           <div className="flex flex-col gap-3">
             {cvLanguages.map((lang) => (
               <div key={lang.name}>
-                <p className="text-[13px] leading-snug" style={{ ...sans(400), color: 'var(--cv-side-ink)' }}>{lang.name}</p>
-                <p className="text-[11px] leading-snug" style={{ ...sans(300), color: 'var(--cv-side-muted)' }}>{lang.level}</p>
+                <p className="text-[0.8125rem] leading-snug" style={{ ...sans(400), color: 'var(--cv-side-ink)' }}>{lang.name}</p>
+                <p className="text-[0.6875rem] leading-snug" style={{ ...sans(300), color: 'var(--cv-side-muted)' }}>{lang.level}</p>
               </div>
             ))}
           </div>
@@ -219,10 +219,10 @@ export function CvDocument() {
           <div className="flex flex-col gap-4">
             {cvSkills.map((group) => (
               <div key={group.label}>
-                <p className="text-[10px] tracking-[0.56px] uppercase mb-1" style={{ ...sans(400), color: 'var(--cv-side-muted)' }}>{group.label}</p>
+                <p className="text-[0.625rem] tracking-[0.035rem] uppercase mb-1" style={{ ...sans(400), color: 'var(--cv-side-muted)' }}>{group.label}</p>
                 {/* Comma-separated text: reads like a document, prints cleanly, ATS-friendly.
                     Each name is nowrap so lines only break between skills. */}
-                <ul className="text-[12.5px] leading-[1.75]" style={{ ...sans(300), color: 'var(--cv-side-ink)' }}>
+                <ul className="text-[0.7812rem] leading-[1.75]" style={{ ...sans(300), color: 'var(--cv-side-ink)' }}>
                   {group.items.map((skill, i) => (
                     <li key={skill} className="inline">
                       <span className="whitespace-nowrap">{skill}</span>
@@ -254,7 +254,7 @@ export function CvDocument() {
 
         <motion.section {...reveal(0.1)}>
           <MainHeading>Professional Summary</MainHeading>
-          <p className="text-[15px] leading-relaxed" style={{ ...sans(300), color: 'var(--cv-ink-soft)' }}>{cvSummary}</p>
+          <p className="text-[0.9375rem] leading-relaxed" style={{ ...sans(300), color: 'var(--cv-ink-soft)' }}>{cvSummary}</p>
         </motion.section>
 
         <ExperienceSection delay={0.15} />

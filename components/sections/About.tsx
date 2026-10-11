@@ -35,7 +35,7 @@ export function About() {
         </h2>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-8 items-start">
+      <div className="grid md:grid-cols-2 gap-8">
         {/* Left: photo + bio */}
         <GlassCard className="p-6 md:p-8">
           <div className="relative w-32 h-32 rounded-2xl overflow-hidden border border-line mb-6 mx-auto md:mx-0">
@@ -59,16 +59,18 @@ export function About() {
           </p>
         </GlassCard>
 
-        {/* Right: highlight cards */}
+        {/* Right: highlight cards — they share the left card's height, so both columns end together */}
         <div className="flex flex-col gap-4">
           {highlights.map(({ icon: Icon, title, body, color }) => (
-            <GlassCard key={title} hover className="p-5 flex gap-4 items-start">
-              <div className={`mt-0.5 shrink-0 ${color}`}>
-                <Icon className="w-5 h-5" />
-              </div>
-              <div>
-                <h4 className="font-heading font-semibold text-fg mb-1">{title}</h4>
-                <p className="text-fg-2 text-sm leading-relaxed">{body}</p>
+            <GlassCard key={title} hover className="flex-1 p-6 md:p-8 flex flex-col justify-center">
+              <div className="flex gap-4 items-start">
+                <div className={`mt-0.5 shrink-0 ${color}`}>
+                  <Icon className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="font-heading font-semibold text-fg mb-1">{title}</h4>
+                  <p className="text-fg-2 text-sm leading-relaxed">{body}</p>
+                </div>
               </div>
             </GlassCard>
           ))}

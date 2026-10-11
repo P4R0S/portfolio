@@ -20,9 +20,9 @@ export default function HobbiesPage() {
       <div className="relative z-10 pt-24 pb-28">
 
         {/* Hero — constrained */}
-        <div className="max-w-[1000px] mx-auto px-7 mb-20">
+        <div className="max-w-[62.5rem] mx-auto px-7 mb-20">
           <div
-            className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-accent-fg mb-4 px-3 py-1 rounded-full border border-accent/20"
+            className="inline-flex items-center gap-2 text-[0.6875rem] uppercase tracking-[0.2em] text-accent-fg mb-4 px-3 py-1 rounded-full border border-accent/20"
             style={{ background: 'color-mix(in srgb, var(--accent-hex) 8%, transparent)' }}
           >
             ✦ Beyond the code
@@ -43,7 +43,7 @@ export default function HobbiesPage() {
             <br />
             <span className="gradient-text">Interests</span>
           </h1>
-          <p className="text-fg-3 text-base leading-[1.75] max-w-[520px]">
+          <p className="text-fg-3 text-base leading-[1.75] max-w-[32.5rem]">
             There&apos;s a person behind the research. Here&apos;s what I read, watch,
             play, and listen to — a curated collection of things that shaped how I think.
           </p>
@@ -60,7 +60,7 @@ export default function HobbiesPage() {
             }}
           >
             {/* Category header — constrained */}
-            <div className="max-w-[1000px] mx-auto px-7">
+            <div className="max-w-[62.5rem] mx-auto px-7">
               <div className="flex items-center gap-3.5 mb-6">
                 <div
                   className="w-10 h-10 rounded-xl flex items-center justify-center text-xl flex-shrink-0 border border-accent/20"
@@ -71,14 +71,14 @@ export default function HobbiesPage() {
                 >
                   {(() => { const Icon = categoryIcons[category.id]; return Icon ? <Icon className="w-5 h-5 text-accent-fg" /> : null })()}
                 </div>
-                <span className="font-heading font-bold text-[22px] text-fg tracking-tight">
+                <span className="font-heading font-bold text-[1.375rem] text-fg tracking-tight">
                   {category.label}
                 </span>
                 <span className="text-xs text-fg-3 font-medium ml-1">
                   drag to explore
                 </span>
                 <span
-                  className="ml-auto text-[11px] text-fg-3 border border-line px-2.5 py-0.5 rounded-full font-medium"
+                  className="ml-auto text-[0.6875rem] text-fg-3 border border-line px-2.5 py-0.5 rounded-full font-medium"
                   style={{ background: 'var(--nav-idle)' }}
                 >
                   {category.items.length} favorites

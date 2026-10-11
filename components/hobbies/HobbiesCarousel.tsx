@@ -233,7 +233,7 @@ export function HobbiesCarousel({ category }: Props) {
               key={i}
               className={cn(
                 'hobby-item flex-shrink-0',
-                item.aspect === 'portrait' ? 'w-[260px]' : 'w-[290px]'
+                item.aspect === 'portrait' ? 'w-[16.25rem]' : 'w-[18.125rem]'
               )}
             >
               {/* Ambient bloom — behind the card */}
@@ -243,12 +243,12 @@ export function HobbiesCarousel({ category }: Props) {
               />
 
               {/* Glass card */}
-              <div className="hobby-glass-card rounded-[20px] overflow-hidden">
+              <div className="hobby-glass-card rounded-[1.25rem] overflow-hidden">
                 {/* Cover — full card height, label overlays at bottom */}
                 <div
                   className={cn(
-                    'relative w-full overflow-hidden rounded-[20px]',
-                    item.aspect === 'portrait' ? 'h-[390px]' : 'h-[290px]'
+                    'relative w-full overflow-hidden rounded-[1.25rem]',
+                    item.aspect === 'portrait' ? 'h-[24.375rem]' : 'h-[18.125rem]'
                   )}
                 >
                   {item.cover ? (
@@ -289,7 +289,7 @@ export function HobbiesCarousel({ category }: Props) {
                   <div
                     style={{
                       position: 'absolute', bottom: 0, left: 0, right: 0,
-                      padding: '10px 13px 13px',
+                      padding: '0.625rem 0.8125rem 0.8125rem',
                       backdropFilter: 'blur(20px) saturate(1.8) brightness(1.05)',
                       WebkitBackdropFilter: 'blur(20px) saturate(1.8) brightness(1.05)',
                       background: 'rgba(8, 8, 10, 0.38)',
@@ -306,10 +306,10 @@ export function HobbiesCarousel({ category }: Props) {
                         pointerEvents: 'none',
                       }}
                     />
-                    <div style={{ fontSize: 12, fontWeight: 700, color: '#fff', letterSpacing: '-0.01em', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                    <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#fff', letterSpacing: '-0.01em', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                       {item.title}
                     </div>
-                    <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.5)', fontWeight: 500, marginTop: 2, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                    <div style={{ fontSize: '0.625rem', color: 'rgba(255,255,255,0.5)', fontWeight: 500, marginTop: '0.125rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                       {item.subtitle}
                     </div>
                   </div>
@@ -332,7 +332,7 @@ export function HobbiesCarousel({ category }: Props) {
       </div>
 
       {/* Info bar — fixed height, zero layout shift */}
-      <div ref={infoRef} className="relative mt-3" style={{ height: '56px' }}>
+      <div ref={infoRef} className="relative mt-3" style={{ height: '3.5rem' }}>
         {category.items.map((item, i) => (
           <div
             key={i}

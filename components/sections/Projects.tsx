@@ -29,12 +29,12 @@ export function Projects() {
         </a>
       </div>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {displayed.map((project) => (
           <div key={project.title} className="group relative">
-            <GlassCard hover={!!project.github} className="h-full p-6 flex flex-col">
+            <GlassCard hover={!!project.github} className="h-full p-6 md:p-8 flex flex-col">
               {project.featured && (
-                <span className="text-[10px] font-medium uppercase tracking-widest text-accent-fg border border-accent/30 rounded-full px-2 py-0.5 self-start mb-3">
+                <span className="text-[0.625rem] font-medium uppercase tracking-widest text-accent-fg border border-accent/30 rounded-full px-2 py-0.5 self-start mb-3">
                   Featured
                 </span>
               )}
@@ -60,7 +60,7 @@ export function Projects() {
                 {project.tech.map((t) => (
                   <span
                     key={t}
-                    className="text-[10px] px-2 py-0.5 rounded-md bg-surface border border-line text-fg-2"
+                    className="text-[0.625rem] px-2 py-0.5 rounded-md bg-surface border border-line text-fg-2"
                   >
                     {t}
                   </span>
@@ -91,7 +91,7 @@ export function Projects() {
             </GlassCard>
 
             {/* Hover overlay with long description */}
-            <div className="absolute inset-0 rounded-2xl bg-bg/95 backdrop-blur-sm border border-accent/20 p-6 flex items-center opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none">
+            <div className="absolute inset-0 rounded-2xl bg-bg/95 backdrop-blur-sm border border-accent/20 p-6 md:p-8 flex items-center opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none">
               <p className="text-fg-soft text-sm leading-relaxed">{project.longDescription}</p>
             </div>
           </div>
