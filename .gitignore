@@ -53,3 +53,6 @@ graphify-out/
 
 # Local screenshots (may contain secrets)
 /img*.png
+
+# Playwright MCP screenshots and logs from browser testing
+/.playwright-mcp/
