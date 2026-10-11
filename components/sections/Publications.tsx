@@ -1,7 +1,7 @@
 import { GlassCard } from '@/components/ui/GlassCard'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { GradientText } from '@/components/ui/GradientText'
-import { publications, type ResearchArea } from '@/content/publications'
+import { publications, SELF_AUTHOR, type ResearchArea } from '@/content/publications'
 import { FileText } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { ExpandableText } from '@/components/ui/ExpandableText'
@@ -46,10 +46,20 @@ export function Publications() {
                 <h3 className="font-heading font-semibold text-fg mb-1 leading-snug">
                   {pub.title}
                 </h3>
+                {pub.authors && (
+                  <p className="text-fg-2 text-xs mb-1">
+                    {pub.authors.map((a, i) => (
+                      <span key={a}>
+                        {a === SELF_AUTHOR ? <strong className="text-fg font-semibold">{a}</strong> : a}
+                        {i < pub.authors!.length - 1 && ', '}
+                      </span>
+                    ))}
+                  </p>
+                )}
                 <p className="text-warm-fg text-xs mb-3">
                   {pub.status === 'under-review'
                     ? `Submitted to ${pub.venue} ${pub.year} · awaiting acceptance`
-                    : pub.venue}
+                    : [pub.venue, pub.venueNote].filter(Boolean).join(' · ')}
                 </p>
                 <ExpandableText text={pub.abstract} className="text-fg-2 text-sm leading-relaxed" />
               </div>

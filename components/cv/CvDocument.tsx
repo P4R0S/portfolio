@@ -1,7 +1,7 @@
 'use client'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { publications, type Publication } from '@/content/publications'
+import { publications, SELF_AUTHOR, type Publication } from '@/content/publications'
 import {
   cvContact, cvEducation, cvLanguages, cvName, cvOtherJobs, cvResearchAssistant, cvSkills, cvSummary,
   type CvJob,
@@ -82,8 +82,20 @@ function PublicationsSection({ delay }: { delay: number }) {
             <h3 className="text-[17px] leading-snug" style={{ ...serif, fontWeight: 600, color: 'var(--cv-ink)' }}>
               {p.title}
             </h3>
+            {p.authors && (
+              <p className="text-[13px]" style={{ ...sans(300), color: 'var(--cv-ink-soft)' }}>
+                {p.authors.map((a, i) => (
+                  <span key={a}>
+                    {a === SELF_AUTHOR ? <strong style={{ fontWeight: 600, color: 'var(--cv-ink)' }}>{a}</strong> : a}
+                    {i < p.authors!.length - 1 && ', '}
+                  </span>
+                ))}
+              </p>
+            )}
             <p className="text-[13px]" style={{ ...sans(300), color: 'var(--cv-muted)' }}>
-              {p.status === 'under-review' ? `Submitted to ${p.venue}` : p.venue}
+              {p.status === 'under-review'
+                ? `Submitted to ${p.venue}`
+                : [p.venue, p.venueNote].filter(Boolean).join(' · ')}
             </p>
           </li>
         ))}

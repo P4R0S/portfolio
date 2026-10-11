@@ -8,7 +8,7 @@ import { HeroTerminal } from '@/components/terminal/HeroTerminal'
 import Link from 'next/link'
 
 const roles = [
-  'Research Assistant',
+  'Graduate Research Assistant',
   'Hardware-aware ML',
   'Approximate Computing',
   'FPGA & VLSI Design',

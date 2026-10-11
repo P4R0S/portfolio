@@ -49,7 +49,7 @@ export function About() {
             />
           </div>
           <h3 className="font-heading font-semibold text-xl text-fg mb-3">
-            Research Assistant · Paderborn University
+            Graduate Research Assistant · Paderborn University
           </h3>
           <p className="text-fg-2 leading-relaxed text-sm mb-4">
             I&apos;m a computer engineer and research assistant at Paderborn University, focusing on approximate computing, hardware-aware machine learning, and FPGA-based neural network optimization. My research centers on making deep learning deployable on resource-constrained hardware — without sacrificing more accuracy than necessary.

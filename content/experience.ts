@@ -44,14 +44,15 @@ export const experience: ExperienceItem[] = [
     type: 'work',
   },
   {
-    company: 'Paderborn University',
-    role: 'Research Assistant',
+    company: 'Computer Engineering Group, Paderborn University',
+    role: 'Graduate Research Assistant',
     startDate: '2025',
     endDate: 'Present',
     bullets: [
-      'Contributed to the development of CIRCA, Paderborn’s approximate circuit framework.',
-      'Researching neural network optimization and approximation (pruning, quantization).',
-      'Working on parallel circuit partitioning for approximation.',
+      'Co-developed CLAS, a cross-layer approximate synthesis framework for LUT-based DNN accelerators (ARC 2026).',
+      'Co-developed a partition-based design-space exploration framework for approximate accelerators (under review).',
+      'Extended CIRCA, the group’s approximate circuit generation framework, with evolutionary approximation variants.',
+      'Automated parallel synthesis and simulation campaigns on the Noctua 2 HPC cluster (SLURM).',
     ],
     type: 'work',
   }

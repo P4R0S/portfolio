@@ -6,11 +6,16 @@ export interface Publication {
   title: string
   venue: string
   venueShort?: string         // e.g. 'DATE', shown with the year on the CV
+  venueNote?: string          // publisher / location, e.g. 'Springer LNCS · Cagliari, Italy'
+  authors?: string[]          // in paper order; the entry matching SELF_AUTHOR is shown in bold
   year: number
   area: ResearchArea
   status?: PublicationStatus  // defaults to 'published'
   abstract: string
 }
+
+// How my name appears in published author lists
+export const SELF_AUTHOR = 'M. Rostamzadeh-Khameneh'
 
 export const publications: Publication[] = [
   {
@@ -25,8 +30,10 @@ export const publications: Publication[] = [
   },
   {
     title: 'CLAS: A Cross-Layer Approximate Synthesis Framework for LUT-based DNN Accelerators',
-    venue: 'International Conference on Architecture of Computing Systems (ARCS)',
-    venueShort: 'ARCS',
+    venue: '22nd International Symposium on Applied Reconfigurable Computing (ARC)',
+    venueShort: 'ARC',
+    venueNote: 'Springer LNCS · Cagliari, Italy',
+    authors: ['A. Jafari', 'A. H. Hadipour', 'M. Awais', 'M. Rostamzadeh-Khameneh', 'H. Ghasemzadeh Mohammadi', 'M. Platzner'],
     year: 2026,
     area: 'Approximate Computing',
     abstract:

@@ -22,12 +22,12 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: 'Parsa Rostamzadeh — Research Assistant · ML × Hardware',
+  title: 'Parsa Rostamzadeh — Graduate Research Assistant · ML × Hardware',
   description:
     'Computer engineer specializing in approximate computing, hardware-aware ML, FPGA neural network optimization, and graph neural networks.',
-  keywords: ['Approximate Computing', 'Hardware-aware ML', 'FPGA', 'VLSI', 'Research Assistant', 'Portfolio', 'Paderborn University'],
+  keywords: ['Approximate Computing', 'Hardware-aware ML', 'FPGA', 'VLSI', 'Graduate Research Assistant', 'Portfolio', 'Paderborn University'],
   openGraph: {
-    title: 'Parsa Rostamzadeh — Research Assistant · ML × Hardware',
+    title: 'Parsa Rostamzadeh — Graduate Research Assistant · ML × Hardware',
     description: 'Computer engineer specializing in approximate computing, hardware-aware ML, and FPGA neural network optimization.',
     type: 'website',
   },

@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og'
 
-export const alt = 'Parsa Rostamzadeh — Research Assistant · ML × Hardware'
+export const alt = 'Parsa Rostamzadeh — Graduate Research Assistant · ML × Hardware'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -47,7 +47,7 @@ export default function OpengraphImage() {
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
           <div style={{ display: 'flex', fontSize: 84, letterSpacing: -2, lineHeight: 1 }}>Parsa Rostamzadeh</div>
-          <div style={{ display: 'flex', fontSize: 40, color: '#fb923c' }}>Research Assistant · ML × Hardware</div>
+          <div style={{ display: 'flex', fontSize: 40, color: '#fb923c' }}>Graduate Research Assistant · ML × Hardware</div>
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 16, fontSize: 26, color: '#a1a1aa' }}>
