@@ -6,6 +6,7 @@ import { Footer } from '@/components/ui/Footer'
 import { BackgroundLayer } from '@/components/ui/BackgroundLayer'
 import { MotionProvider } from '@/components/ui/MotionProvider'
 import { siteUrl, ogBase } from '@/lib/site'
+import { Analytics } from '@vercel/analytics/next'
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -72,6 +73,7 @@ export default function RootLayout({
           <main className="relative z-10">{children}</main>
           <Footer />
         </MotionProvider>
+        <Analytics />
       </body>
     </html>
   )
