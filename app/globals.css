@@ -257,7 +257,7 @@ body {
 .hobby-glass-card {
   position: relative;
   z-index: 1;
-  border-radius: 20px;
+  border-radius: 1.25rem; /* same as the cover and label inside (HobbiesCarousel.tsx) */
   overflow: hidden;
   transition: box-shadow 0.4s ease;
 }

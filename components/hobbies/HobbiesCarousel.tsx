@@ -276,7 +276,7 @@ export function HobbiesCarousel({ category }: Props) {
                     style={{
                       position: 'absolute', inset: 0,
                       background: 'linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 40%)',
-                      zIndex: 3, pointerEvents: 'none', borderRadius: '20px 20px 0 0',
+                      zIndex: 3, pointerEvents: 'none', borderRadius: '1.25rem 1.25rem 0 0',
                     }}
                   />
                   {/* Vignette */}
@@ -294,6 +294,9 @@ export function HobbiesCarousel({ category }: Props) {
                       WebkitBackdropFilter: 'blur(20px) saturate(1.8) brightness(1.05)',
                       background: 'rgba(8, 8, 10, 0.38)',
                       borderTop: '1px solid rgba(255, 255, 255, 0.16)',
+                      // A backdrop-filter isn't clipped by the parent's rounded overflow in Chrome,
+                      // so the label needs the card's bottom corners itself
+                      borderRadius: '0 0 1.25rem 1.25rem',
                       zIndex: 5,
                     }}
                   >
