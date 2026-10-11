@@ -81,8 +81,10 @@ export function Hero({ stats }: { stats: HeroStat[] }) {
     return () => clearInterval(interval)
   }, [])
 
+  // pb-28 keeps room for the scroll cue (bottom-6 + ~3.75rem tall), so it never overlaps the
+  // content when the hero is taller than a short phone screen
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8 pt-24 pb-16">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8 pt-24 pb-28">
       {/* Orb blobs */}
       <div
         className="absolute top-1/4 right-[10%] w-72 h-72 md:w-96 md:h-96 rounded-full bg-[var(--orb-1)] blur-3xl animate-orb-1 pointer-events-none"
