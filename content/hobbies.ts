@@ -3,7 +3,7 @@ export interface HobbyItem {
   subtitle: string
   note: string
   cover?: string
-  animated?: boolean  // true for animated WebP — bypasses Next.js image optimisation
+  animated?: boolean  // true for animated WebP — bypasses Next.js image optimization
   aspect: 'portrait' | 'square'
   dominantColor?: string  // CSS color for the ambient bloom behind the card
   tags?: string[]

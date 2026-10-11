@@ -40,7 +40,8 @@ function getOutput(command: string, args: string[]): OutputLine[] | null {
     return [
       { text: '──────────────────────────────', color: 'dim' },
       { text: '[ Languages ]', color: 'white', bold: true },
-      { text: '  Python · C · C++ · Verilog · TypeScript', color: 'output' },
+      { text: '  Python · C/C++ · Verilog · Bash', color: 'output' },
+      { text: '  TypeScript · JavaScript', color: 'output' },
       { text: '[ ML / AI ]', color: 'white', bold: true },
       { text: '  PyTorch · GNN · XAI · scikit-learn', color: 'output' },
       { text: '[ Hardware ]', color: 'white', bold: true },

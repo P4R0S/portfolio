@@ -40,7 +40,7 @@ export const projects: Project[] = [
     title: 'Knowledge Graph Validation with SHACL & Ontologies',
     description: 'Team project validating knowledge graphs against SHACL constraints in the presence of a DL-Lite_R ontology.',
     longDescription:
-      'A six-student project group at Paderborn University implementing Ahmetaj et al. (ECAI 2023): validating knowledge graphs against SHACL shapes while respecting what a DL-Lite_R ontology entails. I worked on the materialisation approach, building an austere canonical model (a bounded "chase") so plain pySHACL sees entailed facts, plus the validation pipeline, stratification pre-check, stress tests, interactive visualisation, and performance profiling.',
+      'A six-student project group at Paderborn University implementing Ahmetaj et al. (ECAI 2023): validating knowledge graphs against SHACL shapes while respecting what a DL-Lite_R ontology entails. I worked on the materialization approach, building an austere canonical model (a bounded "chase") so plain pySHACL sees entailed facts, plus the validation pipeline, stratification pre-check, stress tests, interactive visualization, and performance profiling.',
     tech: ['Python', 'RDFLib', 'pySHACL', 'SHACL', 'DL-Lite', 'Knowledge Graphs'],
     featured: false,
   },

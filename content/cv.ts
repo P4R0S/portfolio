@@ -73,9 +73,9 @@ export const cvResearchAssistant: CvJob = {
 
 export const cvOtherJobs: CvJob[] = [
   {
-    role: 'Software Developer (Intern)',
+    role: 'Software Developer',
     company: 'Hesab Rayan Pars',
-    period: '2024 – 2025',
+    period: '2023 – 2024',
     bullets: ['Developed an accounting web application with C# and ASP.NET.'],
   },
 ]
