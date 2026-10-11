@@ -1,203 +1,118 @@
-# Design System Master File
+# Design System: Parsa Rostamzadeh Portfolio
 
-> **LOGIC:** When building a specific page, first check `design-system/pages/[page-name].md`.
-> If that file exists, its rules **override** this Master file.
-> If not, strictly follow the rules below.
+The visual language of [p4ros.de](https://www.p4ros.de): a researcher's portfolio at the meeting point of
+machine learning and hardware. The code is the source of truth. Token values live in `app/globals.css`,
+and the working conventions are in `AGENTS.md`. This file explains the system and the reasons behind it.
+If it disagrees with the code, the code wins; update this file.
 
----
+## Principles
 
-**Project:** Parsa Portfolio
-**Generated:** 2026-04-15 12:57:17
-**Category:** NFT/Web3 Platform
+1. **Warm and technical.** Charcoal and paper neutrals, with an ember-orange accent. The subject (circuits,
+   signals, neural networks) supplies the imagery; there is no generic tech decoration.
+2. **One accent, used sparingly.** Orange marks what matters: the primary action, the current state, a signal.
+   Amber is its supporting color. Slate carries everything structural.
+3. **Two equal themes.** Dark is the default; light ("Paper & Ember") is a full theme, not an inverted copy.
+   Every color is a token with a value for each theme.
+4. **Motion that means something.** Animations respond to the visitor or show how something works.
+   No ambient decoration.
+5. **Accessible by default.** Text contrast is at least 4.5:1 in both themes, focus rings are visible,
+   reduced motion is respected, and the layout works from 375px to 1920px.
 
----
+## Color
 
-## Global Rules
+Components use semantic utilities (`bg-bg`, `text-fg-2`, `border-line`, …) or `var(--token)` in inline
+styles. They never use raw palette classes or hex values.
 
-### Color Palette
+| Role | Token | Dark | Light |
+| --- | --- | --- | --- |
+| Page background | `--bg` | `#18181b` | `#faf8f5` |
+| Primary text | `--fg` | `#fafafa` | `#18181b` |
+| Body text | `--fg-soft` / `--fg-2` | slate-300 / slate-400 | `#3f3f46` / `#52525b` |
+| Captions, slate structure | `--fg-3` | `#7c8ca2` | `#6b6b74` |
+| Cards, inputs (translucent) | `--surface` | white 5% | white 78% |
+| Solid cards | `--raised` / `--raised-2` | `#27272a` / `#3f3f46` | `#ffffff` / `#f2eee8` |
+| Hairlines | `--line` | white 10% | `#e7e2da` |
+| Accent: icons, borders, tints | `--accent` | orange-400 | `#ea580c` |
+| Accent: text | `--accent-fg` | orange-400 | `#c2410c` (passes AA) |
+| Accent fill behind text | `--accent-tint` | orange 10% | `#fff4ec` |
+| Supporting accent | `--warm` | amber-400 | `#b45309` |
+| Solid orange button | `--cta` / `--cta-fg` | `#fb923c` / `#18181b` | `#c2410c` / `#ffffff` |
+| Solid neutral button | `--btn` / `--btn-fg` | `#27272a` / `#fafafa` | `#18181b` / `#fafafa` |
+| Form fields | `--field` / `--field-line` | black 22% / white 16% | `#ffffff` / `#d4ccc1` |
+| Errors | `--danger` / `--danger-tint` | red-400 / red 10% | `#b91c1c` / `#fef2f2` |
 
-| Role | Hex | CSS Variable |
-|------|-----|--------------|
-| Primary | `#18181B` | `--color-primary` |
-| Secondary | `#3F3F46` | `--color-secondary` |
-| CTA/Accent | `#2563EB` | `--color-cta` |
-| Background | `#FAFAFA` | `--color-background` |
-| Text | `#09090B` | `--color-text` |
+Rules:
+- Use `--accent-fg` for orange **text** and `--accent` for icons, borders and fills. Don't put opacity
+  modifiers on text colors, because they break the contrast guarantees.
+- Only one solid orange (`bg-cta`) element per view: the most important action.
+- The **CV sheet** has its own `--cv-*` palette (paper, ink, burgundy `#8b2e2e`) and looks the same in both
+  themes, like a printed page.
+- These intentionally look the same in both themes: the hero and 404 terminals, the CV sheet, the logo's
+  chip body, and the hobby cover labels.
 
-**Color Notes:** Monochrome + blue accent
+## Typography
 
-### Typography
+| Use | Family | Notes |
+| --- | --- | --- |
+| Headings, numbers | Space Grotesk (`font-heading`) | 300–700; bold for section titles |
+| Body, UI | DM Sans (`font-body`) | 400, 500, 700 (600 falls back to 700) |
+| CV sheet | Crimson Pro, Commissioner | variable fonts, loaded only on `/cv` |
+| Terminals | system monospace | |
 
-- **Heading Font:** Archivo
-- **Body Font:** Space Grotesk
-- **Mood:** minimal, portfolio, designer, creative, clean, artistic
-- **Google Fonts:** [Archivo + Space Grotesk](https://fonts.google.com/share?selection.family=Archivo:wght@300;400;500;600;700|Space+Grotesk:wght@300;400;500;600;700)
+- Section headers: a small uppercase caption in `text-fg-3`, then a heading with `GradientText` on the
+  key words.
+- Body copy is `text-sm` to `text-base` with `leading-relaxed`, in `text-fg-2`.
 
-**CSS Import:**
-```css
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
-```
+## Sizing and layout
 
-### Spacing Variables
+- **Fluid scale.** The root font size is 16px up to a 1280px-wide window and grows to 24px at 1920px,
+  so a 1080p screen shows the layout as if zoomed to 150%. Size everything in `rem`. Use `px` only for
+  hairlines.
+- Content width is `max-w-6xl`. Sections use `SectionWrapper` (`py-24`, fades up once on entry).
+- Radius scale: `rounded-full` (pills, dots) · `rounded-lg` (small icons) · `rounded-xl` (buttons, inputs)
+  · `rounded-2xl` (glass cards) · `rounded-[1.25rem]` (hobby covers) · `rounded-[2rem]` (Skills bento cards).
+  Nested elements must use the same unit as their parent so the curves match.
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--space-xs` | `4px` / `0.25rem` | Tight gaps |
-| `--space-sm` | `8px` / `0.5rem` | Icon gaps, inline spacing |
-| `--space-md` | `16px` / `1rem` | Standard padding |
-| `--space-lg` | `24px` / `1.5rem` | Section padding |
-| `--space-xl` | `32px` / `2rem` | Large gaps |
-| `--space-2xl` | `48px` / `3rem` | Section margins |
-| `--space-3xl` | `64px` / `4rem` | Hero padding |
+## Components
 
-### Shadow Depths
+| Component | Use |
+| --- | --- |
+| `GlassCard` | Translucent card (`bg-surface`, `border-line`, `rounded-2xl`, backdrop blur) for most content |
+| `GradientText` | Orange gradient on heading words |
+| `SectionWrapper` | Section spacing and the one-time entrance |
+| `BackgroundLayer` | Global glow background, rendered once in the root layout |
+| `Logo` | The chip monogram |
+| `ExpandableText` | Long abstracts with "Read more" |
+| `SectionDivider` | Animated motif between home sections (`trace`, `wave`, `timeline`, `network`, `approx`) |
+| `CurvedArrow` | Hand-drawn arrow that points from the contact intro to the form |
+| `ScrollTimeline` / `TimelineDot` | Experience timeline that fills as you scroll |
 
-| Level | Value | Usage |
-|-------|-------|-------|
-| `--shadow-sm` | `0 1px 2px rgba(0,0,0,0.05)` | Subtle lift |
-| `--shadow-md` | `0 4px 6px rgba(0,0,0,0.1)` | Cards, buttons |
-| `--shadow-lg` | `0 10px 15px rgba(0,0,0,0.1)` | Modals, dropdowns |
-| `--shadow-xl` | `0 20px 25px rgba(0,0,0,0.15)` | Hero images, featured cards |
+Buttons:
+- **Primary action:** `bg-cta text-cta-fg hover:bg-cta-hover`, `rounded-xl`, semibold.
+- **Neutral solid:** `bg-btn text-btn-fg hover:bg-btn-hover`.
+- **Accent outline:** `bg-accent-tint border-accent/30 text-accent-fg`, as used by the navbar's Contact link.
 
----
+Forms: `bg-field border-field-line rounded-xl`. Labels go above the fields. Placeholders give hints and
+never repeat the label. Errors appear inline under the field (`text-danger`, `aria-describedby`), and a
+2px focus outline with offset is shown on every control.
 
-## Component Specs
+## Motion
 
-### Buttons
+- Decorative animations are **SVG strokes** in slate (`--fg-3`) with an amber or orange signal.
+  Each one is drawn from the subject: PCB traces, waveforms, neural networks, quantized signals.
+- An animation draws in **once** when scrolled into view. Loops run **only while visible**.
+- Motion that responds to the visitor is preferred: hover traces on project cards, the navbar scrollspy
+  underline, the scroll-filled timeline, and the checkmark on the send button.
+- **Reduced motion:** framer-motion uses `MotionConfig reducedMotion="user"` plus `useReducedMotion()`
+  for drawn strokes. CSS keyframes are shortened by the global `prefers-reduced-motion` rule.
+  Everything must still look complete when it doesn't move.
+- Avoid fade-and-slide entrances on every element, animated backgrounds, and layout-shifting hovers.
 
-```css
-/* Primary Button */
-.btn-primary {
-  background: #2563EB;
-  color: white;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: all 200ms ease;
-  cursor: pointer;
-}
+## Checklist before shipping UI
 
-.btn-primary:hover {
-  opacity: 0.9;
-  transform: translateY(-1px);
-}
-
-/* Secondary Button */
-.btn-secondary {
-  background: transparent;
-  color: #18181B;
-  border: 2px solid #18181B;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: all 200ms ease;
-  cursor: pointer;
-}
-```
-
-### Cards
-
-```css
-.card {
-  background: #FAFAFA;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: var(--shadow-md);
-  transition: all 200ms ease;
-  cursor: pointer;
-}
-
-.card:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-2px);
-}
-```
-
-### Inputs
-
-```css
-.input {
-  padding: 12px 16px;
-  border: 1px solid #E2E8F0;
-  border-radius: 8px;
-  font-size: 16px;
-  transition: border-color 200ms ease;
-}
-
-.input:focus {
-  border-color: #18181B;
-  outline: none;
-  box-shadow: 0 0 0 3px #18181B20;
-}
-```
-
-### Modals
-
-```css
-.modal-overlay {
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
-}
-
-.modal {
-  background: white;
-  border-radius: 16px;
-  padding: 32px;
-  box-shadow: var(--shadow-xl);
-  max-width: 500px;
-  width: 90%;
-}
-```
-
----
-
-## Style Guidelines
-
-**Style:** Cyberpunk UI
-
-**Keywords:** Neon, dark mode, terminal, HUD, sci-fi, glitch, dystopian, futuristic, matrix, tech noir
-
-**Best For:** Gaming platforms, tech products, crypto apps, sci-fi applications, developer tools, entertainment
-
-**Key Effects:** Neon glow (text-shadow), glitch animations (skew/offset), scanlines (::before overlay), terminal fonts
-
-### Page Pattern
-
-**Pattern Name:** Portfolio Grid
-
-- **Conversion Strategy:**  hover overlay info,  lightbox view, Visuals first. Filter by category. Fast loading essential.
-- **CTA Placement:** Project Card Hover + Footer Contact
-- **Section Order:** 1. Hero (Name/Role), 2. Project Grid (Masonry), 3. About/Philosophy, 4. Contact
-
----
-
-## Anti-Patterns (Do NOT Use)
-
-- ❌ Light mode default
-- ❌ No transaction status
-
-### Additional Forbidden Patterns
-
-- ❌ **Emojis as icons** — Use SVG icons (Heroicons, Lucide, Simple Icons)
-- ❌ **Missing cursor:pointer** — All clickable elements must have cursor:pointer
-- ❌ **Layout-shifting hovers** — Avoid scale transforms that shift layout
-- ❌ **Low contrast text** — Maintain 4.5:1 minimum contrast ratio
-- ❌ **Instant state changes** — Always use transitions (150-300ms)
-- ❌ **Invisible focus states** — Focus states must be visible for a11y
-
----
-
-## Pre-Delivery Checklist
-
-Before delivering any UI code, verify:
-
-- [ ] No emojis used as icons (use SVG instead)
-- [ ] All icons from consistent icon set (Heroicons/Lucide)
-- [ ] `cursor-pointer` on all clickable elements
-- [ ] Hover states with smooth transitions (150-300ms)
-- [ ] Light mode: text contrast 4.5:1 minimum
-- [ ] Focus states visible for keyboard navigation
-- [ ] `prefers-reduced-motion` respected
-- [ ] Responsive: 375px, 768px, 1024px, 1440px
-- [ ] No content hidden behind fixed navbars
-- [ ] No horizontal scroll on mobile
+- [ ] Colors come from tokens and work in **both** themes
+- [ ] Sizes in `rem`; nested radii match
+- [ ] Text contrast is at least 4.5:1; focus is visible; every control is reachable by keyboard
+- [ ] Reduced motion leaves a complete, still result
+- [ ] Checked at 375px, 768px, 1280px and 1920px, with no horizontal scroll
+- [ ] `npm run lint` and `npm run build` pass

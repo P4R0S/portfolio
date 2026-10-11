@@ -2,13 +2,14 @@
 
 ## Scope
 - This is a Next.js App Router portfolio site. Treat the code in `app/`, `components/`, `content/`, and `lib/` as the source of truth.
-- Some design docs exist under `design-system/`, but current implementation details in the app win when they differ.
+- `design-system/parsa-portfolio/MASTER.md` describes the design system (colors, type, sizing, components, motion); the implementation wins when they differ, so update the doc with design changes.
 
 ## Architecture
-- `app/layout.tsx` sets the global shell: fonts, metadata, `BackgroundLayer`, `Navbar`, `Footer`, and the shared dark theme.
+- `app/layout.tsx` sets the global shell: fonts, metadata, `BackgroundLayer`, `Navbar`, `Footer`, `MotionProvider`, and the pre-paint theme script.
 - `app/page.tsx` composes the home page from section components in `components/sections/`, and computes the hero stats from `content/` server-side (passed to `Hero` as a prop).
 - Content is data-driven:
-  - `content/projects.ts`, `content/experience.ts`, `content/publications.ts`, `content/hobbies.ts`
+  - `content/projects.ts`, `content/experience.ts`, `content/publications.ts`, `content/hobbies.ts`, `content/cv.ts`
+  - Facts shared by the site and the CV (roles, dates, titles) must match between `content/experience.ts` and `content/cv.ts`.
   - Skills lists live in `components/sections/Skills.tsx`; the terminal's `skills` output in `HeroTerminal.tsx` should be kept in sync with them.
   - Publications have an optional `status: 'under-review'` (shown as a badge, excluded from the "Papers Published" stat). Publications intentionally carry no PDF/DOI links.
 - Routes: `/`, `/cv`, `/hobbies`, plus `app/not-found.tsx` (branded 404).
@@ -41,8 +42,9 @@
 ## Key files
 - `app/layout.tsx`, `app/page.tsx`
 - `app/api/contact/route.ts`
-- `components/sections/Hero.tsx`, `About.tsx`, `Projects.tsx`, `Experience.tsx`, `Publications.tsx`, `Contact.tsx`
+- `components/sections/Hero.tsx`, `About.tsx`, `Skills.tsx`, `Projects.tsx`, `Experience.tsx`, `Publications.tsx`, `Contact.tsx`
 - `app/cv/*`, `components/cv/*`, `content/cv.ts`
 - `app/not-found.tsx`, `app/hobbies/page.tsx`, `app/opengraph-image.tsx`, `app/sitemap.ts`, `app/robots.ts`, `lib/site.ts`
-- `components/ui/Navbar.tsx`, `Footer.tsx`, `Logo.tsx`, `GlassCard.tsx`, `SectionWrapper.tsx`, `GradientText.tsx`, `BackgroundLayer.tsx`, `ExpandableText.tsx`, `NotFoundTerminal.tsx`, `ThemeToggle.tsx`
-- `components/terminal/HeroTerminal.tsx`, `lib/terminal/*`, `content/*`
+- `components/ui/Navbar.tsx`, `Footer.tsx`, `Logo.tsx`, `GlassCard.tsx`, `SectionWrapper.tsx`, `GradientText.tsx`, `BackgroundLayer.tsx`, `ExpandableText.tsx`, `NotFoundTerminal.tsx`, `ThemeToggle.tsx`, `SectionDivider.tsx`, `CurvedArrow.tsx`, `ScrollTimeline.tsx`
+- `components/terminal/HeroTerminal.tsx`, `lib/terminal/*`, `lib/email/contactEmail.ts`, `content/*`
+- `design-system/parsa-portfolio/MASTER.md`
