@@ -25,9 +25,10 @@ export function Contact() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       })
-      const data = await res.json()
+      // An upstream failure (e.g. a platform timeout page) may not be JSON
+      const data: { error?: string } = await res.json().catch(() => ({}))
       if (!res.ok) {
-        setErrorMsg(data.error ?? 'Something went wrong.')
+        setErrorMsg(data.error ?? 'Something went wrong. Please try again later.')
         setStatus('error')
       } else {
         setStatus('success')

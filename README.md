@@ -53,6 +53,7 @@ There is no separate test suite; `npm run lint` and `npm run build` are the chec
 | Variable | Required | Purpose |
 | --- | --- | --- |
 | `RESEND_API_KEY` | Yes, for the contact form | API key used by `app/api/contact/route.ts` |
+| `CONTACT_FROM` | No | Sender of contact-form emails. Defaults to Resend's test sender `onboarding@resend.dev` (delivers only to the Resend account owner); set it to an address on a domain verified in Resend, e.g. `Portfolio Contact <contact@p4ros.de>`. |
 | `SITE_URL` | No | Overrides the absolute site URL used for metadata, sitemap, and robots. Defaults to `https://www.p4ros.de` on Vercel and `http://localhost:3000` locally. |
 
 Locally, put them in `.env.local` (git-ignored). On Vercel, set them under **Project → Settings → Environment Variables**.
