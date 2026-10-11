@@ -1,7 +1,10 @@
 'use client'
 import { usePathname } from 'next/navigation'
 
-/** Static terminal echoing the path the visitor tried to open. */
+// Each line appears in turn, as if typed, after the chip's glitch (keyframes in globals.css)
+const lineIn = (delay: number) => ({ animation: `line-in 0.01s linear ${delay}s both` })
+
+/** Terminal echoing the path the visitor tried to open. */
 export function NotFoundTerminal() {
   const pathname = usePathname() ?? '/'
 
@@ -20,13 +23,13 @@ export function NotFoundTerminal() {
         <span className="ml-3 font-mono text-[0.6875rem] text-[#a36e07] tracking-wide">paros@paderborn — zsh</span>
       </div>
       <div className="p-4 sm:p-5 font-mono text-xs sm:text-[0.8125rem] leading-relaxed">
-        <div className="break-all">
+        <div className="break-all" style={lineIn(0.5)}>
           <span className="text-[#ffb300]">paros@paderborn</span>
           <span className="text-[#bfbfbd]">:~$ </span>
           <span className="text-[#ffd54f]">cd {pathname}</span>
         </div>
-        <div className="text-[#ff8f00] break-all">cd: no such file or directory: {pathname}</div>
-        <div className="mt-1">
+        <div className="text-[#ff8f00] break-all" style={lineIn(1.1)}>cd: no such file or directory: {pathname}</div>
+        <div className="mt-1" style={lineIn(1.7)}>
           <span className="text-[#ffb300]">paros@paderborn</span>
           <span className="text-[#bfbfbd]">:~$ </span>
           <span className="text-[#ffd54f]">cd ~</span>

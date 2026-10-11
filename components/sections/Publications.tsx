@@ -2,7 +2,7 @@ import { GlassCard } from '@/components/ui/GlassCard'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { GradientText } from '@/components/ui/GradientText'
 import { publications, SELF_AUTHOR, type ResearchArea } from '@/content/publications'
-import { FileText } from 'lucide-react'
+import { FileText, Cpu } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { ExpandableText } from '@/components/ui/ExpandableText'
 
@@ -27,9 +27,13 @@ export function Publications() {
 
       <div className="flex flex-col gap-4">
         {sorted.map((pub) => (
-          <GlassCard key={pub.title} className="p-6 md:p-8">
+          <GlassCard key={pub.title} className="group p-6 md:p-8 transition-colors duration-300 hover:border-accent/30">
             <div className="flex flex-col sm:flex-row sm:items-start gap-4">
-              <FileText className="w-5 h-5 text-fg-3 shrink-0 mt-0.5" />
+              {/* The paper turns into a chip on hover: research that ends up in silicon */}
+              <span aria-hidden="true" className="relative w-5 h-5 shrink-0 mt-0.5">
+                <FileText className="absolute inset-0 w-5 h-5 text-fg-3 transition-all duration-300 group-hover:opacity-0 group-hover:scale-50 group-hover:rotate-90" />
+                <Cpu className="absolute inset-0 w-5 h-5 text-accent opacity-0 scale-50 -rotate-90 transition-all duration-300 group-hover:opacity-100 group-hover:scale-100 group-hover:rotate-0" />
+              </span>
               <div className="flex-1 min-w-0">
                 <div className="flex flex-wrap items-center gap-2 mb-2">
                   <span className={cn('text-[0.625rem] font-medium uppercase tracking-widest px-2 py-0.5 rounded-full border', areaColors[pub.area])}>

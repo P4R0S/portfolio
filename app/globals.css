@@ -303,3 +303,41 @@ body {
   from { opacity: 0; transform: translateY(22px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+/* ── Motion details ── */
+
+/* Project cards: a signal runs once around the border on hover (see Projects.tsx) */
+.trace-border {
+  stroke-dasharray: 0.18 0.82;
+  stroke-dashoffset: 0.18;
+  opacity: 0;
+}
+.group:hover .trace-border,
+.group:focus-within .trace-border {
+  opacity: 1;
+  animation: trace-run 1.4s cubic-bezier(0.45, 0, 0.55, 1) forwards;
+}
+@keyframes trace-run {
+  to { stroke-dashoffset: -0.82; opacity: 0.9; }
+}
+
+/* 404: the chip loses its signal for a moment, then again every few seconds */
+@keyframes chip-glitch {
+  0%, 86%, 100% { transform: none; opacity: 1; }
+  87% { transform: translate(-2px, 1px) skewX(-6deg); opacity: 0.7; }
+  89% { transform: translate(2px, -1px); opacity: 0.35; }
+  91% { transform: translate(-1px, 0) skewX(4deg); opacity: 0.85; }
+  93% { transform: none; opacity: 0.5; }
+  95% { transform: none; opacity: 1; }
+}
+@keyframes pin-flicker {
+  0%, 100% { opacity: 0.35; }
+  40% { opacity: 0.1; }
+  45% { opacity: 0.6; }
+  50% { opacity: 0.15; }
+}
+/* Terminal lines appear one after another, as if typed */
+@keyframes line-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}

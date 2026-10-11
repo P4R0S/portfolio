@@ -3,6 +3,7 @@ import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { GradientText } from '@/components/ui/GradientText'
 import { experience } from '@/content/experience'
 import { Briefcase, GraduationCap } from 'lucide-react'
+import { ScrollTimeline, TimelineDot } from '@/components/ui/ScrollTimeline'
 
 // Most recent first
 const sorted = [...experience].sort((a, b) => Number(b.startDate) - Number(a.startDate))
@@ -17,12 +18,8 @@ export function Experience() {
         </h2>
       </div>
 
-      <div className="relative">
-        {/* Timeline line */}
-        <div
-          className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px md:-translate-x-px"
-          style={{ background: 'linear-gradient(to bottom in oklab, var(--tl-1), var(--tl-2), var(--tl-3))' }}
-        />
+      {/* Timeline line fills in as you scroll; each dot lights up when the line reaches it */}
+      <ScrollTimeline>
 
         <div className="flex flex-col gap-10">
           {sorted.map((item, i) => {
@@ -35,9 +32,9 @@ export function Experience() {
                 className={`relative flex items-start gap-6 md:gap-0 ${isLeft ? 'md:flex-row' : 'md:flex-row-reverse'}`}
               >
                 {/* Timeline dot */}
-                <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-bg border-2 border-accent flex items-center justify-center shrink-0 z-10">
-                  <Icon className="w-3.5 h-3.5 text-accent-fg" />
-                </div>
+                <TimelineDot>
+                  <Icon className="w-3.5 h-3.5" />
+                </TimelineDot>
 
                 {/* Card */}
                 <div className={`ml-12 md:ml-0 md:w-[calc(50%-2rem)] ${isLeft ? 'md:mr-8' : 'md:ml-8'}`}>
@@ -67,7 +64,7 @@ export function Experience() {
             )
           })}
         </div>
-      </div>
+      </ScrollTimeline>
     </SectionWrapper>
   )
 }

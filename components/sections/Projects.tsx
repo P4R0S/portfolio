@@ -4,6 +4,7 @@ import { GradientText } from '@/components/ui/GradientText'
 import { projects } from '@/content/projects'
 import { ExternalLink, Lock } from 'lucide-react'
 import { FaGithub } from 'react-icons/fa6'
+import { cn } from '@/lib/utils'
 
 const featured = projects.filter((p) => p.featured)
 const rest = projects.filter((p) => !p.featured)
@@ -32,7 +33,7 @@ export function Projects() {
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {displayed.map((project) => (
           <div key={project.title} className="group relative">
-            <GlassCard hover={!!project.github} className="h-full p-6 md:p-8 flex flex-col">
+            <GlassCard className={cn('h-full p-6 md:p-8 flex flex-col', project.github && 'cursor-pointer')}>
               {project.featured && (
                 <span className="text-[0.625rem] font-medium uppercase tracking-widest text-accent-fg border border-accent/30 rounded-full px-2 py-0.5 self-start mb-3">
                   Featured
@@ -94,6 +95,21 @@ export function Projects() {
             <div className="absolute inset-0 rounded-2xl bg-bg/95 backdrop-blur-sm border border-accent/20 p-6 md:p-8 flex items-center opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none">
               <p className="text-fg-soft text-sm leading-relaxed">{project.longDescription}</p>
             </div>
+
+            {/* A signal runs once around the border on hover (.trace-border in globals.css) */}
+            <svg aria-hidden="true" className="absolute inset-0 w-full h-full overflow-visible pointer-events-none">
+              <rect
+                x="0.5" y="0.5"
+                width="calc(100% - 1px)" height="calc(100% - 1px)"
+                rx="1rem"
+                pathLength={1}
+                fill="none"
+                stroke="var(--accent)"
+                strokeWidth={1.5}
+                strokeLinecap="round"
+                className="trace-border"
+              />
+            </svg>
           </div>
         ))}
       </div>

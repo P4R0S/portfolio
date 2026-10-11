@@ -18,8 +18,9 @@
 
 ## Conventions
 - Use the `@/` path alias from `tsconfig.json`.
-- Keep components server-side by default; add `'use client'` only for interactivity (`Hero`, `Contact`, `Navbar`, `SectionWrapper`, `HeroTerminal`, `ExpandableText`, `NotFoundTerminal`, `HobbiesCarousel`, `ThemeToggle`, `CvDocument`, `MotionProvider`).
+- Keep components server-side by default; add `'use client'` only for interactivity (`Hero`, `Contact`, `Navbar`, `SectionWrapper`, `HeroTerminal`, `ExpandableText`, `NotFoundTerminal`, `HobbiesCarousel`, `ThemeToggle`, `CvDocument`, `MotionProvider`, `CurvedArrow`, `SectionDivider`, `ScrollTimeline`).
 - Reuse shared UI primitives instead of re-creating them: `GlassCard`, `GradientText`, `SectionWrapper`, `BackgroundLayer`, `Logo` (the chip monogram), `ExpandableText`.
+- Motion: decorative animations are SVG strokes in theme colors (slate `--fg-3` as the base, `--warm`/`--accent` as the signal), drawn in once when scrolled into view, looping only while visible, and still under reduced motion (`useReducedMotion`, or the global CSS rule for CSS keyframes). `SectionDivider` holds one motif per home-page gap; `CurvedArrow` points from the contact intro to the form. Prefer motion that responds to the visitor or carries meaning over ambient effects.
 - `BackgroundLayer` is rendered once in the root layout; pages should not add their own or paint an opaque background over it.
 - Tailwind v4 + `cn` from `lib/utils.ts` are the standard styling helpers.
 - Sizing is fluid: the root font size in `app/globals.css` grows from 16px (≤1280px wide) to 24px (1920px), so a 1080p screen looks like 150% zoom. Size things in `rem` (Tailwind's default scale, or `[1.5rem]` for arbitrary values), not `px`, or they won't scale; keep `px` only for hairlines (borders, 1px rules).

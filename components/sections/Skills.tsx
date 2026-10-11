@@ -1,6 +1,7 @@
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { GradientText } from '@/components/ui/GradientText'
 import { Brain, Cpu, Code2, Wrench } from 'lucide-react'
+import * as motion from 'framer-motion/client'
 
 // ── Data ─────────────────────────────────────────────────────────────────────
 
@@ -23,11 +24,38 @@ const toolTags = [
 
 // ── Sub-components ────────────────────────────────────────────────────────────
 
-function CardNumber({ children, color }: { children: string; color: string }) {
+// The big card number draws itself as an outline when scrolled into view, then fills in
+function CardNumber({ children }: { children: string }) {
   return (
-    <span className={`font-bold leading-none select-none ${color}`} style={{ fontSize: 'clamp(3rem, 6vw, 6rem)' }}>
-      {children}
-    </span>
+    <svg
+      viewBox="0 0 120 80"
+      aria-hidden="true"
+      className="select-none shrink-0 overflow-visible"
+      style={{ width: 'clamp(4.5rem, 9vw, 9rem)' }}
+    >
+      <motion.text
+        x="120"
+        y="68"
+        textAnchor="end"
+        className="font-heading"
+        fontWeight={700}
+        fontSize="84"
+        stroke="var(--accent-hex)"
+        strokeWidth={1.25}
+        strokeDasharray={420}
+        initial={{ strokeDashoffset: 420, fillOpacity: 0, strokeOpacity: 0.7 }}
+        whileInView={{ strokeDashoffset: 0, fillOpacity: 0.2, strokeOpacity: 0 }}
+        viewport={{ once: true, amount: 0.6 }}
+        transition={{
+          strokeDashoffset: { duration: 1.6, ease: 'easeInOut' },
+          fillOpacity: { duration: 0.6, delay: 1.3 },
+          strokeOpacity: { duration: 0.6, delay: 1.5 },
+        }}
+        style={{ fill: 'var(--accent-hex)' }}
+      >
+        {children}
+      </motion.text>
+    </svg>
   )
 }
 
@@ -66,7 +94,7 @@ export function Skills() {
                 <Brain className="w-7 h-7 text-accent-fg" />
                 <h3 className="font-bold text-[1.875rem] leading-9 text-fg">ML / AI</h3>
               </div>
-              <CardNumber color="text-[color-mix(in_srgb,var(--accent-hex)_20%,transparent)]">01</CardNumber>
+              <CardNumber>01</CardNumber>
             </div>
 
             {/* Tags */}
@@ -103,7 +131,7 @@ export function Skills() {
                 <Cpu className="w-7 h-7 text-accent-fg-hover" />
                 <h3 className="font-bold text-[1.875rem] leading-9 text-fg">Hardware</h3>
               </div>
-              <CardNumber color="text-[color-mix(in_srgb,var(--accent-hex)_20%,transparent)]">02</CardNumber>
+              <CardNumber>02</CardNumber>
             </div>
 
             {/* Description */}
@@ -143,7 +171,7 @@ export function Skills() {
                 <Code2 className="w-7 h-7 text-accent-fg" />
                 <h3 className="font-bold text-[1.5rem] leading-8 text-fg">Languages</h3>
               </div>
-              <CardNumber color="text-[color-mix(in_srgb,var(--accent-hex)_20%,transparent)]">03</CardNumber>
+              <CardNumber>03</CardNumber>
             </div>
 
             {/* 2-col language grid */}
@@ -176,7 +204,7 @@ export function Skills() {
                 <Wrench className="w-7 h-7 text-accent-fg" />
                 <h3 className="font-bold text-[1.5rem] leading-8 text-fg">Tools &amp; Infra</h3>
               </div>
-              <CardNumber color="text-[color-mix(in_srgb,var(--accent-hex)_20%,transparent)]">04</CardNumber>
+              <CardNumber>04</CardNumber>
             </div>
 
             {/* Tags */}

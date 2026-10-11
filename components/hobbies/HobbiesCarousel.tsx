@@ -242,8 +242,12 @@ export function HobbiesCarousel({ category }: Props) {
                 style={{ background: item.dominantColor ?? '#1a1a2a' }}
               />
 
-              {/* Glass card */}
-              <div className="hobby-glass-card rounded-[1.25rem] overflow-hidden">
+              {/* Glass card. Covers rise in one after another on first load ("backwards" fill
+                  only, so the carousel's own transforms take over once the entrance ends) */}
+              <div
+                className="hobby-glass-card rounded-[1.25rem] overflow-hidden"
+                style={{ animation: `fadeUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${Math.min(i, 8) * 0.07}s backwards` }}
+              >
                 {/* Cover — full card height, label overlays at bottom */}
                 <div
                   className={cn(

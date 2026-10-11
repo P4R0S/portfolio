@@ -22,6 +22,8 @@ function BrokenChip() {
       fill="none"
       aria-hidden="true"
       className="w-[clamp(4.5rem,13vw,8.25rem)] h-[clamp(4.5rem,13vw,8.25rem)] shrink-0"
+      // Loses its signal right after load, then briefly every few seconds (globals.css)
+      style={{ animation: 'chip-glitch 4s linear -3.3s infinite' }}
     >
       <path
         d="M17 3.5v5M24 3.5v5M31 3.5v5M17 39.5v5M24 39.5v5M31 39.5v5M3.5 17h5M3.5 24h5M3.5 31h5M39.5 17h5M39.5 31h5"
@@ -30,7 +32,7 @@ function BrokenChip() {
         strokeLinecap="round"
       />
       {/* the broken pin */}
-      <path d="M40 24h1.4M43.4 24h1.6" style={{ stroke: 'var(--accent-hex)' }} strokeOpacity="0.35" strokeWidth="2.4" strokeLinecap="round" />
+      <path d="M40 24h1.4M43.4 24h1.6" style={{ stroke: 'var(--accent-hex)', animation: 'pin-flicker 1.6s ease-in-out infinite' }} strokeOpacity="0.35" strokeWidth="2.4" strokeLinecap="round" />
       <rect x="9" y="9" width="30" height="30" rx="6" fill="#232326" style={{ stroke: 'var(--accent-hex)' }} strokeWidth="2.4" />
       <circle cx="14.6" cy="14.6" r="1.6" style={{ fill: 'var(--accent-hex)' }} />
       <text x="24" y="30.5" textAnchor="middle" className="font-heading" fontWeight="700" fontSize="17" fill="#fafafa">

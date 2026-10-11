@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
+import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { Logo } from '@/components/ui/Logo'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
@@ -27,6 +28,24 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handler)
   }, [])
 
+  // Scrollspy: which home section is under the upper-middle of the screen
+  const [active, setActive] = useState<string | null>(null)
+  useEffect(() => {
+    if (!isHome) return
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) if (entry.isIntersecting) setActive(entry.target.id)
+      },
+      { rootMargin: '-40% 0px -55% 0px' }
+    )
+    for (const id of [...anchorLinks.map((l) => l.anchor), 'contact']) {
+      const el = document.getElementById(id)
+      if (el) observer.observe(el)
+    }
+    return () => observer.disconnect()
+  }, [isHome])
+  const current = isHome ? active : null
+
   const hrefFor = (anchor: string) => isHome ? `#${anchor}` : `/#${anchor}`
   const contactHref = isHome ? '#contact' : '/#contact'
 
@@ -50,9 +69,20 @@ export function Navbar() {
             <a
               key={link.anchor}
               href={hrefFor(link.anchor)}
-              className="text-sm font-medium text-fg-2 hover:text-fg transition-colors duration-200 cursor-pointer"
+              aria-current={current === link.anchor ? 'location' : undefined}
+              className={cn(
+                'relative py-1 text-sm font-medium transition-colors duration-200 cursor-pointer',
+                current === link.anchor ? 'text-fg' : 'text-fg-2 hover:text-fg'
+              )}
             >
               {link.label}
+              {current === link.anchor && (
+                <motion.span
+                  layoutId="nav-underline"
+                  className="absolute left-0 right-0 -bottom-0.5 h-0.5 rounded-full bg-accent"
+                  transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+                />
+              )}
             </a>
           ))}
           <Link
