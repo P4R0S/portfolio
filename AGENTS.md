@@ -18,7 +18,7 @@
 
 ## Conventions
 - Use the `@/` path alias from `tsconfig.json`.
-- Keep components server-side by default; add `'use client'` only for interactivity (`Hero`, `Contact`, `Navbar`, `SectionWrapper`, `HeroTerminal`, `ExpandableText`, `NotFoundTerminal`, `HobbiesCarousel`, `ThemeToggle`, `CvDocument`).
+- Keep components server-side by default; add `'use client'` only for interactivity (`Hero`, `Contact`, `Navbar`, `SectionWrapper`, `HeroTerminal`, `ExpandableText`, `NotFoundTerminal`, `HobbiesCarousel`, `ThemeToggle`, `CvDocument`, `MotionProvider`).
 - Reuse shared UI primitives instead of re-creating them: `GlassCard`, `GradientText`, `SectionWrapper`, `BackgroundLayer`, `Logo` (the chip monogram), `ExpandableText`.
 - `BackgroundLayer` is rendered once in the root layout; pages should not add their own or paint an opaque background over it.
 - Tailwind v4 + `cn` from `lib/utils.ts` are the standard styling helpers.

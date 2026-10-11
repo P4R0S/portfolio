@@ -46,11 +46,11 @@ export function Hero({ stats }: { stats: HeroStat[] }) {
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
 
           {/* Left column */}
-          <motion.div
+          {/* CSS entrance (not framer-motion): it starts at first paint instead of after
+              hydration, so the heading (the LCP element) isn't held invisible until JS loads */}
+          <div
             className="flex-1 text-center lg:text-left"
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: 'easeOut' }}
+            style={{ animation: 'fadeUp 0.7s ease-out both' }}
           >
             <p className="text-fg-3 text-xs tracking-[0.25em] uppercase mb-6">
               Welcome — I build things that matter
@@ -65,7 +65,7 @@ export function Hero({ stats }: { stats: HeroStat[] }) {
 
             {/* Animated role switcher */}
             <div className="h-10 flex items-center lg:justify-start justify-center mb-8 overflow-hidden">
-              <AnimatePresence mode="wait">
+              <AnimatePresence mode="wait" initial={false}>
                 <motion.p
                   key={roleIndex}
                   initial={{ opacity: 0, y: 12 }}
@@ -108,7 +108,7 @@ export function Hero({ stats }: { stats: HeroStat[] }) {
                 </GlassCard>
               ))}
             </div>
-          </motion.div>
+          </div>
 
           {/* Right column — terminal widget. Desktop only (lg+), where it sits beside the intro;
               on phones/tablets it would stack below the hero content, so it's hidden there. */}

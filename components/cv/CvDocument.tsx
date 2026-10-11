@@ -167,7 +167,7 @@ function EducationSection({ delay }: { delay: number }) {
 export function CvDocument() {
   return (
     <div
-      className="w-full max-w-5xl relative overflow-hidden flex flex-col md:flex-row border shadow-[0px_25px_50px_0px_rgba(0,0,0,0.35)]"
+      className="cv-sheet w-full max-w-5xl relative overflow-hidden flex flex-col md:flex-row print:flex-row border shadow-[0px_25px_50px_0px_rgba(0,0,0,0.35)] print:shadow-none print:max-w-none"
       style={{ borderColor: 'var(--cv-ink-soft)' }}
     >
       {/* Corner brackets */}
@@ -178,7 +178,7 @@ export function CvDocument() {
 
       {/* ── SIDEBAR ── (below md it stacks under the main column, so the name comes first) */}
       <motion.aside
-        className="w-full md:w-[280px] shrink-0 flex flex-col gap-6 pt-10 px-8 pb-10"
+        className="w-full md:w-[280px] print:w-[230px] shrink-0 flex flex-col gap-6 pt-10 px-8 print:px-6 pb-10"
         style={{ background: 'linear-gradient(180deg, var(--cv-side-from) 0%, var(--cv-side-to) 100%)' }}
         initial={{ opacity: 0, x: -40 }}
         animate={{ opacity: 1, x: 0 }}
@@ -240,7 +240,7 @@ export function CvDocument() {
 
       {/* ── MAIN CONTENT ── */}
       <motion.div
-        className="order-first md:order-none flex-1 min-w-0 flex flex-col gap-6 pt-10 md:pt-14 px-6 sm:px-10 md:px-14 pb-14"
+        className="order-first md:order-none flex-1 min-w-0 flex flex-col gap-6 pt-10 md:pt-14 px-6 sm:px-10 md:px-14 pb-14 print:order-none print:pt-10 print:px-8"
         style={{ background: 'var(--cv-paper)' }}
         initial={{ opacity: 0, x: 40 }}
         animate={{ opacity: 1, x: 0 }}

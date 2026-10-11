@@ -198,6 +198,16 @@ body {
   }
 }
 
+/* Printing / "Save as PDF" of /cv: the site chrome is hidden with `print:hidden`. Sections
+   that reveal on scroll would still be at opacity 0 if never scrolled into view, so force them
+   visible, and keep the sidebar's dark background (browsers drop backgrounds by default). */
+@media print {
+  @page { margin: 10mm; }
+  body { background: var(--cv-paper); }
+  .cv-sheet { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .cv-sheet * { opacity: 1 !important; transform: none !important; }
+}
+
 /* Utility classes */
 .gradient-text {
   background: linear-gradient(135deg, var(--grad-1), var(--grad-2), var(--grad-3));

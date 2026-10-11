@@ -1,7 +1,7 @@
 /** Fixed ambient glows; colors come from the --glow-* theme tokens in globals.css. */
 export function BackgroundLayer() {
   return (
-    <div className="fixed inset-0 pointer-events-none z-0" aria-hidden="true">
+    <div className="fixed inset-0 pointer-events-none z-0 print:hidden" aria-hidden="true">
       {/* Top-right — hero zone warm orange */}
       <div className="absolute rounded-full"
         style={{

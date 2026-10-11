@@ -4,7 +4,8 @@ import './globals.css'
 import { Navbar } from '@/components/ui/Navbar'
 import { Footer } from '@/components/ui/Footer'
 import { BackgroundLayer } from '@/components/ui/BackgroundLayer'
-import { siteUrl } from '@/lib/site'
+import { MotionProvider } from '@/components/ui/MotionProvider'
+import { siteUrl, ogBase } from '@/lib/site'
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -22,14 +23,19 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: 'Parsa Rostamzadeh — Graduate Research Assistant · ML × Hardware',
+  title: {
+    default: 'Parsa Rostamzadeh — Graduate Research Assistant · ML × Hardware',
+    template: '%s — Parsa Rostamzadeh',
+  },
   description:
     'Computer engineer specializing in approximate computing, hardware-aware ML, FPGA neural network optimization, and graph neural networks.',
   keywords: ['Approximate Computing', 'Hardware-aware ML', 'FPGA', 'VLSI', 'Graduate Research Assistant', 'Portfolio', 'Paderborn University'],
+  alternates: { canonical: '/' },
   openGraph: {
+    ...ogBase,
     title: 'Parsa Rostamzadeh — Graduate Research Assistant · ML × Hardware',
     description: 'Computer engineer specializing in approximate computing, hardware-aware ML, and FPGA neural network optimization.',
-    type: 'website',
+    url: '/',
   },
   twitter: { card: 'summary_large_image' },
 }
@@ -53,17 +59,19 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${dmSans.variable} scroll-smooth`}
+      className={`${spaceGrotesk.variable} ${dmSans.variable} motion-safe:scroll-smooth`}
       suppressHydrationWarning
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="bg-bg text-fg antialiased">
-        <BackgroundLayer />
-        <Navbar />
-        <main className="relative z-10">{children}</main>
-        <Footer />
+        <MotionProvider>
+          <BackgroundLayer />
+          <Navbar />
+          <main className="relative z-10">{children}</main>
+          <Footer />
+        </MotionProvider>
       </body>
     </html>
   )
