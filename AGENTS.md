@@ -13,7 +13,7 @@
   - Publications have an optional `status: 'under-review'` (shown as a badge, excluded from the "Papers Published" stat). Publications intentionally carry no PDF/DOI links.
 - Routes: `/`, `/cv`, `/hobbies`, plus `app/not-found.tsx` (branded 404).
 - CV (`/cv`): `components/cv/CvDocument.tsx` renders `content/cv.ts` (summary, contact, skills, roles, education) plus publications from `content/publications.ts` (`venueShort` gives the short venue label). The CV sheet uses its own `--cv-*` tokens and looks the same in both themes, like a printed page; only the page around it follows the theme. Its fonts (Crimson Pro, Commissioner) are loaded in `app/cv/layout.tsx` as variable fonts without a weight list, because fixed weights break Turbopack's dev font loader.
-- The contact flow is client form → `app/api/contact/route.ts` → Resend email delivery (honeypot field `extra`, length limits mirrored on both sides; needs `RESEND_API_KEY`).
+- The contact flow is client form → `app/api/contact/route.ts` → Resend email delivery (honeypot field `extra`, length limits mirrored on both sides; needs `RESEND_API_KEY`, and `CONTACT_FROM=Portfolio Contact <contact@p4ros.de>` since `p4ros.de` is verified in Resend). The email is sent as plain text plus the HTML template in `lib/email/contactEmail.ts` (inline styles, light-theme hex values, all user input escaped). The owner approved its current design; keep it as is unless asked to change it.
 - SEO: `app/icon.svg`, `app/favicon.ico`, `app/apple-icon.png`, `app/opengraph-image.tsx`, `app/sitemap.ts`, `app/robots.ts`; absolute URLs come from `lib/site.ts` (`SITE_URL`, else the custom domain `https://www.p4ros.de` on Vercel, else localhost).
 
 ## Conventions

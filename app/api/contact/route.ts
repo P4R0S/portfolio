@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
+import { contactEmailHtml } from '@/lib/email/contactEmail'
+import { PRODUCTION_URL } from '@/lib/site'
 
 // Keep in sync with the maxLength attributes in components/sections/Contact.tsx
 const LIMITS = { name: 100, email: 254, message: 5000 } as const
@@ -103,6 +105,7 @@ export async function POST(req: NextRequest) {
       replyTo: clean.email,
       subject: `Portfolio contact from ${subjectName}`,
       text: `From: ${clean.name} <${clean.email}>\n\n${clean.message}`,
+      html: contactEmailHtml({ ...clean, siteUrl: PRODUCTION_URL }),
     })
 
     // Resend reports failures in the return value rather than throwing
