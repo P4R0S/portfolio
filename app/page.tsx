@@ -5,6 +5,7 @@ import { Projects } from '@/components/sections/Projects'
 import { Experience } from '@/components/sections/Experience'
 import { Publications } from '@/components/sections/Publications'
 import { Contact } from '@/components/sections/Contact'
+import { SectionDivider } from '@/components/ui/SectionDivider'
 import { projects } from '@/content/projects'
 import { publications } from '@/content/publications'
 import { experience } from '@/content/experience'
@@ -24,10 +25,15 @@ export default function Home() {
     <>
       <Hero stats={heroStats} />
       <About />
+      <SectionDivider variant="trace" />
       <Skills />
+      <SectionDivider variant="wave" />
       <Projects />
+      <SectionDivider variant="timeline" />
       <Experience />
+      <SectionDivider variant="network" />
       <Publications />
+      <SectionDivider variant="approx" />
       <Contact />
     </>
   )
