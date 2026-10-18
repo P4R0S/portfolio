@@ -34,7 +34,12 @@ export function Navbar() {
     if (!isHome) return
     const observer = new IntersectionObserver(
       (entries) => {
-        for (const entry of entries) if (entry.isIntersecting) setActive(entry.target.id)
+        for (const entry of entries) {
+          const id = entry.target.id
+          if (entry.isIntersecting) setActive(id)
+          // Scrolled back up past the active section's top (e.g. into the hero): clear it
+          else if (entry.boundingClientRect.top > 0) setActive((cur) => (cur === id ? null : cur))
+        }
       },
       { rootMargin: '-40% 0px -55% 0px' }
     )
