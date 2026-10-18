@@ -28,6 +28,20 @@ function storedTheme(): Theme | null {
   }
 }
 
+export function currentTheme(): Theme {
+  return document.documentElement.dataset.theme === 'light' ? 'light' : 'dark'
+}
+
+/** Switch the theme and remember the choice (also used by the hero terminal's `theme` command) */
+export function setTheme(theme: Theme) {
+  applyTheme(theme)
+  try {
+    localStorage.setItem(STORAGE_KEY, theme)
+  } catch {
+    // storage unavailable (private mode): the switch still works for this page view
+  }
+}
+
 /**
  * Light/dark switch. The initial theme is set before paint by the inline script in
  * app/layout.tsx; this button only flips `data-theme` and remembers the choice. Both icons
@@ -52,15 +66,7 @@ export function ThemeToggle({ className }: { className?: string }) {
     return () => mq.removeEventListener('change', onChange)
   }, [])
 
-  const toggle = () => {
-    const next: Theme = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light'
-    applyTheme(next)
-    try {
-      localStorage.setItem(STORAGE_KEY, next)
-    } catch {
-      // storage unavailable (private mode): the switch still works for this page view
-    }
-  }
+  const toggle = () => setTheme(currentTheme() === 'light' ? 'dark' : 'light')
 
   return (
     <button

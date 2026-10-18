@@ -28,7 +28,7 @@
 - Theming: two themes, dark (default, bare `:root`) and light (`:root[data-theme="light"]`), both defined as CSS variables in `app/globals.css` and exposed as utilities via `@theme inline` (`bg-bg`, `bg-surface`, `bg-raised`, `bg-btn`, `text-fg`, `text-fg-soft`, `text-fg-2`, `text-fg-3`, `text-accent-fg`, `border-line`, `bg-accent/10`, `text-warm`, `text-danger`, …). Inline styles use `var(--…)`. Never add raw palette classes (`text-slate-400`, `bg-white/5`, `text-orange-400`) or hex colors in components; add/extend a token with both a dark and a light value instead.
 - Use `--accent-fg` for orange text (passes contrast in light mode) and `--accent` for icons, borders and tints. Don't put opacity modifiers on text colors.
 - The initial theme is set before paint by the inline script in `app/layout.tsx` (saved choice in `localStorage.theme`, else OS preference); `components/ui/ThemeToggle.tsx` switches it. Use the `light:` variant only for one-offs a token can't express.
-- Look the same in both themes on purpose: `HeroTerminal`, `NotFoundTerminal`, the CV sheet, the logo's chip body, and the hobby cover labels.
+- Look the same in both themes on purpose: `NotFoundTerminal`, the CV sheet, the logo's chip body, and the hobby cover labels. `HeroTerminal` is themed through `--term-*` tokens: the amber CRT in dark mode, "Paper Ember" (brown ink on warm paper) in light mode.
 - There is no blog (removed deliberately); don't reintroduce MDX/blog tooling.
 - Keep anchor IDs aligned with the navbar links (`about`, `skills`, `projects`, `experience`, `publications`, `contact`).
 

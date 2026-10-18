@@ -47,8 +47,10 @@ Rules:
 - Only one solid orange (`bg-cta`) element per view: the most important action.
 - The **CV sheet** has its own `--cv-*` palette (paper, ink, burgundy `#8b2e2e`) and looks the same in both
   themes, like a printed page.
-- These intentionally look the same in both themes: the hero and 404 terminals, the CV sheet, the logo's
-  chip body, and the hobby cover labels.
+- The hero terminal has its own `--term-*` palette: an amber CRT in dark mode and "Paper Ember" (brown ink
+  on warm paper, burnt-orange prompt) in light mode.
+- These intentionally look the same in both themes: the 404 terminal, the CV sheet, the logo's chip body,
+  and the hobby cover labels.
 
 ## Typography
 

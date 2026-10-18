@@ -1,10 +1,12 @@
+// Each maps to a --term-* token in globals.css (amber CRT in dark mode, Paper Ember in light)
 export type OutputColor =
-  | 'prompt'   // #ffb300 — prompt text
-  | 'cmd'      // #ffd54f — command / user input
-  | 'output'   // #ff8f00 — standard output
-  | 'dim'      // #3d2800 — separators, decorative
-  | 'white'    // #ffffff bold — headers, emphasis
-  | 'plain'    // default amber
+  | 'prompt'   // --term-prompt — prompt text
+  | 'cmd'      // --term-cmd — command / user input
+  | 'output'   // --term-out — standard output
+  | 'muted'    // --term-hint — helper text, hints, usage lines
+  | 'dim'      // --term-dim — separators only (too faint for text)
+  | 'white'    // --term-head, bold — headers, emphasis
+  | 'plain'    // --term-cmd
 
 export interface OutputLine {
   text: string

@@ -1,76 +1,33 @@
 'use client'
 
-import { useState, useRef, useEffect, useCallback } from 'react'
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react'
+import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import type { OutputLine } from '@/lib/terminal/types'
 import { parse } from '@/lib/terminal/parser'
+import { runCommand, COMMAND_NAMES, type CommandContext } from '@/lib/terminal/commands'
+import { currentTheme, setTheme } from '@/components/ui/ThemeToggle'
 
 const HINT = 'Type a command. Try `help`'
+
+// Typewriter speed: one tick every TICK_MS; longer outputs print several characters per tick
+// so a list never takes more than a second or two
+const TICK_MS = 16
+const charsPerTick = (lines: OutputLine[]) => {
+  const total = lines.reduce((n, l) => n + l.text.length, 0)
+  return Math.max(1, Math.ceil(total / 90))
+}
+/** Roughly how long typing `lines` takes, so side effects can wait for it */
+const typingMs = (lines: OutputLine[]) => {
+  const step = charsPerTick(lines)
+  return lines.reduce((ms, l) => ms + Math.ceil(l.text.length / step) * TICK_MS, 0)
+}
 
 const WELCOME_LINES: OutputLine[] = [
   { text: 'Welcome. This terminal is interactive.', color: 'white', bold: true },
   { text: 'Use it to explore who I am and what I do.', color: 'output' },
-  { text: 'Try `whoami`, `skills`, or `help` to get started.', color: 'output' },
+  { text: 'Try `help`, `journey`, or `projects` to get started.', color: 'output' },
 ]
-const COMMANDS = ['help', 'whoami', 'skills', 'open github', 'clear']
-
-function getOutput(command: string, args: string[]): OutputLine[] | null {
-  const full = [command, ...args].join(' ')
-
-  if (full === 'help') {
-    return [
-      { text: 'Available commands:', color: 'white', bold: true },
-      { text: '  whoami      — who is this person?', color: 'output' },
-      { text: '  skills      — technical skills by category', color: 'output' },
-      { text: '  open github — open github.com/P4R0S', color: 'output' },
-      { text: '  clear       — clear the terminal', color: 'output' },
-      { text: '  help        — show this message', color: 'output' },
-    ]
-  }
-
-  if (full === 'whoami') {
-    return [
-      { text: 'Parsa Rostamzadeh', color: 'white', bold: true },
-      { text: 'Graduate Research Assistant — Approximate Computing', color: 'output' },
-      { text: 'Paderborn University · github.com/P4R0S', color: 'output' },
-    ]
-  }
-
-  if (full === 'skills') {
-    return [
-      { text: '──────────────────────────────', color: 'dim' },
-      { text: '[ Languages ]', color: 'white', bold: true },
-      { text: '  Python · C/C++ · Verilog · Bash', color: 'output' },
-      { text: '  TypeScript · JavaScript', color: 'output' },
-      { text: '[ ML / AI ]', color: 'white', bold: true },
-      { text: '  PyTorch · GNN · XAI · scikit-learn', color: 'output' },
-      { text: '[ Hardware ]', color: 'white', bold: true },
-      { text: '  FPGA · RTL · Circuit Design · VLSI', color: 'output' },
-      { text: '  Approximate Circuits · Yosys / ABC', color: 'output' },
-      { text: '[ EDA ]', color: 'white', bold: true },
-      { text: '  Design Compiler · Innovus · QuestaSim', color: 'output' },
-      { text: '  Xilinx Vivado · Icarus Verilog', color: 'output' },
-      { text: '[ Tools ]', color: 'white', bold: true },
-      { text: '  Git · Linux · Docker · HPC/SLURM', color: 'output' },
-      { text: '──────────────────────────────', color: 'dim' },
-    ]
-  }
-
-  if (command === 'open' && args[0] === 'github') {
-    window.open('https://github.com/P4R0S', '_blank', 'noopener,noreferrer')
-    return [{ text: 'Opening github.com/P4R0S...', color: 'dim' }]
-  }
-
-  if (full === 'clear') {
-    return null // special case handled by caller
-  }
-
-  return [
-    { text: `command not found: ${full}`, color: 'output' },
-    { text: 'Try `help` to see available commands.', color: 'dim' },
-  ]
-}
-
 interface TermLine {
   input?: string
   lines: OutputLine[]
@@ -88,6 +45,20 @@ export function HeroTerminal() {
   const historyIdx = useRef(-1)
   const rafRef = useRef<number>(0)
   const charIdx = useRef(0)
+  const stepRef = useRef(1)
+  const router = useRouter()
+
+  // What commands can do besides printing (scroll, open pages, switch theme)
+  const ctx = useMemo<CommandContext>(() => ({
+    scrollTo: (id) => {
+      if (id === 'top') window.scrollTo({ top: 0 })
+      else document.getElementById(id)?.scrollIntoView()
+    },
+    navigate: (href) => router.push(href),
+    openUrl: (url) => window.open(url, '_blank', 'noopener,noreferrer'),
+    getTheme: currentTheme,
+    setTheme,
+  }), [router])
 
   // Auto-type welcome message once on mount, after entrance animation
   useEffect(() => {
@@ -124,18 +95,19 @@ export function HeroTerminal() {
 
     charIdx.current = 0
     const text = line.text
+    stepRef.current = charsPerTick(animatingLines)
 
     const tick = () => {
-      charIdx.current++
+      charIdx.current += stepRef.current
       setVisibleText(text.slice(0, charIdx.current))
       if (charIdx.current < text.length) {
-        rafRef.current = window.setTimeout(tick, 20)
+        rafRef.current = window.setTimeout(tick, TICK_MS)
       } else {
         setCurrentLine(n => n + 1)
         setVisibleText('')
       }
     }
-    rafRef.current = window.setTimeout(tick, 20)
+    rafRef.current = window.setTimeout(tick, TICK_MS)
     return () => clearTimeout(rafRef.current)
   }, [animatingLines, currentLine])
 
@@ -155,20 +127,28 @@ export function HeroTerminal() {
     setInput('')
 
     const { command, args } = parse(trimmed)
+    const result = runCommand(command, args, ctx)
 
-    if ([command, ...args].join(' ') === 'clear') {
+    if (result.clear) {
       setBlocks([])
       setAnimatingLines(null)
       return
     }
 
-    const lines = getOutput(command, args) ?? []
-    // Prepend a block with the typed input echo
-    setBlocks(prev => [...prev, { input: trimmed, lines: [] }])
-    setAnimatingLines(lines)
+    // A new command finishes the previous output instantly instead of dropping it,
+    // then echoes the typed input and types out the new output
+    const unfinished = animatingLines
+    setBlocks(prev => [
+      ...prev,
+      ...(unfinished ? [{ lines: unfinished }] : []),
+      { input: trimmed, lines: [] },
+    ])
+    setAnimatingLines(result.lines)
     setCurrentLine(0)
     setVisibleText('')
-  }, [input])
+    // Side effects (scroll, open a page) wait until the output has been typed
+    if (result.after) window.setTimeout(result.after, typingMs(result.lines) + 150)
+  }, [input, ctx, animatingLines])
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') { submit(); return }
@@ -189,19 +169,21 @@ export function HeroTerminal() {
     }
     if (e.key === 'Tab') {
       e.preventDefault()
-      const match = COMMANDS.find(c => c.startsWith(input.toLowerCase()))
+      const match = COMMAND_NAMES.find(c => c.startsWith(input.toLowerCase()))
       if (match) setInput(match)
     }
   }
 
+  // Colors are --term-* tokens (globals.css): the amber CRT in dark mode, "Paper Ember" in light
   const colorClass = (color?: string) => ({
-    prompt: 'text-[#ffb300]',
-    cmd: 'text-[#ffd54f]',
-    output: 'text-[#ff8f00]',
-    dim: 'text-[#3d2800]',
-    white: 'text-white',
-    plain: 'text-[#ffd54f]',
-  }[color ?? 'plain'] ?? 'text-[#ffd54f]')
+    prompt: 'text-[var(--term-prompt)]',
+    cmd: 'text-[var(--term-cmd)]',
+    output: 'text-[var(--term-out)]',
+    muted: 'text-[var(--term-hint)]',
+    dim: 'text-[var(--term-dim)]',
+    white: 'text-[var(--term-head)]',
+    plain: 'text-[var(--term-cmd)]',
+  }[color ?? 'plain'] ?? 'text-[var(--term-cmd)]')
 
   return (
     /* Entrance: fade + slide from right */
@@ -228,28 +210,26 @@ export function HeroTerminal() {
         <div
           className="absolute inset-0 pointer-events-none z-10 rounded-xl"
           style={{
-            background: 'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,179,0,0.018) 3px, rgba(255,179,0,0.018) 4px)',
+            background: 'repeating-linear-gradient(0deg, transparent, transparent 3px, var(--term-scan) 3px, var(--term-scan) 4px)',
           }}
         />
 
         {/* Window */}
         <div
-          className="rounded-xl overflow-hidden border border-[rgba(255,179,0,0.28)]"
+          className="rounded-xl overflow-hidden border border-[var(--term-border)]"
           style={{
-            background: 'rgba(13,8,0,0.96)',
+            background: 'var(--term-bg)',
             // Drop shadows live here as box-shadow, not as a `filter` on the tilted wrapper:
             // a filter can force the whole terminal into a bitmap before the 3D tilt, softening the text.
-            boxShadow:
-              '0 2px 0 rgba(255,179,0,0.15) inset, 0 -1px 0 rgba(0,0,0,0.8) inset, ' +
-              '0 40px 60px rgba(0,0,0,0.85), 0 8px 24px rgba(0,0,0,0.6), 0 0 50px rgba(255,140,0,0.13)',
+            boxShadow: 'var(--term-shadow)',
           }}
         >
           {/* Chrome */}
-          <div className="flex items-center gap-1.5 px-4 py-2.5 border-b border-[rgba(255,179,0,0.14)]" style={{ background: 'rgba(8,4,0,0.98)' }}>
+          <div className="flex items-center gap-1.5 px-4 py-2.5 border-b border-[var(--term-rule)]" style={{ background: 'var(--term-chrome)' }}>
             <span className="w-3 h-3 rounded-full bg-[#ff5f57] shadow-[0_0_6px_rgba(255,95,87,0.6)]" />
             <span className="w-3 h-3 rounded-full bg-[#febc2e] shadow-[0_0_6px_rgba(254,188,46,0.5)]" />
             <span className="w-3 h-3 rounded-full bg-[#28c840] shadow-[0_0_6px_rgba(40,200,64,0.5)]" />
-            <span className="ml-3 font-mono text-[0.5625rem] text-[#a36e07] tracking-wide">paros@paderborn — portfolio v2.0</span>
+            <span className="ml-3 font-mono text-[0.5625rem] text-[var(--term-title)] tracking-wide">paros@paderborn — portfolio v2.0</span>
           </div>
 
           {/* Body */}
@@ -259,16 +239,16 @@ export function HeroTerminal() {
             style={{ scrollbarWidth: 'none' }}
           >
             {/* Hint */}
-            <div className="text-[#70634a] mb-1">{HINT}</div>
+            <div className="text-[var(--term-hint)] mb-1">{HINT}</div>
 
             {/* Completed blocks */}
             {blocks.map((block, i) => (
               <div key={i} className="mt-1">
                 {block.input && (
                   <div>
-                    <span className="text-[#ffb300]">paros@paderborn</span>
-                    <span className="text-[#bfbfbd]">:~$ </span>
-                    <span className="text-[#ffd54f]">{block.input}</span>
+                    <span className="text-[var(--term-prompt)]">paros@paderborn</span>
+                    <span className="text-[var(--term-sep)]">:~$ </span>
+                    <span className="text-[var(--term-cmd)]">{block.input}</span>
                   </div>
                 )}
                 {block.lines.map((line, j) => (
@@ -297,10 +277,10 @@ export function HeroTerminal() {
 
             {/* Prompt */}
             <div className="flex items-center mt-1">
-              <span className="text-[#ffb300]">paros@paderborn</span>
-              <span className="text-[#bfbfbd]">:~$ </span>
-              <span className="text-[#ffd54f]">{input}</span>
-              <span className="inline-block w-[0.4375rem] h-[0.8125rem] bg-[#ffb300] ml-px rounded-[1px] animate-[cursor-blink_1s_step-end_infinite]" />
+              <span className="text-[var(--term-prompt)]">paros@paderborn</span>
+              <span className="text-[var(--term-sep)]">:~$ </span>
+              <span className="text-[var(--term-cmd)]">{input}</span>
+              <span className="inline-block w-[0.4375rem] h-[0.8125rem] bg-[var(--term-cursor)] ml-px rounded-[1px] animate-[cursor-blink_1s_step-end_infinite]" />
             </div>
           </div>
         </div>
