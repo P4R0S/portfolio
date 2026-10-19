@@ -19,8 +19,9 @@ export default function HobbiesPage() {
     <div className="min-h-screen overflow-x-clip">
       <div className="relative z-10 pt-24 pb-28">
 
-        {/* Hero — constrained */}
-        <div className="max-w-[62.5rem] mx-auto px-7 mb-20">
+        {/* Hero — same column as the home sections (px-4/6/8 around max-w-6xl) */}
+        <div className="px-4 sm:px-6 lg:px-8 mb-20">
+          <div className="max-w-6xl mx-auto">
           <div
             className="inline-flex items-center gap-2 text-[0.6875rem] uppercase tracking-[0.2em] text-accent-fg mb-4 px-3 py-1 rounded-full border border-accent/20"
             style={{ background: 'color-mix(in srgb, var(--accent-hex) 8%, transparent)' }}
@@ -47,6 +48,7 @@ export default function HobbiesPage() {
             There&apos;s a person behind the research. Here&apos;s what I read, watch,
             play, and listen to — a curated collection of things that shaped how I think.
           </p>
+          </div>
         </div>
 
         {/* Category sections */}
@@ -59,8 +61,9 @@ export default function HobbiesPage() {
               animationDelay: `${idx * 0.08}s`,
             }}
           >
-            {/* Category header — constrained */}
-            <div className="max-w-[62.5rem] mx-auto px-7">
+            {/* Category header — same column as the hero */}
+            <div className="px-4 sm:px-6 lg:px-8">
+              <div className="max-w-6xl mx-auto">
               <div className="flex items-center gap-3.5 mb-6">
                 <div
                   className="w-10 h-10 rounded-xl flex items-center justify-center text-xl flex-shrink-0 border border-accent/20"
@@ -90,6 +93,7 @@ export default function HobbiesPage() {
                 className="mb-6 h-px"
                 style={{ background: 'linear-gradient(to right, color-mix(in srgb, var(--accent-hex) 30%, transparent), color-mix(in srgb, var(--accent-hex) 5%, transparent))' }}
               />
+              </div>
             </div>
 
             {/* Carousel — full viewport width */}
