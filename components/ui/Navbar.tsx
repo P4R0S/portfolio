@@ -57,12 +57,13 @@ export function Navbar() {
   return (
     <nav
       className={cn(
-        'fixed top-4 left-4 right-4 z-50 rounded-2xl transition-all duration-300 print:hidden',
+        // Same width as the page content (sections: px-4/6/8 around max-w-6xl)
+        'fixed top-4 inset-x-4 sm:inset-x-6 lg:inset-x-8 mx-auto max-w-6xl z-50 rounded-2xl transition-all duration-300 print:hidden',
         'backdrop-blur-md border border-line',
         scrolled ? 'bg-[var(--nav-scrolled)] shadow-xl shadow-(color:--nav-shadow)' : 'bg-nav-idle'
       )}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 flex md:grid md:grid-cols-[1fr_auto_1fr] md:gap-4 items-center justify-between h-14">
+      <div className="px-4 sm:px-6 flex md:grid md:grid-cols-[1fr_auto_1fr] md:gap-4 items-center justify-between h-14">
         {/* Logo — always goes home */}
         <Link href="/" aria-label="Home" className="justify-self-start cursor-pointer transition-transform duration-200 hover:scale-105">
           <Logo className="w-[2.125rem] h-[2.125rem]" />
