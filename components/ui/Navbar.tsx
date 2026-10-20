@@ -131,7 +131,7 @@ export function Navbar() {
         <div className="md:hidden flex items-center gap-3">
           <ThemeToggle />
           <button
-            className="text-fg-2 hover:text-fg transition-colors duration-200 cursor-pointer"
+            className="p-2 -m-2 text-fg-2 hover:text-fg transition-colors duration-200 cursor-pointer"
             onClick={() => setOpen(!open)}
             aria-label={open ? 'Close menu' : 'Open menu'}
           >

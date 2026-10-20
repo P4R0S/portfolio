@@ -1,12 +1,16 @@
 'use client'
-import { usePathname } from 'next/navigation'
+import { useSyncExternalStore } from 'react'
 
 // Each line appears in turn, as if typed, after the chip's glitch (keyframes in globals.css)
 const lineIn = (delay: number) => ({ animation: `line-in 0.01s linear ${delay}s both` })
 
+// The 404 page is prerendered once without a path, so read the real one only on the client
+// (an empty server snapshot avoids a hydration mismatch); the lines are still hidden by then.
+const noSubscribe = () => () => {}
+
 /** Terminal echoing the path the visitor tried to open. */
 export function NotFoundTerminal() {
-  const pathname = usePathname() ?? '/'
+  const pathname = useSyncExternalStore(noSubscribe, () => window.location.pathname, () => '')
 
   return (
     <div

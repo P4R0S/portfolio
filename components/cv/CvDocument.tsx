@@ -247,7 +247,7 @@ export function CvDocument() {
         transition={{ duration: 0.6, ease: 'easeOut' }}
       >
         <div className="border-b-2 pb-3" style={{ borderColor: 'var(--cv-accent)' }}>
-          <h1 className="leading-tight tracking-tight" style={{ ...serif, fontWeight: 700, fontSize: 'clamp(1.9rem, 4vw, 3.2rem)', color: 'var(--cv-ink)' }}>
+          <h1 className="leading-tight tracking-tight" style={{ ...serif, fontWeight: 700, fontSize: 'clamp(min(1.9rem, 7.2vw), 4vw, 3.2rem)', color: 'var(--cv-ink)' }}>
             {cvName.first}<br />{cvName.last}
           </h1>
         </div>

@@ -29,7 +29,7 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={label}
-              className="text-fg-3 hover:text-fg transition-colors duration-200 cursor-pointer"
+              className="p-2 -m-2 text-fg-3 hover:text-fg transition-colors duration-200 cursor-pointer"
             >
               <Icon className="w-5 h-5" />
             </a>
@@ -38,7 +38,7 @@ export function Footer() {
           <a
             href="#"
             aria-label="Back to top"
-            className="text-fg-3 hover:text-fg transition-colors duration-200 cursor-pointer"
+            className="p-2 -m-2 text-fg-3 hover:text-fg transition-colors duration-200 cursor-pointer"
           >
             <ArrowUp className="w-5 h-5" />
           </a>

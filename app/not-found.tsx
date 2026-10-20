@@ -91,7 +91,7 @@ export default function NotFound() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-fg-2 hover:text-fg transition-colors duration-200"
+              className="py-2 -my-2 text-fg-2 hover:text-fg transition-colors duration-200"
             >
               {link.label}
             </Link>
